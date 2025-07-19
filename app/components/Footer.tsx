@@ -1,28 +1,19 @@
 /**
  * Footer Component for AutoCar'z
- *
+ * 
  * A comprehensive footer featuring:
  * - Company information and contact details
  * - Navigation links
- * - Social media links
+ * - Business hours
  * - Copyright information
- *
+ * 
  * Design matches the luxury car dealership theme with dark background
  * and gold accents consistent with the site's color scheme.
  */
 "use client";
 
 import Link from "next/link";
-import {
-  FaPhone,
-  FaEnvelope,
-  FaMapMarkerAlt,
-  FaFacebook,
-  FaInstagram,
-  FaTwitter,
-} from "react-icons/fa";
-
-export default function Footer() {
+import { FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";export default function Footer() {
   return (
     <footer className="bg-[#0D1B2A] text-white py-12">
       <div className="max-w-7xl mx-auto px-6">
@@ -93,37 +84,10 @@ export default function Footer() {
             </nav>
           </div>
 
-          {/* Social Media & Additional Info */}
+          {/* Business Hours & Additional Info */}
           <div className="space-y-4">
-            <h3 className="text-xl font-bold text-[#FFD700] mb-4">
-              Suivez-nous
-            </h3>
-
-            {/* Social Media Links */}
-            <div className="flex space-x-4">
-              <a
-                href="#"
-                className="text-gray-300 hover:text-[#FFD700] transition-colors duration-200"
-                aria-label="Facebook"
-              >
-                <FaFacebook size={20} />
-              </a>
-              <a
-                href="#"
-                className="text-gray-300 hover:text-[#FFD700] transition-colors duration-200"
-                aria-label="Instagram"
-              >
-                <FaInstagram size={20} />
-              </a>
-              <a
-                href="#"
-                className="text-gray-300 hover:text-[#FFD700] transition-colors duration-200"
-                aria-label="Twitter"
-              >
-                <FaTwitter size={20} />
-              </a>
-            </div>
-
+            <h3 className="text-xl font-bold text-[#FFD700] mb-4">Informations</h3>
+            
             {/* Business Hours */}
             <div className="text-sm text-gray-300">
               <h4 className="font-semibold text-white mb-2">
