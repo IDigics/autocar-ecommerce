@@ -2,25 +2,26 @@
  * AutoCar'z Homepage Component
  *
  * This is the main landing page for the AutoCar'z luxury car dealership.
- * Features a hero section with statistics, promotional text, and call-to-action.
+ * Features a full-screen hero section with background image, centered text, and statistics.
  *
  * Layout Structure:
  * - Header navigation
- * - Hero section with 3-column layout: Hero Image (left) | Stats (center) | CTA Text (right)
+ * - Full-screen hero with background image
+ * - Centered headline and CTA
+ * - Statistics bar at bottom
  * - Footer with company info and links
  * - Fully responsive design for mobile and desktop
  *
  * Color Scheme:
  * - Primary: #0D1B2A (Dark Navy)
  * - Accent: #FFD700 (Gold)
- * - Background: #F8F8F5 (Light Cream)
+ * - Background: Dark overlay on hero image
  */
 "use client";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Image from "next/image";
-import { FaCarSide, FaAward, FaSmile } from "react-icons/fa";
 
 export default function Home() {
   return (
@@ -28,82 +29,63 @@ export default function Home() {
       {/* Site Navigation Header */}
       <Header />
 
-      {/* Main Hero Section - Luxury Car Showcase */}
-      <main className="bg-[#F8F8F5] min-h-screen flex items-center px-0 py-0">
-        {/* Responsive Container - Image touching edges, content on right */}
-        <div className="flex flex-col md:flex-row items-stretch h-screen w-full">
-          {/* 🖼️ HERO IMAGE SECTION - Left Edge, touching header/footer */}
-          <div className="w-full md:w-[25%] order-2 md:order-1 h-full">
-            <Image
-              src="/hero.jpeg"
-              alt="Voiture de luxe AutoCar'z"
-              width={1000}
-              height={600}
-              className="object-cover w-full h-full"
-              priority // Load immediately as it's above the fold
-            />
-          </div>
+      {/* Full-Screen Hero Section with Background Image */}
+      <main className="relative min-h-screen flex flex-col justify-center items-center text-white">
+        {/* Background Image with Overlay */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/hero.jpeg"
+            alt="Voiture de luxe AutoCar'z"
+            fill
+            className="object-cover brightness-50"
+            priority
+          />
+          <div className="absolute inset-0 bg-black/40"></div>
+        </div>
 
-          {/* Content Container - Statistics and CTA */}
-          <div className="w-full md:w-[75%] flex flex-col md:flex-row items-center justify-center px-8 py-12 order-1 md:order-2">
-            {/* 📊 STATISTICS SECTION - Left side of content area */}
-            <div className="w-full md:w-[40%] flex flex-col gap-6 items-center md:items-start order-2 md:order-1">
-              <div className="flex items-center gap-3">
-                <FaCarSide className="text-[#FFD700] text-xl md:text-2xl" />
-                <div className="text-[#0D1B2A] text-base md:text-lg font-semibold leading-tight">
-                  <span className="text-[#FFD700] font-bold text-lg md:text-xl">
-                    100+
-                  </span>
-                  <br />
-                  <span className="text-sm md:text-base">
-                    véhicules premium
-                  </span>
-                </div>
+        {/* Main Content - Centered */}
+        <div className="relative z-10 text-center max-w-4xl mx-auto px-6">
+          {/* Main Headline */}
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+            Conduisez l'exception<br />
+            ressentez la <span className="text-[#FFD700]">passion</span><br />
+            <span className="text-[#FFD700] text-5xl md:text-7xl lg:text-8xl">Vivez AutoCar'z</span>
+          </h1>
+
+          {/* Supporting Text */}
+          <p className="text-lg md:text-xl lg:text-2xl mb-8 text-gray-200 max-w-3xl mx-auto leading-relaxed">
+            Découvrez une sélection exclusive de véhicules luxueux qui 
+            marient élégance et performance, pour ceux qui exigent 
+            l'excellence.
+          </p>
+
+          {/* CTA Button */}
+          <button className="px-8 py-4 bg-gradient-to-r from-[#FFD700] to-[#E6B800] text-[#0D1B2A] rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 font-semibold text-lg tracking-wide">
+            Découvrir la boutique →
+          </button>
+        </div>
+
+        {/* Statistics Bar at Bottom */}
+        <div className="absolute bottom-8 left-0 right-0 z-10">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+              {/* Statistic 1 */}
+              <div className="flex flex-col items-center">
+                <span className="text-4xl md:text-5xl font-bold text-[#FFD700] mb-2">100+</span>
+                <span className="text-sm md:text-base text-gray-300 uppercase tracking-wide">Véhicules Premium</span>
               </div>
 
-              <div className="flex items-center gap-3">
-                <FaAward className="text-[#FFD700] text-xl md:text-2xl" />
-                <div className="text-[#0D1B2A] text-base md:text-lg font-semibold leading-tight">
-                  <span className="text-[#FFD700] font-bold text-lg md:text-xl">
-                    15+
-                  </span>
-                  <br />
-                  <span className="text-sm md:text-base">
-                    années d'expérience
-                  </span>
-                </div>
+              {/* Statistic 2 */}
+              <div className="flex flex-col items-center">
+                <span className="text-4xl md:text-5xl font-bold text-[#FFD700] mb-2">15+</span>
+                <span className="text-sm md:text-base text-gray-300 uppercase tracking-wide">Années d'Expérience</span>
               </div>
 
-              <div className="flex items-center gap-3">
-                <FaSmile className="text-[#FFD700] text-xl md:text-2xl" />
-                <div className="text-[#0D1B2A] text-base md:text-lg font-semibold leading-tight">
-                  <span className="text-[#FFD700] font-bold text-lg md:text-xl">
-                    500+
-                  </span>
-                  <br />
-                  <span className="text-sm md:text-base">
-                    clients satisfaits
-                  </span>
-                </div>
+              {/* Statistic 3 */}
+              <div className="flex flex-col items-center">
+                <span className="text-4xl md:text-5xl font-bold text-[#FFD700] mb-2">500+</span>
+                <span className="text-sm md:text-base text-gray-300 uppercase tracking-wide">Clients Satisfaits</span>
               </div>
-            </div>
-
-            {/* 📝 CALL-TO-ACTION SECTION - Right side of content area */}
-            <div className="w-full md:w-[60%] text-center md:text-left space-y-6 order-1 md:order-2 md:pl-8">
-              {/* Main Headline - Emotional Appeal */}
-              <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#0D1B2A] leading-tight">
-                Conduisez l'exception, Ressentez la passion...
-              </h1>
-
-              {/* Brand Tagline - Large Impact Text */}
-              <p className="text-4xl md:text-5xl lg:text-6xl font-semibold text-[#E6B800] text-center md:text-left leading-tight">
-                Vivez AutoCar'z
-              </p>
-
-              {/* Call-to-Action Button */}
-              <button className="mt-6 px-10 py-4 bg-[#0D1B2A] text-white rounded-xl shadow-lg hover:bg-[#102438] hover:shadow-xl transition-all duration-300 font-medium text-lg">
-                Découvrir nos modèles
-              </button>
             </div>
           </div>
         </div>
