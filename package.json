@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "name": "test",
+=======
+  "name": "boutique-autocarz",
+>>>>>>> 1a3ff46 (Initial commit from Create Next App)
   "version": "0.1.0",
   "private": true,
   "scripts": {
