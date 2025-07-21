@@ -1,88 +1,47 @@
-# 🚗 AutoCar'z - Luxury Automotive E-Commerce
+# 🚗 AutoCar'z - Luxury Automotive Website
 
-**AutoCar'z** is a premium luxury car dealership website built with modern web technologies. Experience elegance, performance, and exceptional service in the world of luxury automobiles.
+A sophisticated luxury car dealership website built with Next.js 15, featuring elegant design, modern UI components, and comprehensive automotive business functionality.
 
 ## ✨ Features
 
-- **🎨 Luxury Design**: Premium UI/UX with gold and navy color scheme
-- **📱 Responsive Layout**: Optimized for desktop, tablet, and mobile devices
-- **🚀 Smooth Scrolling**: Seamless navigation between sections
-- **⚡ Fast Performance**: Built with Next.js for optimal speed
-- **🎯 Modern Architecture**: Clean, maintainable code structure
-- **🌟 Interactive Elements**: Hover effects and smooth animations
+### 🎨 **Design & UI**
+
+- **Luxury Brand Identity** with gold (#FFD700) and navy (#0D1B2A) color scheme
+- **Responsive Design** optimized for all devices
+- **Modern Interface** with smooth animations and transitions
+- **Professional Typography** with carefully selected fonts
+- **Glass-morphism Effects** for premium visual appeal
+
+### 🚙 **Automotive Services**
+
+- **Vehicle Catalog** (New & Used luxury vehicles)
+- **Financing Solutions** with partner integration
+- **Trade-in Services** for vehicle exchange
+- **Maintenance & After-sales** support
+- **Showroom Information** and appointments
+
+### 🔒 **Legal & Compliance**
+
+- **GDPR Compliant** privacy policy
+- **Interactive Cookie Policy** with preference management
+- **Comprehensive Terms of Service** for automotive business
+- **Professional Legal Framework** for luxury car sales
+
+### 🔍 **User Experience**
+
+- **Advanced Search Bar** with ⌘K shortcut
+- **Smooth Scroll Navigation** between sections
+- **Interactive Components** with hover effects
+- **Accessibility Features** with proper ARIA labels
+- **French Localization** for target market
 
 ## 🛠️ Tech Stack
 
-- **Framework**: [Next.js 15](https://nextjs.org/) with App Router
-- **Language**: [TypeScript](https://www.typescriptlang.org/)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
-- **Image Optimization**: Next.js Image Component
-- **Icons**: Custom SVG icons
-- **Fonts**: Optimized web fonts
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-Make sure you have the following installed on your system:
-
-- **Node.js** (version 18.17 or higher)
-- **npm**, **yarn**, **pnpm**, or **bun** package manager
-
-### Installation
-
-1. **Clone the repository**
-
-   ```bash
-   git clone https://github.com/IDigics/autocar-ecommerce.git
-   cd autocar-ecommerce
-   ```
-
-2. **Install dependencies**
-
-   ```bash
-   # Using npm
-   npm install
-
-   # Using yarn
-   yarn install
-
-   # Using pnpm
-   pnpm install
-
-   # Using bun
-   bun install
-   ```
-
-3. **Run the development server**
-
-   ```bash
-   # Using npm
-   npm run dev
-
-   # Using yarn
-   yarn dev
-
-   # Using pnpm
-   pnpm dev
-
-   # Using bun
-   bun dev
-   ```
-
-4. **Open your browser**
-
-   Navigate to [http://localhost:3000](http://localhost:3000) to see the website in action.
-
-### Build for Production
-
-```bash
-# Build the application
-npm run build
-
-# Start the production server
-npm start
-```
+- **Framework**: Next.js 15 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Icons**: React Icons (Font Awesome)
+- **Deployment**: Vercel Ready
 
 ## 📁 Project Structure
 
@@ -90,104 +49,166 @@ npm start
 autocar-ecommerce/
 ├── app/
 │   ├── components/
-│   │   ├── Header.tsx          # Navigation header with smooth scroll
-│   │   └── Footer.tsx          # Site footer with links
-│   ├── globals.css             # Global styles and Tailwind imports
-│   ├── layout.tsx              # Root layout component
-│   └── page.tsx                # Homepage with hero, features, and benefits
-├── public/
-│   ├── logo.png                # AutoCar'z brand logo
-│   ├── hero.jpeg               # Hero section background
-│   └── ...                     # Other static assets
-├── next.config.ts              # Next.js configuration
-├── tailwind.config.ts          # Tailwind CSS configuration
-└── package.json                # Dependencies and scripts
+│   │   ├── Header.tsx          # Navigation with search
+│   │   └── Footer.tsx          # Automotive-focused footer
+│   ├── terms/
+│   │   └── page.tsx           # Terms of service
+│   ├── privacy/
+│   │   └── page.tsx           # Privacy policy (GDPR)
+│   ├── cookies/
+│   │   └── page.tsx           # Cookie policy
+│   ├── layout.tsx             # Root layout
+│   ├── page.tsx               # Home page
+│   └── globals.css            # Global styles
+├── public/                    # Static assets
+└── README.md                  # Project documentation
 ```
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- npm, yarn, pnpm, or bun
+
+### Installation
+
+1. **Clone the repository**
+
+```bash
+git clone https://github.com/IDigics/autocar-ecommerce.git
+cd autocar-ecommerce
+```
+
+2. **Install dependencies**
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+```
+
+3. **Run the development server**
+
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
+
+4. **Open your browser**
+   Navigate to [http://localhost:3000](http://localhost:3000)
 
 ## 🎨 Design System
 
-### Color Palette
+### **Colors**
 
-```css
-/* Primary Colors */
---navy-dark: #0D1B2A      /* Main backgrounds and text */
---cream-light: #F8F8F5     /* Section backgrounds */
---gold-primary: #FFD700    /* Accent and highlights */
---gold-secondary: #E6B800  /* Gradient variations */
---gray-medium: #71797E     /* Secondary text */
---gray-accent: #718396     /* Muted elements */
-```
+- **Primary Gold**: `#FFD700` - Luxury accent color
+- **Secondary Gold**: `#E6B800` - Hover states
+- **Navy Blue**: `#0D1B2A` - Primary text and headers
+- **Light Gray**: `#71797E` - Secondary text
+- **Background**: `#F8F8F5` - Main background
 
-### Typography
+### **Typography**
 
-- **Headings**: Bold, large sizes with premium spacing
-- **Body Text**: Clean, readable fonts with proper contrast
-- **Accent Text**: Gold highlights for brand elements
+- **Headings**: Bold, luxury-focused hierarchy
+- **Body Text**: Clean, readable fonts
+- **Interactive Elements**: Proper hover states
 
-## 🔧 Development
+### **Components**
 
-### Available Scripts
+- **Responsive Grid Layouts**
+- **Card-based Information Display**
+- **Interactive Forms**
+- **Modern Button Styles**
+
+## 📝 Development Guidelines
+
+### **Code Style**
+
+- TypeScript for type safety
+- Consistent component structure
+- Descriptive variable names
+- Comprehensive comments
+
+### **Component Organization**
+
+- Reusable UI components in `/components`
+- Page-specific components in respective directories
+- Shared utilities and hooks
+
+### **Styling Conventions**
+
+- Tailwind CSS classes
+- Consistent spacing (4, 6, 8, 12, 16)
+- Mobile-first responsive design
+- Hover and focus states for accessibility
+
+## 🚀 Deployment
+
+### **Vercel (Recommended)**
+
+1. Connect your GitHub repository to Vercel
+2. Configure build settings (auto-detected)
+3. Deploy with automatic SSL and CDN
+
+### **Manual Deployment**
 
 ```bash
-# Development
-npm run dev          # Start development server
-npm run build        # Build for production
-npm run start        # Start production server
-npm run lint         # Run ESLint for code quality
-
-# Type Checking
-npx tsc --noEmit     # Check TypeScript types
+npm run build
+npm start
 ```
 
-### Key Components
+## 🔧 Configuration
 
-#### Header Navigation
+### **Environment Variables**
 
-- Fixed header with smooth scroll functionality
-- Responsive design with mobile menu
-- Gold accent hover effects
+Create a `.env.local` file for local development:
 
-#### Hero Section
+```env
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+# Add other environment variables as needed
+```
 
-- Full-screen background with overlay
-- Responsive text scaling
-- Call-to-action button with animations
+### **Tailwind Configuration**
 
-#### Features Section
+Custom configurations in `tailwind.config.ts` for AutoCar'z brand colors and fonts.
 
-- Six service cards in responsive grid
-- Hover effects and shadows
-- Icon integration with descriptions
+## 📄 Legal Pages
 
-#### Win-Win Benefits
+### **Comprehensive Coverage**
 
-- Two-column layout showcasing mutual value
-- Checkmark icons with bullet points
-- Gradient background cards
+- **Terms of Service**: Vehicle sales, financing, warranties
+- **Privacy Policy**: GDPR-compliant data protection
+- **Cookie Policy**: Interactive preference management
 
-## 📱 Browser Support
-
-- ✅ Chrome (latest)
-- ✅ Firefox (latest)
-- ✅ Safari (latest)
-- ✅ Edge (latest)
-- ✅ Mobile browsers (iOS Safari, Chrome Mobile)
+All legal pages are professionally designed and automotive industry-specific.
 
 ## 🤝 Contributing
 
 1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 👨‍💻 Author
+## 📞 Contact
 
-**IDigics**
+**AutoCar'z Development Team**
 
-- GitHub: [@IDigics](https://github.com/IDigics)
-- Project: [AutoCar'z E-Commerce](https://github.com/IDigics/autocar-ecommerce)
+- Email: dev@autocarz.com
+- Website: [AutoCar'z](https://autocarz.com)
+
+## 📄 License
+
+This project is proprietary software for AutoCar'z luxury automotive dealership.
 
 ---
 
-**AutoCar'z** - _Conduisez l'exception, Ressentez la passion, Vivez AutoCar'z_ 🚗✨
+**Built with ❤️ for luxury automotive excellence**
