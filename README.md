@@ -2,8 +2,6 @@
 
 **AutoCar'z** is a premium luxury car dealership website built with modern web technologies. Experience elegance, performance, and exceptional service in the world of luxury automobiles.
 
-![AutoCar'z Hero](public/Case_Solita_and_Fintraffic_Road_overview_hero.jpg)
-
 ## ✨ Features
 
 - **🎨 Luxury Design**: Premium UI/UX with gold and navy color scheme
@@ -167,22 +165,6 @@ npx tsc --noEmit     # Check TypeScript types
 - Checkmark icons with bullet points
 - Gradient background cards
 
-## 🌐 Deployment
-
-### Vercel (Recommended)
-
-The easiest way to deploy your AutoCar'z website:
-
-1. Push your code to GitHub
-2. Import your repository on [Vercel](https://vercel.com/new)
-3. Your site will be automatically deployed
-
-### Other Platforms
-
-- **Netlify**: Connect your GitHub repository
-- **Cloudflare Pages**: Deploy with Git integration
-- **AWS Amplify**: Full-stack deployment platform
-
 ## 📱 Browser Support
 
 - ✅ Chrome (latest)
@@ -199,23 +181,12 @@ The easiest way to deploy your AutoCar'z website:
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## 👨‍💻 Author
 
 **IDigics**
 
 - GitHub: [@IDigics](https://github.com/IDigics)
 - Project: [AutoCar'z E-Commerce](https://github.com/IDigics/autocar-ecommerce)
-
-## 🙏 Acknowledgments
-
-- Next.js team for the amazing framework
-- Tailwind CSS for the utility-first CSS framework
-- Vercel for hosting and deployment platform
-- All contributors who help improve this project
 
 ---
 
