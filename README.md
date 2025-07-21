@@ -180,16 +180,6 @@ NEXT_PUBLIC_SITE_URL=http://localhost:3000
 
 Custom configurations in `tailwind.config.ts` for AutoCar'z brand colors and fonts.
 
-## 📄 Legal Pages
-
-### **Comprehensive Coverage**
-
-- **Terms of Service**: Vehicle sales, financing, warranties
-- **Privacy Policy**: GDPR-compliant data protection
-- **Cookie Policy**: Interactive preference management
-
-All legal pages are professionally designed and automotive industry-specific.
-
 ## 🤝 Contributing
 
 1. Fork the repository
@@ -197,17 +187,6 @@ All legal pages are professionally designed and automotive industry-specific.
 3. Commit your changes (`git commit -m 'Add amazing feature'`)
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
-
-## 📞 Contact
-
-**AutoCar'z Development Team**
-
-- Email: dev@autocarz.com
-- Website: [AutoCar'z](https://autocarz.com)
-
-## 📄 License
-
-This project is proprietary software for AutoCar'z luxury automotive dealership.
 
 ---
 
