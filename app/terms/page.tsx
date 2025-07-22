@@ -1,8 +1,49 @@
 /**
- * Terms of Use Page for AutoCar'z
+ * TERMS OF USE PAGE FOR AUTOCARZ
  *
- * Comprehensive terms of service for luxury automotive dealership
- * Professional design with automotive industry focus
+ * ===== PAGE OVERVIEW =====
+ * Comprehensive terms of service specifically tailored for luxury
+ * automotive dealership operations. Covers vehicle sales, financing,
+ * warranties, and customer obligations.
+ *
+ * ===== LAYOUT STRUCTURE =====
+ * 1. Hero Section - Legal introduction with automotive branding
+ * 2. Interactive Sections - Expandable terms categories
+ * 3. Vehicle Sales Terms - Specific automotive transaction rules
+ * 4. Service Agreements - Maintenance and warranty terms
+ * 5. Legal Framework - Jurisdiction and compliance information
+ *
+ * ===== LEGAL COVERAGE =====
+ * Terms Categories:
+ * - Service acceptance and user agreements
+ * - Vehicle sales and transaction procedures
+ * - Financing and payment terms
+ * - Warranty and after-sales service
+ * - Customer obligations and responsibilities
+ * - Liability limitations and legal framework
+ * - Terms modification procedures
+ *
+ * ===== DESIGN FEATURES =====
+ * - Accordion-style expandable sections
+ * - Icon-based section identification
+ * - Professional legal document styling
+ * - Easy navigation between sections
+ * - Mobile-responsive layout
+ * - Print-friendly formatting
+ *
+ * ===== FUNCTIONALITY =====
+ * - State management for section expansion
+ * - Smooth animations for content reveals
+ * - Section-based navigation
+ * - Contact integration for legal queries
+ * - Last updated timestamp display
+ *
+ * ===== COMPLIANCE CONSIDERATIONS =====
+ * - French commercial law compliance
+ * - Automotive industry regulations
+ * - Consumer protection requirements
+ * - Digital commerce standards
+ * - GDPR privacy integration
  */
 "use client";
 
