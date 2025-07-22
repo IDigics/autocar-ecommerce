@@ -42,8 +42,6 @@
  */
 "use client";
 
-import Header from "./components/Header";
-import Footer from "./components/Footer";
 import Image from "next/image";
 
 export default function Home() {
@@ -57,7 +55,6 @@ export default function Home() {
       - Navigation menu (right)
       - Smooth scrolling to page sections
       */}
-      <Header />
 
       {/* ===== HERO SECTION - FULL SCREEN IMPACT ===== */}
       {/* 
@@ -683,9 +680,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* Site Footer - Company Info & Links */}
-      <Footer />
     </>
   );
 }
