@@ -1,8 +1,38 @@
 /**
- * Privacy Policy Page for AutoCar'z
+ * PRIVACY POLICY PAGE FOR AUTOCARZ
  *
- * GDPR compliant privacy policy with modern design
- * Comprehensive data protection information for automotive industry
+ * ===== PAGE OVERVIEW =====
+ * Comprehensive GDPR-compliant privacy policy specifically designed for
+ * the automotive industry. Provides transparent information about data
+ * collection, processing, and user rights.
+ *
+ * ===== LAYOUT STRUCTURE =====
+ * 1. Hero Section - Page introduction with privacy themes
+ * 2. Interactive Tabs - Different policy sections
+ * 3. Data Categories - Visual representation of data types
+ * 4. Privacy Rights - User rights under GDPR
+ * 5. Contact Information - Privacy officer details
+ *
+ * ===== LEGAL COMPLIANCE =====
+ * - GDPR Article 13 & 14 compliance (Transparency)
+ * - Clear data processing purposes
+ * - User rights clearly explained
+ * - Contact information for privacy queries
+ * - Regular review and update procedures
+ *
+ * ===== DESIGN FEATURES =====
+ * - Tab-based navigation for easy content discovery
+ * - Icon-based data categories for visual clarity
+ * - Interactive elements with hover states
+ * - Mobile-responsive layout
+ * - Consistent AutoCar'z branding
+ *
+ * ===== FUNCTIONALITY =====
+ * - State management for active tab selection
+ * - Smooth transitions between content sections
+ * - Expandable content areas
+ * - Contact forms integration ready
+ * - Print-friendly styling considerations
  */
 "use client";
 
