@@ -1,8 +1,60 @@
 /**
- * Cookie Policy Page for AutoCar'z
+ * COOKIE POLICY PAGE FOR AUTOCARZ
  *
- * Interactive cookie policy with consent management
- * Modern design with comprehensive cookie information
+ * ===== PAGE OVERVIEW =====
+ * Interactive cookie policy with comprehensive consent management system.
+ * Provides transparency about cookie usage while maintaining elegant
+ * AutoCar'z luxury branding throughout the user experience.
+ *
+ * ===== LAYOUT STRUCTURE =====
+ * 1. Hero Section - Cookie-themed introduction with brand consistency
+ * 2. Cookie Preference Center - Interactive consent management
+ * 3. Cookie Categories - Detailed breakdown by type and purpose
+ * 4. Information Sections - Educational content about cookies
+ * 5. Contact Section - Support for cookie-related questions
+ *
+ * ===== COOKIE CATEGORIES =====
+ * Four main categories with full transparency:
+ * 1. Essential Cookies (Required) - Session, security, authentication
+ * 2. Analytics Cookies (Optional) - Google Analytics, Hotjar tracking
+ * 3. Marketing Cookies (Optional) - Facebook Pixel, Google Ads, LinkedIn
+ * 4. Preference Cookies (Optional) - Theme, language, layout settings
+ *
+ * ===== INTERACTIVE FEATURES =====
+ * - Dynamic cookie preference toggles
+ * - Expandable category details with tables
+ * - Real-time preference state management
+ * - Save preferences functionality
+ * - Individual cookie purpose explanations
+ *
+ * ===== LEGAL COMPLIANCE =====
+ * - GDPR Article 7 (Consent) compliance
+ * - ePrivacy Directive adherence
+ * - Clear opt-in/opt-out mechanisms
+ * - Granular consent controls
+ * - Third-party service transparency
+ * - Cookie duration and provider information
+ *
+ * ===== DESIGN SYSTEM =====
+ * - Consistent AutoCar'z branding (#FFD700 gold, #0D1B2A navy)
+ * - Card-based layout for easy scanning
+ * - Color-coded category indicators
+ * - Responsive grid layouts
+ * - Smooth transitions and hover states
+ * - Table-based cookie details for clarity
+ *
+ * ===== STATE MANAGEMENT =====
+ * - activeCategory: Controls which cookie category is expanded
+ * - cookiePreferences: Manages user consent choices
+ * - toggleCookiePreference: Function to update preferences
+ * - savePreferences: Persists user choices (placeholder for real implementation)
+ *
+ * ===== TECHNICAL IMPLEMENTATION =====
+ * - React useState for preference management
+ * - Conditional rendering for expanded content
+ * - Browser-specific cookie management instructions
+ * - Third-party service policy links
+ * - Dynamic timestamp for last updated date
  */
 "use client";
 
