@@ -1,6 +1,4 @@
 import { ReactNode } from "react";
-import Header from "./Header";
-import Footer from "./Footer";
 import PageHero from "./PageHero";
 import ContactSection from "./ContactSection";
 
@@ -29,8 +27,6 @@ export default function PageLayout({
 }: PageLayoutProps) {
   return (
     <>
-      <Header />
-
       {hero && <PageHero {...hero} />}
 
       <main className="bg-[#F8F8F5] py-16">
@@ -44,8 +40,6 @@ export default function PageLayout({
           )}
         </div>
       </main>
-
-      <Footer />
     </>
   );
 }
