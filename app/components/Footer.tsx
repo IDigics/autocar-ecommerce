@@ -1,14 +1,41 @@
 /**
- * Footer Component for AutoCar'z
+ * FOOTER COMPONENT FOR AUTOCARZ
  *
- * A comprehensive footer featuring:
- * - Company information and contact details
- * - Navigation links
- * - Business hours
- * - Copyright information
+ * ===== COMPONENT OVERVIEW =====
+ * Comprehensive site footer providing essential business information,
+ * navigation links, and contact details for the luxury car dealership.
  *
- * Design matches the luxury car dealership theme with dark background
- * and gold accents consistent with the site's color scheme.
+ * ===== LAYOUT STRUCTURE =====
+ * 1. Company Brand Section - Logo, description, contact info
+ * 2. Services Navigation - Links to automotive services
+ * 3. Legal Navigation - Privacy, terms, cookies policies
+ * 4. Business Hours - Operating schedule
+ * 5. Copyright Bar - Legal text and additional links
+ *
+ * ===== DESIGN SYSTEM =====
+ * Colors:
+ * - Background: #F8F8F5 (Light Cream) - Matches page backgrounds
+ * - Primary Text: #0D1B2A (Dark Navy) - Main content color
+ * - Accent: #FFD700 (Gold) - Section headers and icons
+ * - Secondary Text: #71797E (Medium Gray) - Links and descriptions
+ *
+ * Layout:
+ * - 4-column grid on desktop, 1-column stack on mobile
+ * - Consistent spacing and typography hierarchy
+ * - Icon integration with react-icons for visual enhancement
+ *
+ * ===== FUNCTIONALITY =====
+ * - Internal navigation with Next.js Link components
+ * - Responsive design adapting to mobile and desktop
+ * - Contact information clearly displayed with icons
+ * - Business hours for customer reference
+ * - Legal compliance links (privacy, terms, cookies)
+ *
+ * ===== ACCESSIBILITY =====
+ * - Semantic HTML structure with proper heading hierarchy
+ * - Sufficient color contrast for text readability
+ * - Hover states for interactive elements
+ * - Icon + text combinations for better comprehension
  */
 "use client";
 
@@ -16,25 +43,57 @@ import Link from "next/link";
 import { FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 export default function Footer() {
   return (
+    /* ===== MAIN FOOTER CONTAINER ===== */
+    /* 
+    FOOTER STYLING:
+    - Light cream background (#F8F8F5) consistent with page sections
+    - Dark navy text (#0D1B2A) for readability
+    - Subtle top border with opacity for visual separation
+    - Generous padding for breathing room
+    */
     <footer className="bg-[#F8F8F5] text-[#0D1B2A] py-8 border-t border-[#71797E]/20">
       <div className="max-w-6xl mx-auto px-6">
+        {/* === MAIN FOOTER GRID === */}
+        {/* 
+        RESPONSIVE GRID LAYOUT:
+        - 1 column on mobile (grid-cols-1)
+        - 4 columns on desktop (md:grid-cols-4)
+        - Equal gap spacing between sections
+        - Bottom margin before copyright section
+        */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-6">
-          {/* AutoCar'z Brand Section */}
+          {/* === SECTION 1: COMPANY BRAND & CONTACT === */}
+          {/* 
+          BRAND SECTION FEATURES:
+          - Company name in gold brand color
+          - Brief business description
+          - Contact information with icons
+          - Phone, email, and address details
+          */}
           <div className="space-y-4">
+            {/* BRAND NAME - Gold color for prominence */}
             <h6 className="text-[#FFD700] font-bold text-xl mb-4">AutoCar'z</h6>
+
+            {/* COMPANY DESCRIPTION */}
             <p className="text-[#71797E] text-sm leading-relaxed">
               Votre destination privilégiée pour les véhicules de luxe.
               Excellence, élégance.
             </p>
+
+            {/* CONTACT INFORMATION LIST
+                Each item has an icon + text combination for clarity */}
             <div className="space-y-2 text-sm">
+              {/* PHONE NUMBER */}
               <div className="flex items-center gap-2">
                 <FaPhone className="text-[#FFD700]" />
                 <span className="text-[#71797E]">test</span>
               </div>
+              {/* EMAIL ADDRESS */}
               <div className="flex items-center gap-2">
                 <FaEnvelope className="text-[#FFD700]" />
                 <span className="text-[#71797E]">test</span>
               </div>
+              {/* PHYSICAL ADDRESS */}
               <div className="flex items-center gap-2">
                 <FaMapMarkerAlt className="text-[#FFD700]" />
                 <span className="text-[#71797E]">test</span>
@@ -42,7 +101,13 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Services Automobiles */}
+          {/* === SECTION 2: SERVICES NAVIGATION === */}
+          {/* 
+          SERVICES LINKS:
+          - Gold header for section identification
+          - List of automotive services offered
+          - Internal navigation links with hover effects
+          */}
           <nav className="space-y-3">
             <h6 className="text-[#FFD700] font-semibold text-lg mb-4">
               Services
