@@ -44,11 +44,12 @@ export default function Header() {
     // Fixed positioning keeps header visible during scroll
     // z-50 ensures header stays above other content
     // bg-[#0D1B2A] is the custom navy brand color
-    <header className="fixed top-0 left-0 right-0 z-50 bg-[#0D1B2A] text-white py-4 shadow-lg">
+    // Ultra compact vertical padding for minimal header height
+    <header className="fixed top-0 left-0 right-0 z-50 bg-[#0D1B2A] text-white py-2 shadow-lg">
       {/* MAIN FLEX CONTAINER
-          Full width with horizontal padding
+          Full width with minimal horizontal padding
           items-center vertically centers all content */}
-      <div className="w-full px-6 flex items-center">
+      <div className="w-full px-4 flex items-center">
         {/* ===== SECTION 1: BRAND/LOGO (FAR LEFT) ===== */}
         {/* 
         BRAND SECTION FEATURES:
@@ -59,14 +60,14 @@ export default function Header() {
         */}
         <Link href="/" className="flex items-center space-x-3 group">
           {/* LOGO IMAGE
-              40x40px logo with hover scale effect
+              Bigger 28x28px logo for better visibility and design balance
               group-hover:scale-110 creates subtle zoom on parent hover */}
           <div className="relative">
             <Image
               src="/logo.png"
               alt="Logo AutoCar'z"
-              width={40}
-              height={40}
+              width={28}
+              height={28}
               className="object-contain transition-transform duration-300 group-hover:scale-110"
             />
           </div>
@@ -74,15 +75,16 @@ export default function Header() {
           {/* BRAND TEXT STACK */}
           <div className="flex flex-col">
             {/* MAIN BRAND NAME
+                Smaller text size for better proportion with larger logo
                 Gold color (#FFD700) with serif font for luxury feel
                 tracking-wide adds letter spacing */}
-            <span className="text-xl font-bold text-[#FFD700] font-serif tracking-wide">
+            <span className="text-xs font-bold text-[#FFD700] font-serif tracking-wide">
               AutoCar'z
             </span>
             {/* TAGLINE
-                Smaller gray text in all caps with wide letter spacing
+                Extra tiny gray text in all caps with wide letter spacing
                 uppercase class transforms text to capitals */}
-            <span className="text-xs text-gray-300 font-light tracking-widest uppercase">
+            <span className="text-[10px] text-gray-300 font-light tracking-widest uppercase">
               LUXURY VEHICLES
             </span>
           </div>
@@ -92,28 +94,29 @@ export default function Header() {
         {/* 
         SEARCH BAR FEATURES:
         - Flexible width that grows to fill available space (flex-1)
-        - Max width constraint (max-w-md) prevents it from getting too wide
+        - Larger max width for better usability (max-w-96)
         - Glass-morphism effect with backdrop blur
         - Hidden on mobile devices (hidden md:block)
         - Focus states with gold ring to match brand colors
         */}
-        <div className="flex-1 max-w-md mx-8 hidden md:block">
+        <div className="flex-1 max-w-96 mx-3 hidden md:block">
           <div className="relative">
             {/* SEARCH INPUT FIELD
+                Smaller height with compact padding
                 Glass-morphism styling with semi-transparent background
                 bg-white/10 = 10% opacity white background
                 border-white/20 = 20% opacity white border
                 backdrop-blur-sm creates the glass effect */}
             <input
               type="text"
-              placeholder="Rechercher des véhicules..."
-              className="w-full px-4 py-2 pl-10 pr-4 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#FFD700] focus:border-transparent backdrop-blur-sm"
+              placeholder="Rechercher un véhicule..."
+              className="w-full px-3 py-1 pl-8 pr-3 bg-white/10 border border-white/20 rounded-md text-sm text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#FFD700] focus:border-transparent backdrop-blur-sm"
             />
             {/* SEARCH ICON
                 Positioned absolutely inside the input field (left side)
                 SVG icon with stroke styling for clean appearance */}
             <svg
-              className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-300"
+              className="absolute left-2.5 top-1/2 transform -translate-y-1/2 w-3.5 h-3.5 text-gray-300"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -133,11 +136,11 @@ export default function Header() {
         NAVIGATION FEATURES:
         - Hidden on mobile (hidden md:flex)
         - ml-auto pushes navigation to far right
-        - Consistent spacing between items (space-x-8)
+        - Ultra compact spacing between items (space-x-3)
         - Smooth hover transitions for all links
         - Mix of scroll buttons and direct links
         */}
-        <nav className="hidden md:flex items-center space-x-8 ml-auto">
+        <nav className="hidden md:flex items-center space-x-3 ml-auto">
           {/* === NAVIGATION LINKS === */}
           {/* Each button uses scrollToSection function to navigate smoothly */}
 
@@ -145,7 +148,7 @@ export default function Header() {
               Scrolls to "hero" section on the page */}
           <button
             onClick={() => scrollToSection("hero")}
-            className="text-gray-300 hover:text-white transition-colors duration-300 text-sm font-medium"
+            className="text-gray-300 hover:text-white transition-colors duration-300 text-xs font-medium"
           >
             Accueil
           </button>
@@ -154,7 +157,7 @@ export default function Header() {
               Scrolls to "services" section on the page */}
           <button
             onClick={() => scrollToSection("services")}
-            className="text-gray-300 hover:text-white transition-colors duration-300 text-sm font-medium"
+            className="text-gray-300 hover:text-white transition-colors duration-300 text-xs font-medium"
           >
             Services
           </button>
@@ -163,7 +166,7 @@ export default function Header() {
               Scrolls to "advantages" section on the page */}
           <button
             onClick={() => scrollToSection("advantages")}
-            className="text-gray-300 hover:text-white transition-colors duration-300 text-sm font-medium"
+            className="text-gray-300 hover:text-white transition-colors duration-300 text-xs font-medium"
           >
             Avantages
           </button>
@@ -172,13 +175,14 @@ export default function Header() {
           {/* 
           BOUTIQUE CTA BUTTON:
           - Prominent yellow background (#FFD700) to stand out
+          - Ultra compact size for minimal header
           - Links to /boutique page (different from scroll buttons above)
           - Darker hover state (#E6B800) for feedback
           - Black text for contrast against yellow background
           */}
           <Link
             href="/boutique"
-            className="px-6 py-2 bg-[#FFD700] text-black rounded font-semibold text-sm hover:bg-[#E6B800] transition-colors duration-300"
+            className="px-2 py-1 bg-[#FFD700] text-black rounded text-xs font-semibold hover:bg-[#E6B800] transition-colors duration-300"
           >
             Boutique
           </Link>
