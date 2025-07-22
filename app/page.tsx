@@ -1,21 +1,44 @@
 /**
- * AutoCar'z Homepage Component
+ * AUTOCARZ HOMEPAGE - MAIN LANDING PAGE
  *
- * This is the main landing page for the AutoCar'z luxury car dealership.
- * Features a full-screen hero section with background image, centered text, and statistics.
+ * ===== PAGE OVERVIEW =====
+ * This is the primary landing page for AutoCar'z luxury car dealership.
+ * Designed to showcase premium automotive excellence with elegant French copy.
  *
- * Layout Structure:
- * - Header navigation
- * - Full-screen hero with background image
- * - Centered headline and CTA
- * - Statistics bar at bottom
- * - Footer with company info and links
- * - Fully responsive design for mobile and desktop
+ * ===== LAYOUT STRUCTURE =====
+ * 1. Header Navigation (imported component)
+ * 2. Hero Section - Full-screen with background image
+ * 3. Services/Features Section - 3-column grid layout
+ * 4. Advantages Section - Key selling points
+ * 5. Footer (imported component)
  *
- * Color Scheme:
- * - Primary: #0D1B2A (Dark Navy)
- * - Accent: #FFD700 (Gold)
- * - Background: Dark overlay on hero image
+ * ===== DESIGN SYSTEM =====
+ * Colors:
+ * - Primary: #0D1B2A (Dark Navy) - Used for headings and primary text
+ * - Accent: #FFD700 (Gold) - Used for highlights, CTAs, and brand elements
+ * - Background: #F8F8F5 (Light Cream) - Section backgrounds
+ * - Text: #71797E (Medium Gray) - Secondary text and descriptions
+ *
+ * Typography:
+ * - Headlines: Bold, large sizes (text-4xl to text-7xl)
+ * - Body: Regular weight, comfortable reading sizes
+ * - French localization throughout
+ *
+ * ===== RESPONSIVE DESIGN =====
+ * - Mobile-first approach with md: and lg: breakpoints
+ * - Grid layouts adapt from 1 column (mobile) to 3 columns (desktop)
+ * - Text sizes scale appropriately across devices
+ * - Full-screen hero adjusts for different viewport sizes
+ *
+ * ===== NAVIGATION FEATURES =====
+ * - Smooth scrolling to sections via Header component
+ * - Section IDs: "hero", "services", "advantages"
+ * - scroll-mt-20 accounts for fixed header height
+ *
+ * ===== PERFORMANCE OPTIMIZATIONS =====
+ * - Next.js Image component with priority loading for hero image
+ * - Optimized image with brightness overlay for text readability
+ * - CSS-only animations and transitions for smooth UX
  */
 "use client";
 
@@ -26,15 +49,35 @@ import Image from "next/image";
 export default function Home() {
   return (
     <>
-      {/* Site Navigation Header */}
+      {/* ===== SITE NAVIGATION ===== */}
+      {/* 
+      Fixed header component with:
+      - Logo and brand (left)
+      - Search bar (center) 
+      - Navigation menu (right)
+      - Smooth scrolling to page sections
+      */}
       <Header />
 
-      {/* Full-Screen Hero Section with Background Image */}
+      {/* ===== HERO SECTION - FULL SCREEN IMPACT ===== */}
+      {/* 
+      HERO SECTION FEATURES:
+      - Full viewport height (min-h-screen)
+      - Background image with dark overlay for text readability
+      - Centered content with responsive typography
+      - Call-to-action button with hover effects
+      - Statistics bar positioned at bottom
+      - id="hero" for smooth scroll navigation from header
+      */}
       <main
         id="hero"
         className="relative min-h-screen flex items-center text-white pt-20"
       >
-        {/* Background Image with Overlay */}
+        {/* BACKGROUND IMAGE LAYER
+            - Absolute positioning to fill entire section
+            - opacity-90 for slight transparency
+            - brightness-50 darkens image for text contrast
+            - priority loading for above-the-fold performance */}
         <div className="absolute inset-0 z-0 opacity-90">
           <Image
             src="/Case_Solita_and_Fintraffic_Road_overview_hero.jpg"
@@ -45,11 +88,25 @@ export default function Home() {
           />
         </div>
 
-        {/* Main Content Container */}
+        {/* MAIN CONTENT CONTAINER
+            - z-10 positions content above background image
+            - Flexbox centers content vertically
+            - Max width constrains content on large screens */}
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 flex items-center">
-          {/* Right Side - Text Content */}
+          {/* === HERO TEXT CONTENT === */}
+          {/* 
+          CONTENT LAYOUT:
+          - Full width on mobile, 2/3 width on large screens
+          - Center alignment on mobile, left alignment on desktop
+          - Progressive text sizing for different screen sizes
+          - French copy emphasizing luxury and emotion
+          */}
           <div className="w-full lg:w-2/3 text-center lg:text-left">
-            {/* Main Headline */}
+            {/* MAIN HEADLINE
+                - Massive, bold typography (text-4xl to text-7xl)
+                - Multi-line structure with strategic line breaks
+                - Gold accent color for "Vivez AutoCar'z" brand climax
+                - leading-tight ensures proper line spacing at large sizes */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 leading-tight text-[#F8F8F5]">
               Conduisez l'exception,
               <br />
@@ -60,24 +117,41 @@ export default function Home() {
               </span>
             </h1>
 
-            {/* Supporting Text */}
+            {/* SUPPORTING DESCRIPTION
+                - Larger than body text but smaller than headline
+                - Explains value proposition in elegant French
+                - Max width constraint prevents lines from becoming too long
+                - Auto margin centering on mobile, manual left alignment on desktop */}
             <p className="text-lg md:text-xl lg:text-2xl mb-8 text-[#F8F8F5] max-w-2xl mx-auto lg:mx-0 leading-relaxed">
               Découvrez une sélection exclusive de véhicules luxueux qui marient
               élégance et performance, pour ceux qui exigent l'excellence.
             </p>
 
-            {/* CTA Button */}
+            {/* CALL-TO-ACTION BUTTON
+                - Gold gradient background matching brand colors
+                - Hover effects: shadow-xl and scale-105 for premium feel
+                - Rounded corners and generous padding for luxury aesthetic
+                - Arrow indicates forward action/progression */}
             <button className="px-8 py-4 bg-gradient-to-r from-[#FFD700] to-[#E6B800] text-black rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 font-semibold text-lg tracking-wide">
               Découvrir la boutique →
             </button>
           </div>
         </div>
 
-        {/* Statistics Bar at Bottom */}
+        {/* === STATISTICS BAR - BOTTOM OVERLAY === */}
+        {/* 
+        STATISTICS FEATURES:
+        - Positioned absolutely at bottom of hero section
+        - z-10 ensures visibility above background image
+        - Responsive grid: 1 column mobile, 3 columns desktop
+        - Large gold numbers with descriptive gray labels
+        - Builds credibility and trust with impressive metrics
+        */}
         <div className="absolute bottom-8 left-0 right-0 z-10">
           <div className="max-w-6xl mx-auto px-6">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-              {/* Statistic 1 */}
+              {/* PREMIUM VEHICLES COUNT
+                  Large gold number with uppercase tracking for impact */}
               <div className="flex flex-col items-center">
                 <span className="text-4xl md:text-5xl font-bold text-[#FFD700] mb-2">
                   100+
@@ -87,7 +161,8 @@ export default function Home() {
                 </span>
               </div>
 
-              {/* Statistic 2 */}
+              {/* YEARS OF EXPERIENCE
+                  Establishes credibility and expertise */}
               <div className="flex flex-col items-center">
                 <span className="text-4xl md:text-5xl font-bold text-[#FFD700] mb-2">
                   15+
@@ -97,7 +172,8 @@ export default function Home() {
                 </span>
               </div>
 
-              {/* Statistic 3 */}
+              {/* SATISFIED CUSTOMERS
+                  Social proof and customer satisfaction metric */}
               <div className="flex flex-col items-center">
                 <span className="text-4xl md:text-5xl font-bold text-[#FFD700] mb-2">
                   500+
@@ -111,10 +187,30 @@ export default function Home() {
         </div>
       </main>
 
-      {/* Features Section */}
+      {/* ===== SERVICES SECTION - FEATURE SHOWCASE ===== */}
+      {/* 
+      SERVICES SECTION FEATURES:
+      - Light cream background (#F8F8F5) provides visual separation
+      - scroll-mt-20 accounts for fixed header when scrolling from navigation
+      - id="services" enables smooth scroll navigation from header
+      - Generous vertical padding (py-20) for breathing room
+      - Three-column responsive grid showcasing key features
+      
+      CONTENT STRUCTURE:
+      1. Section header with title and description
+      2. Feature grid with icons, titles, and descriptions
+      3. Each feature card has hover effects for interactivity
+      */}
       <section id="services" className="py-20 bg-[#F8F8F5] scroll-mt-20">
         <div className="max-w-7xl mx-auto px-6">
-          {/* Section Header */}
+          {/* === SECTION HEADER === */}
+          {/* 
+          HEADER FEATURES:
+          - Center-aligned text for balance
+          - Large headline with navy blue for authority
+          - Supporting description with medium gray
+          - Max width constraint prevents description from becoming too wide
+          */}
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-[#0D1B2A] mb-4">
               Excellence Automobile
@@ -125,10 +221,25 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Features Grid */}
+          {/* === FEATURES GRID === */}
+          {/* 
+          GRID LAYOUT:
+          - 1 column on mobile, 2 on tablet, 3 on desktop
+          - Equal gap spacing between cards
+          - Each card is a white container with hover effects
+          */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Feature 1 */}
+            {/* === FEATURE CARD 1: CERTIFIED VEHICLES === */}
+            {/* 
+            CARD STRUCTURE:
+            - White background with rounded corners (rounded-2xl)
+            - Shadow effects: base shadow + hover shadow-xl
+            - Gold gradient icon circle with checkmark SVG
+            - Center-aligned content layout
+            */}
             <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
+              {/* ICON CONTAINER
+                  Gold gradient circle with checkmark icon */}
               <div className="w-16 h-16 bg-gradient-to-r from-[#FFD700] to-[#E6B800] rounded-full flex items-center justify-center mx-auto mb-6">
                 <svg
                   className="w-8 h-8 text-[#0D1B2A]"
@@ -142,9 +253,11 @@ export default function Home() {
                   />
                 </svg>
               </div>
+              {/* FEATURE TITLE */}
               <h3 className="text-xl font-bold text-[#0D1B2A] mb-4">
                 Véhicules Certifiés
               </h3>
+              {/* FEATURE DESCRIPTION */}
               <p className="text-[#71797E] leading-relaxed">
                 Chaque véhicule est rigoureusement inspecté et certifié par nos
                 experts pour garantir la qualité et la fiabilité
