@@ -1,6 +1,6 @@
 # 🚗 AutoCar'z - Luxury Automotive Website
 
-A sophisticated luxury car dealership website built with Next.js 15, featuring elegant design, modern UI components, and comprehensive automotive business functionality.
+A sophisticated luxury car dealership website built with Next.js 15, featuring elegant design, simplified components, and comprehensive automotive business functionality.
 
 ## ✨ Features
 
@@ -8,31 +8,30 @@ A sophisticated luxury car dealership website built with Next.js 15, featuring e
 
 - **Luxury Brand Identity** with gold (#FFD700) and navy (#0D1B2A) color scheme
 - **Responsive Design** optimized for all devices
-- **Modern Interface** with smooth animations and transitions
+- **Clean & Simple Components** with streamlined code architecture
 - **Professional Typography** with carefully selected fonts
-- **Glass-morphism Effects** for premium visual appeal
+- **Consistent Layout System** with global Header/Footer
 
 ### 🚙 **Automotive Services**
 
-- **Vehicle Catalog** (New & Used luxury vehicles)
-- **Financing Solutions** with partner integration
-- **Trade-in Services** for vehicle exchange
-- **Maintenance & After-sales** support
-- **Showroom Information** and appointments
+- **Vehicle Showcase** with elegant presentation
+- **Service Information** clearly structured
+- **Professional Contact** forms and information
+- **Business Information** and company details
 
 ### 🔒 **Legal & Compliance**
 
 - **GDPR Compliant** privacy policy
-- **Interactive Cookie Policy** with preference management
-- **Comprehensive Terms of Service** for automotive business
-- **Professional Legal Framework** for luxury car sales
+- **Interactive Cookie Policy** with browser management guides
+- **Comprehensive Terms of Service** with tabbed navigation
+- **Professional Legal Framework** for automotive business
 
 ### 🔍 **User Experience**
 
-- **Advanced Search Bar** with ⌘K shortcut
+- **Global Navigation** with Header/Footer on all pages
 - **Smooth Scroll Navigation** between sections
-- **Interactive Components** with hover effects
-- **Accessibility Features** with proper ARIA labels
+- **Interactive Components** with clean hover effects
+- **Accessibility Features** with proper semantic markup
 - **French Localization** for target market
 
 ## 🛠️ Tech Stack
@@ -41,6 +40,7 @@ A sophisticated luxury car dealership website built with Next.js 15, featuring e
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS
 - **Icons**: React Icons (Font Awesome)
+- **Architecture**: Simplified component structure
 - **Deployment**: Vercel Ready
 
 ## 📁 Project Structure
@@ -48,20 +48,54 @@ A sophisticated luxury car dealership website built with Next.js 15, featuring e
 ```
 autocar-ecommerce/
 ├── app/
-│   ├── components/
-│   │   ├── Header.tsx          # Navigation with search
-│   │   └── Footer.tsx          # Automotive-focused footer
+│   ├── components/              # Simplified reusable components
+│   │   ├── Header.tsx          # Global navigation (in layout)
+│   │   ├── Footer.tsx          # Global footer (in layout)
+│   │   ├── PageLayout.tsx      # Content page wrapper
+│   │   ├── PageHero.tsx        # Hero section component
+│   │   ├── ContactSection.tsx  # Contact information
+│   │   ├── ContentSection.tsx  # Content wrapper
+│   │   └── CardList.tsx        # Card grid component
 │   ├── terms/
-│   │   └── page.tsx           # Terms of service
+│   │   └── page.tsx           # Terms of service (uses PageLayout)
 │   ├── privacy/
-│   │   └── page.tsx           # Privacy policy (GDPR)
+│   │   └── page.tsx           # Privacy policy (uses PageLayout)
 │   ├── cookies/
-│   │   └── page.tsx           # Cookie policy
-│   ├── layout.tsx             # Root layout
-│   ├── page.tsx               # Home page
+│   │   └── page.tsx           # Cookie policy (uses PageLayout)
+│   ├── layout.tsx             # Root layout with global Header/Footer
+│   ├── page.tsx               # Home page (custom layout)
 │   └── globals.css            # Global styles
 ├── public/                    # Static assets
 └── README.md                  # Project documentation
+```
+
+## 🎯 Architecture Improvements
+
+### **Global Layout System**
+
+- **Header & Footer** included in root layout for consistency
+- **PageLayout** component for standardized content pages
+- **Clean separation** between homepage and content pages
+
+### **Simplified Components**
+
+- **Removed excessive comments** for cleaner code
+- **Eliminated redundant code** patterns
+- **Streamlined prop handling** with better defaults
+- **Consistent component structure** across the project
+
+### **Component Hierarchy**
+
+```
+Root Layout (layout.tsx)
+├── Header (global)
+├── Page Content:
+│   ├── Homepage (custom layout)
+│   └── Content Pages (PageLayout wrapper)
+│       ├── Hero Section
+│       ├── Main Content
+│       └── Contact Section (optional)
+└── Footer (global)
 ```
 
 ## 🚀 Getting Started
@@ -132,23 +166,31 @@ bun dev
 
 ### **Code Style**
 
-- TypeScript for type safety
-- Consistent component structure
-- Descriptive variable names
-- Comprehensive comments
+- **Clean TypeScript** with simplified components
+- **Consistent component structure** across the project
+- **Meaningful variable names** without excessive verbosity
+- **Minimal but effective comments** focusing on business logic
 
 ### **Component Organization**
 
-- Reusable UI components in `/components`
-- Page-specific components in respective directories
-- Shared utilities and hooks
+- **Global components** in root layout (Header, Footer)
+- **Reusable UI components** in `/components` directory
+- **PageLayout wrapper** for standardized content pages
+- **Page-specific logic** in respective route directories
 
 ### **Styling Conventions**
 
-- Tailwind CSS classes
-- Consistent spacing (4, 6, 8, 12, 16)
-- Mobile-first responsive design
-- Hover and focus states for accessibility
+- **Tailwind CSS classes** with consistent patterns
+- **Brand color variables** (`#FFD700`, `#0D1B2A`, `#F8F8F5`, `#71797E`)
+- **Mobile-first responsive design** with `md:` and `lg:` breakpoints
+- **Consistent spacing scale** (2, 4, 6, 8, 12, 16)
+
+### **Architecture Principles**
+
+- **DRY (Don't Repeat Yourself)** - Header/Footer in layout, reusable components
+- **Single Responsibility** - Each component has a clear purpose
+- **Composition over Inheritance** - PageLayout wraps content components
+- **Simplified prop patterns** with sensible defaults
 
 ## 🚀 Deployment
 
@@ -180,6 +222,47 @@ NEXT_PUBLIC_SITE_URL=http://localhost:3000
 
 Custom configurations in `tailwind.config.ts` for AutoCar'z brand colors and fonts.
 
+## 📦 Component Documentation
+
+### **Global Components**
+
+- **Header**: Fixed navigation with logo, search, and menu (in layout.tsx)
+- **Footer**: Company information and links (in layout.tsx)
+
+### **Layout Components**
+
+- **PageLayout**: Wrapper for content pages with hero, main, and contact sections
+- **PageHero**: Standardized hero banners for content pages
+
+### **Content Components**
+
+- **ContentSection**: Wrapper for content blocks with titles and icons
+- **CardList**: Flexible grid layout for card-based information
+- **ContactSection**: Contact information with customizable content
+
+## 🚀 Recent Improvements
+
+### **Component Simplification**
+
+- ✅ Removed excessive comments and documentation
+- ✅ Simplified prop handling with better defaults
+- ✅ Streamlined component logic and structure
+- ✅ Eliminated redundant code patterns
+
+### **Architecture Optimization**
+
+- ✅ Moved Header/Footer to global layout
+- ✅ Cleaned up duplicate imports across pages
+- ✅ Improved component reusability
+- ✅ Removed unnecessary `"use client"` directives
+
+### **Code Quality**
+
+- ✅ Consistent coding patterns
+- ✅ Better TypeScript usage
+- ✅ Cleaner file structure
+- ✅ More maintainable codebase
+
 ## 🤝 Contributing
 
 1. Fork the repository
@@ -190,4 +273,4 @@ Custom configurations in `tailwind.config.ts` for AutoCar'z brand colors and fon
 
 ---
 
-**Built with ❤️ for luxury automotive excellence**
+**Built with ❤️ for luxury automotive excellence | Simplified & Optimized Architecture**
