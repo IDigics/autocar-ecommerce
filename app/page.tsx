@@ -71,7 +71,7 @@ export default function Home() {
       */}
       <main
         id="hero"
-        className="relative min-h-screen flex items-center text-white pt-20"
+        className="relative min-h-screen flex items-center text-white pt-12"
       >
         {/* BACKGROUND IMAGE LAYER
             - Absolute positioning to fill entire section
@@ -91,8 +91,8 @@ export default function Home() {
         {/* MAIN CONTENT CONTAINER
             - z-10 positions content above background image
             - Flexbox centers content vertically
-            - Max width constrains content on large screens */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 flex items-center">
+            - Compact max width for tighter layout */}
+        <div className="relative z-10 w-full max-w-6xl mx-auto px-4 flex items-center">
           {/* === HERO TEXT CONTENT === */}
           {/* 
           CONTENT LAYOUT:
@@ -100,39 +100,42 @@ export default function Home() {
           - Center alignment on mobile, left alignment on desktop
           - Progressive text sizing for different screen sizes
           - French copy emphasizing luxury and emotion
+          - Pushed more to the right for better visual balance
           */}
-          <div className="w-full lg:w-2/3 text-center lg:text-left">
+          <div className="w-full lg:w-2/3 text-center lg:text-left lg:ml-20">
             {/* MAIN HEADLINE
-                - Massive, bold typography (text-4xl to text-7xl)
+                - Smaller, more compact typography for efficient space usage
                 - Multi-line structure with strategic line breaks
                 - Gold accent color for "Vivez AutoCar'z" brand climax
-                - leading-tight ensures proper line spacing at large sizes */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 leading-tight text-[#F8F8F5]">
+                - leading-tight ensures proper line spacing
+                - Using simpler serif font for elegance */}
+            <h1 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold mb-3 leading-tight text-[#F8F8F5] font-serif">
               Conduisez l'exception,
               <br />
               Ressentez la <span className="text-[#F8F8F5]">passion...</span>
               <br />
-              <span className="text-[#FFD700] text-3xl md:text-5xl lg:text-6xl xl:text-7xl">
+              <span className="text-[#FFD700] text-lg md:text-2xl lg:text-3xl xl:text-4xl">
                 Vivez AutoCar'z
               </span>
             </h1>
 
             {/* SUPPORTING DESCRIPTION
-                - Larger than body text but smaller than headline
+                - Compact text sizes for efficient space usage
                 - Explains value proposition in elegant French
                 - Max width constraint prevents lines from becoming too long
                 - Auto margin centering on mobile, manual left alignment on desktop */}
-            <p className="text-lg md:text-xl lg:text-2xl mb-8 text-[#F8F8F5] max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+            <p className="text-xs md:text-sm lg:text-base mb-6 text-[#F8F8F5] max-w-lg mx-auto lg:mx-0 leading-relaxed">
               Découvrez une sélection exclusive de véhicules luxueux qui marient
               élégance et performance, pour ceux qui exigent l'excellence.
             </p>
 
             {/* CALL-TO-ACTION BUTTON
                 - Gold gradient background matching brand colors
+                - Compact size for space efficiency
                 - Hover effects: shadow-xl and scale-105 for premium feel
-                - Rounded corners and generous padding for luxury aesthetic
+                - Rounded corners and comfortable padding
                 - Arrow indicates forward action/progression */}
-            <button className="px-8 py-4 bg-gradient-to-r from-[#FFD700] to-[#E6B800] text-black rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 font-semibold text-lg tracking-wide">
+            <button className="px-6 py-3 bg-gradient-to-r from-[#FFD700] to-[#E6B800] text-black rounded-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 font-semibold text-sm tracking-wide">
               Découvrir la boutique →
             </button>
           </div>
@@ -144,19 +147,19 @@ export default function Home() {
         - Positioned absolutely at bottom of hero section
         - z-10 ensures visibility above background image
         - Responsive grid: 1 column mobile, 3 columns desktop
-        - Large gold numbers with descriptive gray labels
+        - Very compact gold numbers with descriptive gray labels
         - Builds credibility and trust with impressive metrics
         */}
-        <div className="absolute bottom-8 left-0 right-0 z-10">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+        <div className="absolute bottom-4 left-0 right-0 z-10">
+          <div className="max-w-4xl mx-auto px-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
               {/* PREMIUM VEHICLES COUNT
-                  Large gold number with uppercase tracking for impact */}
+                  Much smaller gold numbers for proper proportions */}
               <div className="flex flex-col items-center">
-                <span className="text-4xl md:text-5xl font-bold text-[#FFD700] mb-2">
+                <span className="text-2xl md:text-3xl font-bold text-[#FFD700] mb-1">
                   100+
                 </span>
-                <span className="text-sm md:text-base text-[#71797E] uppercase tracking-wide">
+                <span className="text-xs text-[#71797E] uppercase tracking-wide">
                   Véhicules Premium
                 </span>
               </div>
@@ -164,10 +167,10 @@ export default function Home() {
               {/* YEARS OF EXPERIENCE
                   Establishes credibility and expertise */}
               <div className="flex flex-col items-center">
-                <span className="text-4xl md:text-5xl font-bold text-[#FFD700] mb-2">
+                <span className="text-2xl md:text-3xl font-bold text-[#FFD700] mb-1">
                   15+
                 </span>
-                <span className="text-sm md:text-base text-[#71797E] uppercase tracking-wide">
+                <span className="text-xs text-[#71797E] uppercase tracking-wide">
                   Années d'Expérience
                 </span>
               </div>
@@ -175,10 +178,10 @@ export default function Home() {
               {/* SATISFIED CUSTOMERS
                   Social proof and customer satisfaction metric */}
               <div className="flex flex-col items-center">
-                <span className="text-4xl md:text-5xl font-bold text-[#FFD700] mb-2">
+                <span className="text-2xl md:text-3xl font-bold text-[#FFD700] mb-1">
                   500+
                 </span>
-                <span className="text-sm md:text-base text-[#71797E] uppercase tracking-wide">
+                <span className="text-xs text-[#71797E] uppercase tracking-wide">
                   Clients Satisfaits
                 </span>
               </div>
@@ -193,7 +196,7 @@ export default function Home() {
       - Light cream background (#F8F8F5) provides visual separation
       - scroll-mt-20 accounts for fixed header when scrolling from navigation
       - id="services" enables smooth scroll navigation from header
-      - Generous vertical padding (py-20) for breathing room
+      - Compact vertical padding for better proportions
       - Three-column responsive grid showcasing key features
       
       CONTENT STRUCTURE:
@@ -201,21 +204,21 @@ export default function Home() {
       2. Feature grid with icons, titles, and descriptions
       3. Each feature card has hover effects for interactivity
       */}
-      <section id="services" className="py-20 bg-[#F8F8F5] scroll-mt-20">
-        <div className="max-w-7xl mx-auto px-6">
+      <section id="services" className="py-16 bg-[#F8F8F5] scroll-mt-12">
+        <div className="max-w-6xl mx-auto px-4">
           {/* === SECTION HEADER === */}
           {/* 
           HEADER FEATURES:
           - Center-aligned text for balance
-          - Large headline with navy blue for authority
+          - Compact headline with navy blue for authority
           - Supporting description with medium gray
           - Max width constraint prevents description from becoming too wide
           */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-[#0D1B2A] mb-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#0D1B2A] mb-3 font-serif">
               Excellence Automobile
             </h2>
-            <p className="text-xl text-[#71797E] max-w-3xl mx-auto">
+            <p className="text-lg text-[#71797E] max-w-2xl mx-auto">
               Découvrez nos services premium qui font la différence dans votre
               expérience automobile de luxe
             </p>
@@ -225,24 +228,24 @@ export default function Home() {
           {/* 
           GRID LAYOUT:
           - 1 column on mobile, 2 on tablet, 3 on desktop
-          - Equal gap spacing between cards
+          - Compact gap spacing between cards
           - Each card is a white container with hover effects
           */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* === FEATURE CARD 1: CERTIFIED VEHICLES === */}
             {/* 
             CARD STRUCTURE:
-            - White background with rounded corners (rounded-2xl)
+            - White background with rounded corners (rounded-xl)
             - Shadow effects: base shadow + hover shadow-xl
-            - Gold gradient icon circle with checkmark SVG
+            - Compact gold gradient icon circle with checkmark SVG
             - Center-aligned content layout
             */}
-            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
+            <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 text-center">
               {/* ICON CONTAINER
-                  Gold gradient circle with checkmark icon */}
-              <div className="w-16 h-16 bg-gradient-to-r from-[#FFD700] to-[#E6B800] rounded-full flex items-center justify-center mx-auto mb-6">
+                  Compact gold gradient circle with checkmark icon */}
+              <div className="w-12 h-12 bg-gradient-to-r from-[#FFD700] to-[#E6B800] rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
-                  className="w-8 h-8 text-[#0D1B2A]"
+                  className="w-6 h-6 text-[#0D1B2A]"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
@@ -254,11 +257,11 @@ export default function Home() {
                 </svg>
               </div>
               {/* FEATURE TITLE */}
-              <h3 className="text-xl font-bold text-[#0D1B2A] mb-4">
+              <h3 className="text-lg font-bold text-[#0D1B2A] mb-3">
                 Véhicules Certifiés
               </h3>
               {/* FEATURE DESCRIPTION */}
-              <p className="text-[#71797E] leading-relaxed">
+              <p className="text-sm text-[#71797E] leading-relaxed">
                 Chaque véhicule est rigoureusement inspecté et certifié par nos
                 experts pour garantir la qualité et la fiabilité
                 exceptionnelles.
@@ -266,30 +269,30 @@ export default function Home() {
             </div>
 
             {/* Feature 2 */}
-            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
-              <div className="w-16 h-16 bg-gradient-to-r from-[#FFD700] to-[#E6B800] rounded-full flex items-center justify-center mx-auto mb-6">
+            <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 text-center">
+              <div className="w-12 h-12 bg-gradient-to-r from-[#FFD700] to-[#E6B800] rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
-                  className="w-8 h-8 text-[#0D1B2A]"
+                  className="w-6 h-6 text-[#0D1B2A]"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
                   <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-[#0D1B2A] mb-4">
+              <h3 className="text-lg font-bold text-[#0D1B2A] mb-3">
                 Service Premium
               </h3>
-              <p className="text-[#71797E] leading-relaxed">
+              <p className="text-sm text-[#71797E] leading-relaxed">
                 Un accompagnement personnalisé avec des conseillers dédiés pour
                 vous offrir une expérience d'achat sur mesure et privilégiée.
               </p>
             </div>
 
             {/* Feature 3 */}
-            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
-              <div className="w-16 h-16 bg-gradient-to-r from-[#FFD700] to-[#E6B800] rounded-full flex items-center justify-center mx-auto mb-6">
+            <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 text-center">
+              <div className="w-12 h-12 bg-gradient-to-r from-[#FFD700] to-[#E6B800] rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
-                  className="w-8 h-8 text-[#0D1B2A]"
+                  className="w-6 h-6 text-[#0D1B2A]"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
@@ -300,30 +303,30 @@ export default function Home() {
                   />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-[#0D1B2A] mb-4">
+              <h3 className="text-lg font-bold text-[#0D1B2A] mb-3">
                 Garantie Excellence
               </h3>
-              <p className="text-[#71797E] leading-relaxed">
+              <p className="text-sm text-[#71797E] leading-relaxed">
                 Une garantie étendue et un service après-vente d'exception pour
                 protéger votre investissement et votre tranquillité d'esprit.
               </p>
             </div>
 
             {/* Feature 4 */}
-            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
-              <div className="w-16 h-16 bg-gradient-to-r from-[#FFD700] to-[#E6B800] rounded-full flex items-center justify-center mx-auto mb-6">
+            <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 text-center">
+              <div className="w-12 h-12 bg-gradient-to-r from-[#FFD700] to-[#E6B800] rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
-                  className="w-8 h-8 text-[#0D1B2A]"
+                  className="w-6 h-6 text-[#0D1B2A]"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
                   <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4zM18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-[#0D1B2A] mb-4">
+              <h3 className="text-lg font-bold text-[#0D1B2A] mb-3">
                 Financement Flexible
               </h3>
-              <p className="text-[#71797E] leading-relaxed">
+              <p className="text-sm text-[#71797E] leading-relaxed">
                 Solutions de financement sur mesure avec des partenaires
                 bancaires premium pour faciliter l'acquisition de votre véhicule
                 de rêve.
@@ -331,10 +334,10 @@ export default function Home() {
             </div>
 
             {/* Feature 5 */}
-            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
-              <div className="w-16 h-16 bg-gradient-to-r from-[#FFD700] to-[#E6B800] rounded-full flex items-center justify-center mx-auto mb-6">
+            <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 text-center">
+              <div className="w-12 h-12 bg-gradient-to-r from-[#FFD700] to-[#E6B800] rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
-                  className="w-8 h-8 text-[#0D1B2A]"
+                  className="w-6 h-6 text-[#0D1B2A]"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
@@ -345,20 +348,20 @@ export default function Home() {
                   />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-[#0D1B2A] mb-4">
+              <h3 className="text-lg font-bold text-[#0D1B2A] mb-3">
                 Expérience Personnalisée
               </h3>
-              <p className="text-[#71797E] leading-relaxed">
+              <p className="text-sm text-[#71797E] leading-relaxed">
                 Des essais privés, livraison à domicile et services concierge
                 pour une expérience automobile unique et mémorable.
               </p>
             </div>
 
             {/* Feature 6 */}
-            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
-              <div className="w-16 h-16 bg-gradient-to-r from-[#FFD700] to-[#E6B800] rounded-full flex items-center justify-center mx-auto mb-6">
+            <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 text-center">
+              <div className="w-12 h-12 bg-gradient-to-r from-[#FFD700] to-[#E6B800] rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
-                  className="w-8 h-8 text-[#0D1B2A]"
+                  className="w-6 h-6 text-[#0D1B2A]"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
@@ -369,10 +372,10 @@ export default function Home() {
                   />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-[#0D1B2A] mb-4">
+              <h3 className="text-lg font-bold text-[#0D1B2A] mb-3">
                 Excellence Reconnue
               </h3>
-              <p className="text-[#71797E] leading-relaxed">
+              <p className="text-sm text-[#71797E] leading-relaxed">
                 Plus de 15 ans d'expertise et une réputation établie dans le
                 domaine automobile de luxe avec des clients satisfaits à travers
                 le pays.
@@ -383,33 +386,33 @@ export default function Home() {
       </section>
 
       {/* Win-Win Benefits Section */}
-      <section id="advantages" className="py-20 bg-white scroll-mt-20">
-        <div className="max-w-7xl mx-auto px-6">
+      <section id="advantages" className="py-16 bg-white scroll-mt-12">
+        <div className="max-w-6xl mx-auto px-4">
           {/* Section Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-[#0D1B2A] mb-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#0D1B2A] mb-3 font-serif">
               Gagnant-Gagnant pour AutoCar'z & Clients
             </h2>
-            <p className="text-xl text-[#71797E] max-w-3xl mx-auto">
+            <p className="text-lg text-[#71797E] max-w-2xl mx-auto">
               Une relation de confiance mutuelle basée sur l'excellence et la
               satisfaction partagée
             </p>
           </div>
 
           {/* Benefits Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* For AutoCar'z */}
-            <div className="bg-gradient-to-br from-[#F8F8F5] to-[#E8E8E5] p-8 rounded-3xl border-2 border-[#FFD700]/20">
-              <div className="text-center mb-8">
-                <h3 className="text-2xl font-bold text-[#FFD700] mb-2">
+            <div className="bg-gradient-to-br from-[#F8F8F5] to-[#E8E8E5] p-6 rounded-2xl border-2 border-[#FFD700]/20">
+              <div className="text-center mb-6">
+                <h3 className="text-xl font-bold text-[#FFD700] mb-2">
                   Pour AutoCar'z
                 </h3>
-                <div className="w-16 h-1 bg-gradient-to-r from-[#FFD700] to-[#E6B800] mx-auto rounded-full"></div>
+                <div className="w-12 h-1 bg-gradient-to-r from-[#FFD700] to-[#E6B800] mx-auto rounded-full"></div>
               </div>
 
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#FFD700] flex items-center justify-center mt-1">
+              <div className="space-y-4">
+                <div className="flex items-start space-x-3">
+                  <div className="flex-shrink-0 w-5 h-5 rounded-full bg-[#FFD700] flex items-center justify-center mt-1">
                     <svg
                       className="w-3 h-3 text-[#0D1B2A]"
                       fill="currentColor"
@@ -422,14 +425,14 @@ export default function Home() {
                       />
                     </svg>
                   </div>
-                  <p className="text-[#0D1B2A] leading-relaxed">
+                  <p className="text-sm text-[#0D1B2A] leading-relaxed">
                     <span className="font-semibold">Élever la qualité</span>{" "}
                     basée sur le mérite, pas seulement sur le budget.
                   </p>
                 </div>
 
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#FFD700] flex items-center justify-center mt-1">
+                <div className="flex items-start space-x-3">
+                  <div className="flex-shrink-0 w-5 h-5 rounded-full bg-[#FFD700] flex items-center justify-center mt-1">
                     <svg
                       className="w-3 h-3 text-[#0D1B2A]"
                       fill="currentColor"
@@ -442,7 +445,7 @@ export default function Home() {
                       />
                     </svg>
                   </div>
-                  <p className="text-[#0D1B2A] leading-relaxed">
+                  <p className="text-sm text-[#0D1B2A] leading-relaxed">
                     <span className="font-semibold">
                       Construire un portefeuille
                     </span>{" "}
@@ -450,8 +453,8 @@ export default function Home() {
                   </p>
                 </div>
 
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#FFD700] flex items-center justify-center mt-1">
+                <div className="flex items-start space-x-3">
+                  <div className="flex-shrink-0 w-5 h-5 rounded-full bg-[#FFD700] flex items-center justify-center mt-1">
                     <svg
                       className="w-3 h-3 text-[#0D1B2A]"
                       fill="currentColor"
@@ -464,14 +467,14 @@ export default function Home() {
                       />
                     </svg>
                   </div>
-                  <p className="text-[#0D1B2A] leading-relaxed">
+                  <p className="text-sm text-[#0D1B2A] leading-relaxed">
                     <span className="font-semibold">Attirer des clients</span>{" "}
                     de grande valeur recherchant la crédibilité.
                   </p>
                 </div>
 
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#FFD700] flex items-center justify-center mt-1">
+                <div className="flex items-start space-x-3">
+                  <div className="flex-shrink-0 w-5 h-5 rounded-full bg-[#FFD700] flex items-center justify-center mt-1">
                     <svg
                       className="w-3 h-3 text-[#0D1B2A]"
                       fill="currentColor"
@@ -484,7 +487,7 @@ export default function Home() {
                       />
                     </svg>
                   </div>
-                  <p className="text-[#0D1B2A] leading-relaxed">
+                  <p className="text-sm text-[#0D1B2A] leading-relaxed">
                     <span className="font-semibold">
                       Différenciation claire
                     </span>{" "}
@@ -492,8 +495,8 @@ export default function Home() {
                   </p>
                 </div>
 
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#FFD700] flex items-center justify-center mt-1">
+                <div className="flex items-start space-x-3">
+                  <div className="flex-shrink-0 w-5 h-5 rounded-full bg-[#FFD700] flex items-center justify-center mt-1">
                     <svg
                       className="w-3 h-3 text-[#0D1B2A]"
                       fill="currentColor"
@@ -506,7 +509,7 @@ export default function Home() {
                       />
                     </svg>
                   </div>
-                  <p className="text-[#0D1B2A] leading-relaxed">
+                  <p className="text-sm text-[#0D1B2A] leading-relaxed">
                     <span className="font-semibold">
                       Rationaliser le réseautage
                     </span>{" "}
@@ -514,8 +517,8 @@ export default function Home() {
                   </p>
                 </div>
 
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#FFD700] flex items-center justify-center mt-1">
+                <div className="flex items-start space-x-3">
+                  <div className="flex-shrink-0 w-5 h-5 rounded-full bg-[#FFD700] flex items-center justify-center mt-1">
                     <svg
                       className="w-3 h-3 text-[#0D1B2A]"
                       fill="currentColor"
@@ -528,7 +531,7 @@ export default function Home() {
                       />
                     </svg>
                   </div>
-                  <p className="text-[#0D1B2A] leading-relaxed">
+                  <p className="text-sm text-[#0D1B2A] leading-relaxed">
                     <span className="font-semibold">Obtenir des insights</span>{" "}
                     avec des analyses de performance avancées.
                   </p>
@@ -537,17 +540,17 @@ export default function Home() {
             </div>
 
             {/* For Clients */}
-            <div className="bg-gradient-to-br from-[#F8F8F5] to-[#E8E8E5] p-8 rounded-3xl border-2 border-[#FFD700]/20">
-              <div className="text-center mb-8">
-                <h3 className="text-2xl font-bold text-[#FFD700] mb-2">
+            <div className="bg-gradient-to-br from-[#F8F8F5] to-[#E8E8E5] p-6 rounded-2xl border-2 border-[#FFD700]/20">
+              <div className="text-center mb-6">
+                <h3 className="text-xl font-bold text-[#FFD700] mb-2">
                   Pour les Clients
                 </h3>
-                <div className="w-16 h-1 bg-gradient-to-r from-[#FFD700] to-[#E6B800] mx-auto rounded-full"></div>
+                <div className="w-12 h-1 bg-gradient-to-r from-[#FFD700] to-[#E6B800] mx-auto rounded-full"></div>
               </div>
 
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#FFD700] flex items-center justify-center mt-1">
+              <div className="space-y-4">
+                <div className="flex items-start space-x-3">
+                  <div className="flex-shrink-0 w-5 h-5 rounded-full bg-[#FFD700] flex items-center justify-center mt-1">
                     <svg
                       className="w-3 h-3 text-[#0D1B2A]"
                       fill="currentColor"
@@ -560,14 +563,14 @@ export default function Home() {
                       />
                     </svg>
                   </div>
-                  <p className="text-[#0D1B2A] leading-relaxed">
+                  <p className="text-sm text-[#0D1B2A] leading-relaxed">
                     <span className="font-semibold">Accéder à un réseau</span>{" "}
                     de professionnels automobiles vérifiés et experts.
                   </p>
                 </div>
 
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#FFD700] flex items-center justify-center mt-1">
+                <div className="flex items-start space-x-3">
+                  <div className="flex-shrink-0 w-5 h-5 rounded-full bg-[#FFD700] flex items-center justify-center mt-1">
                     <svg
                       className="w-3 h-3 text-[#0D1B2A]"
                       fill="currentColor"
@@ -580,7 +583,7 @@ export default function Home() {
                       />
                     </svg>
                   </div>
-                  <p className="text-[#0D1B2A] leading-relaxed">
+                  <p className="text-sm text-[#0D1B2A] leading-relaxed">
                     <span className="font-semibold">
                       Embaucher en toute confiance
                     </span>{" "}
@@ -588,8 +591,8 @@ export default function Home() {
                   </p>
                 </div>
 
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#FFD700] flex items-center justify-center mt-1">
+                <div className="flex items-start space-x-3">
+                  <div className="flex-shrink-0 w-5 h-5 rounded-full bg-[#FFD700] flex items-center justify-center mt-1">
                     <svg
                       className="w-3 h-3 text-[#0D1B2A]"
                       fill="currentColor"
@@ -602,7 +605,7 @@ export default function Home() {
                       />
                     </svg>
                   </div>
-                  <p className="text-[#0D1B2A] leading-relaxed">
+                  <p className="text-sm text-[#0D1B2A] leading-relaxed">
                     <span className="font-semibold">
                       Réduire significativement
                     </span>{" "}
@@ -610,8 +613,8 @@ export default function Home() {
                   </p>
                 </div>
 
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#FFD700] flex items-center justify-center mt-1">
+                <div className="flex items-start space-x-3">
+                  <div className="flex-shrink-0 w-5 h-5 rounded-full bg-[#FFD700] flex items-center justify-center mt-1">
                     <svg
                       className="w-3 h-3 text-[#0D1B2A]"
                       fill="currentColor"
@@ -624,7 +627,7 @@ export default function Home() {
                       />
                     </svg>
                   </div>
-                  <p className="text-[#0D1B2A] leading-relaxed">
+                  <p className="text-sm text-[#0D1B2A] leading-relaxed">
                     <span className="font-semibold">
                       Économiser un temps précieux
                     </span>{" "}
@@ -632,8 +635,8 @@ export default function Home() {
                   </p>
                 </div>
 
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#FFD700] flex items-center justify-center mt-1">
+                <div className="flex items-start space-x-3">
+                  <div className="flex-shrink-0 w-5 h-5 rounded-full bg-[#FFD700] flex items-center justify-center mt-1">
                     <svg
                       className="w-3 h-3 text-[#0D1B2A]"
                       fill="currentColor"
@@ -646,7 +649,7 @@ export default function Home() {
                       />
                     </svg>
                   </div>
-                  <p className="text-[#0D1B2A] leading-relaxed">
+                  <p className="text-sm text-[#0D1B2A] leading-relaxed">
                     <span className="font-semibold">
                       Expérimenter la tranquillité d'esprit
                     </span>{" "}
@@ -654,8 +657,8 @@ export default function Home() {
                   </p>
                 </div>
 
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#FFD700] flex items-center justify-center mt-1">
+                <div className="flex items-start space-x-3">
+                  <div className="flex-shrink-0 w-5 h-5 rounded-full bg-[#FFD700] flex items-center justify-center mt-1">
                     <svg
                       className="w-3 h-3 text-[#0D1B2A]"
                       fill="currentColor"
@@ -668,7 +671,7 @@ export default function Home() {
                       />
                     </svg>
                   </div>
-                  <p className="text-[#0D1B2A] leading-relaxed">
+                  <p className="text-sm text-[#0D1B2A] leading-relaxed">
                     <span className="font-semibold">
                       Prendre des décisions éclairées
                     </span>{" "}
