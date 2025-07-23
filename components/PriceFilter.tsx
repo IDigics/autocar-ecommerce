@@ -20,6 +20,7 @@ export default function PriceFilter() {
         onChange={(vals) => setValues(vals)}
         renderTrack={({ props, children }) => (
           <div
+          
             {...props}
             className="w-full h-2 rounded-full cursor-pointer"
             style={{
@@ -34,7 +35,7 @@ export default function PriceFilter() {
             {children}
           </div>
         )}
-        renderThumb={({ props, index }) => (
+        renderThumb={({ props }) => (
           <div
             {...props}
             className="h-6 w-6 rounded-full bg-[#D4AF37] shadow-lg flex items-center justify-center cursor-pointer"

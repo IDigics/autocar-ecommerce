@@ -7,25 +7,25 @@ const products = [
     id: 1,
     name: 'Ford Mustang',
     price: '65,000 DT',
-    image: '/products/ford-mustang.jpg',
+    image: '/products/logo.png',
   },
   {
     id: 2,
     name: 'BMW X5',
     price: '75,000 DT',
-    image: '/products/bmw-x5.jpg',
+    image: '/products/car.jpeg',
   },
   {
     id: 3,
     name: 'Audi A6',
     price: '68,000 DT',
-    image: '/products/audi-a6.jpg',
+    image: '/products/car1.jpeg',
   },
   {
     id: 4,
     name: 'Mercedes-Benz C-Class',
     price: '70,000 DT',
-    image: '/products/mercedes-c.jpg',
+    image: '/products/filter.jpg',
   },
   {
     id: 5,
@@ -44,7 +44,7 @@ const products = [
 
 const ProductGrid = () => {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-4">
       {products.map((product) => (
         <div
           key={product.id}

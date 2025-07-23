@@ -1,8 +1,8 @@
 'use client';
 
 import React from 'react';
-import Header from '../components/Header';
-import BoutiqueLayout from '../components/BoutiqueLayout';
+import Header from '@/components/Header';
+import BoutiqueLayout from '@/components/BoutiqueLayout';
 
 export default function BoutiquePage() {
   return (
