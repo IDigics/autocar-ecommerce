@@ -29,7 +29,7 @@ export default function BoutiquePage() {
           className="w-full max-w-[280px] space-y-8 rounded-3xl p-6 relative shadow-lg flex-shrink-0 h-full"
           style={{
             minHeight: '600px',
-            boxShadow: '0 8px 24px rgb(212 175 55 / 0.3)',
+            boxShadow: '0 8px 24px rgb(10 25 47 / 0.75)',
             backgroundColor: '#f8f8f6'
         
           }}
@@ -45,14 +45,16 @@ export default function BoutiquePage() {
             </div>
             <div>
               <h3 className="text-lg font-semibold mb-3 tracking-widest text-[#D4AF37]">
-                Type de carburant
+                  Type de carburant
               </h3>
+
               <FuelTypeFilter />
             </div>
             <div>
               <h3 className="text-lg font-semibold mb-3 tracking-widest text-[#D4AF37]">
-                Catégories
+                  Catégories
               </h3>
+
               <CategoryFilter />
             </div>
             <div>
