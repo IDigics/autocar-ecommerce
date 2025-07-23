@@ -43,8 +43,14 @@
 "use client";
 
 import Image from "next/image";
+import HeroCarousel from "./components/HeroCarousel";
 
 export default function Home() {
+  const heroImages = [
+    "/Case_Solita_and_Fintraffic_Road_overview_hero.jpg",
+    "/StockCake-Mountain Road Adventure_1753210374.jpg", // You can add more different images here
+    "/544d511e969a2bb65475514c3025e957.jpeg", // You can add more different images here
+  ];
   return (
     <>
       {/* ===== SITE NAVIGATION ===== */}
@@ -56,135 +62,9 @@ export default function Home() {
       - Smooth scrolling to page sections
       */}
 
-      {/* ===== HERO SECTION - FULL SCREEN IMPACT ===== */}
-      {/* 
-      HERO SECTION FEATURES:
-      - Full viewport height (min-h-screen)
-      - Background image with dark overlay for text readability
-      - Centered content with responsive typography
-      - Call-to-action button with hover effects
-      - Statistics bar positioned at bottom
-      - id="hero" for smooth scroll navigation from header
-      */}
-      <main
-        id="hero"
-        className="relative min-h-screen flex items-center text-white pt-12"
-      >
-        {/* BACKGROUND IMAGE LAYER
-            - Absolute positioning to fill entire section
-            - opacity-90 for slight transparency
-            - brightness-50 darkens image for text contrast
-            - priority loading for above-the-fold performance */}
-        <div className="absolute inset-0 z-0 opacity-90">
-          <Image
-            src="/Case_Solita_and_Fintraffic_Road_overview_hero.jpg"
-            alt="Voiture de luxe AutoCar'z"
-            fill
-            className="object-cover brightness-50"
-            priority
-          />
-        </div>
-
-        {/* MAIN CONTENT CONTAINER
-            - z-10 positions content above background image
-            - Flexbox centers content vertically
-            - Compact max width for tighter layout */}
-        <div className="relative z-10 w-full max-w-6xl mx-auto px-4 flex items-center">
-          {/* === HERO TEXT CONTENT === */}
-          {/* 
-          CONTENT LAYOUT:
-          - Full width on mobile, 2/3 width on large screens
-          - Center alignment on mobile, left alignment on desktop
-          - Progressive text sizing for different screen sizes
-          - French copy emphasizing luxury and emotion
-          - Pushed more to the right for better visual balance
-          */}
-          <div className="w-full lg:w-2/3 text-center lg:text-left lg:ml-20">
-            {/* MAIN HEADLINE
-                - Smaller, more compact typography for efficient space usage
-                - Multi-line structure with strategic line breaks
-                - Gold accent color for "Vivez AutoCar'z" brand climax
-                - leading-tight ensures proper line spacing
-                - Using simpler serif font for elegance */}
-            <h1 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold mb-3 leading-tight text-[#F8F8F5] font-serif">
-              Conduisez l'exception,
-              <br />
-              Ressentez la <span className="text-[#F8F8F5]">passion...</span>
-              <br />
-              <span className="text-[#FFD700] text-lg md:text-2xl lg:text-3xl xl:text-4xl">
-                Vivez AutoCar'z
-              </span>
-            </h1>
-
-            {/* SUPPORTING DESCRIPTION
-                - Compact text sizes for efficient space usage
-                - Explains value proposition in elegant French
-                - Max width constraint prevents lines from becoming too long
-                - Auto margin centering on mobile, manual left alignment on desktop */}
-            <p className="text-xs md:text-sm lg:text-base mb-6 text-[#F8F8F5] max-w-lg mx-auto lg:mx-0 leading-relaxed">
-              Découvrez une sélection exclusive de véhicules luxueux qui marient
-              élégance et performance, pour ceux qui exigent l'excellence.
-            </p>
-
-            {/* CALL-TO-ACTION BUTTON
-                - Gold gradient background matching brand colors
-                - Compact size for space efficiency
-                - Hover effects: shadow-xl and scale-105 for premium feel
-                - Rounded corners and comfortable padding
-                - Arrow indicates forward action/progression */}
-            <button className="px-6 py-3 bg-gradient-to-r from-[#FFD700] to-[#E6B800] text-black rounded-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 font-semibold text-sm tracking-wide">
-              Découvrir la boutique →
-            </button>
-          </div>
-        </div>
-
-        {/* === STATISTICS BAR - BOTTOM OVERLAY === */}
-        {/* 
-        STATISTICS FEATURES:
-        - Positioned absolutely at bottom of hero section
-        - z-10 ensures visibility above background image
-        - Responsive grid: 1 column mobile, 3 columns desktop
-        - Very compact gold numbers with descriptive gray labels
-        - Builds credibility and trust with impressive metrics
-        */}
-        <div className="absolute bottom-4 left-0 right-0 z-10">
-          <div className="max-w-4xl mx-auto px-4">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
-              {/* PREMIUM VEHICLES COUNT
-                  Much smaller gold numbers for proper proportions */}
-              <div className="flex flex-col items-center">
-                <span className="text-2xl md:text-3xl font-bold text-[#FFD700] mb-1">
-                  100+
-                </span>
-                <span className="text-xs text-[#71797E] uppercase tracking-wide">
-                  Véhicules Premium
-                </span>
-              </div>
-
-              {/* YEARS OF EXPERIENCE
-                  Establishes credibility and expertise */}
-              <div className="flex flex-col items-center">
-                <span className="text-2xl md:text-3xl font-bold text-[#FFD700] mb-1">
-                  15+
-                </span>
-                <span className="text-xs text-[#71797E] uppercase tracking-wide">
-                  Années d'Expérience
-                </span>
-              </div>
-
-              {/* SATISFIED CUSTOMERS
-                  Social proof and customer satisfaction metric */}
-              <div className="flex flex-col items-center">
-                <span className="text-2xl md:text-3xl font-bold text-[#FFD700] mb-1">
-                  500+
-                </span>
-                <span className="text-xs text-[#71797E] uppercase tracking-wide">
-                  Clients Satisfaits
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
+      {/* ===== HERO SECTION - CAROUSEL SLIDESHOW ===== */}
+      <main id="hero" className="scroll-mt-20">
+        <HeroCarousel images={heroImages} />
       </main>
 
       {/* ===== SERVICES SECTION - FEATURE SHOWCASE ===== */}
