@@ -20,8 +20,11 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function Header() {
+  const router = useRouter();
+
   /**
    * SMOOTH SCROLLING FUNCTION
    * Navigates to specific sections on the page using smooth scroll behavior
@@ -37,6 +40,15 @@ export default function Header() {
         block: "start", // Align to top of viewport
       });
     }
+  };
+
+  /**
+   * SEARCH REDIRECT FUNCTION
+   * Redirects user to boutique page when search is triggered
+   */
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    router.push("/boutique");
   };
 
   return (
@@ -100,7 +112,7 @@ export default function Header() {
         - Focus states with gold ring to match brand colors
         */}
         <div className="flex-1 max-w-96 mx-3 hidden md:block">
-          <div className="relative">
+          <form onSubmit={handleSearch} className="relative">
             {/* SEARCH INPUT FIELD
                 Smaller height with compact padding
                 Glass-morphism styling with semi-transparent background
@@ -115,20 +127,25 @@ export default function Header() {
             {/* SEARCH ICON
                 Positioned absolutely inside the input field (left side)
                 SVG icon with stroke styling for clean appearance */}
-            <svg
-              className="absolute left-2.5 top-1/2 transform -translate-y-1/2 w-3.5 h-3.5 text-gray-300"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+            <button
+              type="submit"
+              className="absolute left-2.5 top-1/2 transform -translate-y-1/2 w-3.5 h-3.5 text-gray-300 hover:text-[#FFD700] transition-colors"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-              />
-            </svg>
-          </div>
+              <svg
+                className="w-full h-full"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
+              </svg>
+            </button>
+          </form>
         </div>
 
         {/* ===== SECTION 3: NAVIGATION MENU (FAR RIGHT) ===== */}
@@ -200,8 +217,11 @@ export default function Header() {
         <div className="md:hidden flex items-center space-x-4 ml-auto">
           {/* MOBILE SEARCH ICON
               Provides access to search functionality on mobile
-              Same SVG icon as desktop search bar */}
-          <button className="p-2">
+              Same SVG icon as desktop search bar - now clickable to redirect */}
+          <button
+            onClick={handleSearch}
+            className="p-2 hover:bg-white/10 rounded transition-colors"
+          >
             <svg
               className="w-5 h-5 text-white"
               fill="none"
