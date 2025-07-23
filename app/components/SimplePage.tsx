@@ -7,11 +7,16 @@ interface SimplePageProps {
   children?: React.ReactNode;
 }
 
-export default function SimplePage({ title, description, icon, children }: SimplePageProps) {
+export default function SimplePage({
+  title,
+  description,
+  icon,
+  children,
+}: SimplePageProps) {
   return (
-    <main className="min-h-screen pt-16 bg-[#F8F8F5]">
+    <main className="min-h-screen bg-[#F8F8F5]">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-[#0D1B2A] to-[#1a2a3a] text-white py-12 sm:py-16 lg:py-20">
+      <section className="bg-gradient-to-r from-[#0D1B2A] to-[#1a2a3a] text-white pt-20 pb-12 sm:pt-24 sm:pb-16 lg:pt-28 lg:pb-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           {icon && (
             <div className="text-4xl sm:text-5xl lg:text-6xl mb-4 sm:mb-6">
