@@ -1,4 +1,4 @@
-import SimplePage from "../components/SimplePage";
+import SimplePage from "../../components/SimplePage";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
