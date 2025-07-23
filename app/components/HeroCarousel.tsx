@@ -88,7 +88,7 @@ export default function HeroCarousel({ images }: HeroCarouselProps) {
       </button>
 
       {/* Dots */}
-      <div className="absolute bottom-24 left-1/2 -translate-x-1/2 z-20 flex space-x-2">
+      <div className="absolute bottom-24 left-1/2 -translate-x-1/2 z-20 flex space-x-2 opacity-12">
         {images.map((_, index) => (
           <button
             key={index}
