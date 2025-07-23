@@ -75,14 +75,14 @@ export default function HeroCarousel({ images }: HeroCarouselProps) {
       {/* Simple Navigation */}
       <button
         onClick={() => emblaApi?.scrollPrev()}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-black/50 hover:bg-black/70 rounded-full text-white text-xl"
+        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-black/50 hover:bg-black/70 rounded-full text-white text-xl opacity-35"
       >
         ←
       </button>
 
       <button
         onClick={() => emblaApi?.scrollNext()}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-black/50 hover:bg-black/70 rounded-full text-white text-xl"
+        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-black/50 hover:bg-black/70 rounded-full text-white text-xl opacity-35"
       >
         →
       </button>
