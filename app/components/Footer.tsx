@@ -123,12 +123,6 @@ export default function Footer() {
               Contact
             </Link>
             <Link
-              href="/showroom"
-              className="block text-[#71797E] hover:text-[#FFD700] transition-colors duration-300 text-sm cursor-pointer"
-            >
-              Notre Showroom
-            </Link>
-            <Link
               href="/testimonials"
               className="block text-[#71797E] hover:text-[#FFD700] transition-colors duration-300 text-sm cursor-pointer"
             >
