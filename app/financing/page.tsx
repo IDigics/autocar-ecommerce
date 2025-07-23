@@ -8,8 +8,8 @@ export const metadata: Metadata = {
 
 export default function FinancingPage() {
   return (
-    <SimplePage 
-      title="Financement" 
+    <SimplePage
+      title="Financement"
       description="Solutions de financement flexibles pour votre véhicule"
       icon="💳"
     />

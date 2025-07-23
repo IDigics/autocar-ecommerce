@@ -8,8 +8,8 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <SimplePage 
-      title="À Propos d'AutoCar'z" 
+    <SimplePage
+      title="À Propos d'AutoCar'z"
       description="Découvrez l'histoire et les valeurs d'AutoCar'z"
       icon="🏢"
     />

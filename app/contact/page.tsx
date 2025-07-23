@@ -8,8 +8,8 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <SimplePage 
-      title="Contactez-nous" 
+    <SimplePage
+      title="Contactez-nous"
       description="Contactez-nous pour toute question ou prise de rendez-vous"
       icon="📞"
     />

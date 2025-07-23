@@ -8,8 +8,8 @@ export const metadata: Metadata = {
 
 export default function TradeInPage() {
   return (
-    <SimplePage 
-      title="Reprise de Véhicule" 
+    <SimplePage
+      title="Reprise de Véhicule"
       description="Évaluez et échangez votre véhicule actuel"
       icon="🔄"
     />

@@ -8,8 +8,8 @@ export const metadata: Metadata = {
 
 export default function NewsPage() {
   return (
-    <SimplePage 
-      title="Actualités" 
+    <SimplePage
+      title="Actualités"
       description="Suivez nos dernières actualités et nouveautés"
       icon="📰"
     />

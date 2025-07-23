@@ -8,8 +8,8 @@ export const metadata: Metadata = {
 
 export default function TestimonialsPage() {
   return (
-    <SimplePage 
-      title="Témoignages Clients" 
+    <SimplePage
+      title="Témoignages Clients"
       description="Découvrez les avis et témoignages de nos clients satisfaits"
       icon="⭐"
     />

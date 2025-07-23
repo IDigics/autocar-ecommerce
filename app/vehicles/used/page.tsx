@@ -8,8 +8,8 @@ export const metadata: Metadata = {
 
 export default function UsedVehiclesPage() {
   return (
-    <SimplePage 
-      title="Véhicules d'Occasion" 
+    <SimplePage
+      title="Véhicules d'Occasion"
       description="Notre sélection de véhicules d'occasion certifiés et garantis"
       icon="🛞"
     />
