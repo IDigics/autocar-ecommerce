@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import BrandFilter from './BrandFilter';
 import SubcategoryFilter from '../components/SubcategoryFilter';
 import FuelTypeFilter from '../components/FuelTypeFilter';
@@ -8,8 +8,77 @@ import CategoryFilter from '../components/CategoryFilter';
 import PriceFilter from '../components/PriceFilter';
 import ProductGrid from '../components/ProductGrid';
 
+// SortDropdown avec option "Aucun"
+const SortDropdown = ({ onChange }: { onChange: (value: string) => void }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedLabel, setSelectedLabel] = useState('Trier par 🔽');
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const options = [
+    { label: '-- Aucun --', value: '' },
+    { label: 'Prix croissant', value: 'price-asc' },
+    { label: 'Prix décroissant', value: 'price-desc' },
+    { label: 'Nom A-Z', value: 'name-asc' },
+    { label: 'Nom Z-A', value: 'name-desc' },
+    { label: 'Nouveautés', value: 'newest' },
+  ];
+
+  const toggleDropdown = () => setIsOpen(!isOpen);
+
+  const handleSelect = (value: string, label: string) => {
+    if (value === '') {
+      setSelectedLabel('Trier par 🔽');
+    } else {
+      setSelectedLabel(label + ' ⚡');
+    }
+    setIsOpen(false);
+    onChange(value);
+  };
+
+  // Fermer dropdown si clic hors du menu
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  return (
+    <div className="relative inline-block text-left mb-6" ref={dropdownRef}>
+      <button
+        onClick={toggleDropdown}
+        className="inline-flex justify-center items-center px-4 py-2 bg-[#0A0A23] text-white rounded-xl shadow-md hover:bg-[#1A1A40] focus:outline-none focus:ring-2 focus:ring-[#d4af37] transition"
+        aria-haspopup="true"
+        aria-expanded={isOpen}
+      >
+        {selectedLabel}
+      </button>
+
+      {isOpen && (
+        <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50">
+          <div className="py-1">
+            {options.map((opt) => (
+              <button
+                key={opt.value || 'none'}
+                onClick={() => handleSelect(opt.value, opt.label)}
+                className="w-full text-left px-4 py-2 text-sm text-[#0A0A23] hover:bg-[#d4af37] hover:text-white transition rounded-md"
+              >
+                {opt.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
 const BoutiqueLayout = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [sortOption, setSortOption] = useState('');
 
   return (
     <div className="bg-[#f8f8f6] min-h-screen p-4 md:p-8">
@@ -78,7 +147,8 @@ const BoutiqueLayout = () => {
 
         {/* Partie produits */}
         <main className="w-full lg:w-3/4">
-          <ProductGrid />
+          <SortDropdown onChange={setSortOption} />
+          <ProductGrid sortOption={sortOption} />
         </main>
       </div>
 

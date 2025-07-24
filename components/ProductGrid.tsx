@@ -2,65 +2,93 @@
 
 import React from 'react';
 
-const products = [
+type Product = {
+  id: number;
+  name: string;
+  price: number;
+  image: string;
+};
+
+type ProductGridProps = {
+  sortOption: string;
+};
+
+const products: Product[] = [
   {
     id: 1,
     name: 'Ford Mustang',
-    price: '65,000 DT',
+    price: 65000,
     image: '/products/logo.png',
   },
   {
     id: 2,
     name: 'BMW X5',
-    price: '75,000 DT',
+    price: 75000,
     image: '/products/car.jpeg',
   },
   {
     id: 3,
     name: 'Audi A6',
-    price: '68,000 DT',
+    price: 68000,
     image: '/products/car1.jpeg',
   },
   {
     id: 4,
     name: 'Mercedes-Benz C-Class',
-    price: '70,000 DT',
+    price: 70000,
     image: '/products/filter.jpg',
   },
   {
     id: 5,
     name: 'Toyota Corolla',
-    price: '32,000 DT',
+    price: 32000,
     image: '/products/toyota-corolla.jpg',
   },
   {
     id: 6,
     name: 'Honda Civic',
-    price: '30,000 DT',
+    price: 30000,
     image: '/products/honda-civic.jpg',
   },
   // ajoute autant de produits que tu veux
 ];
 
-const ProductGrid = () => {
+const ProductGrid: React.FC<ProductGridProps> = ({ sortOption }) => {
+  // Si aucun tri sélectionné (sortOption = ''), on garde l’ordre original
+  const sortedProducts = sortOption
+    ? [...products].sort((a, b) => {
+        switch (sortOption) {
+          case 'price-asc':
+            return a.price - b.price;
+          case 'price-desc':
+            return b.price - a.price;
+          case 'name-asc':
+            return a.name.localeCompare(b.name);
+          case 'name-desc':
+            return b.name.localeCompare(a.name);
+          case 'newest':
+            // Si tu as une date, tu pourrais trier ici, sinon on laisse l’ordre par id décroissant (exemple)
+            return b.id - a.id;
+          default:
+            return 0;
+        }
+      })
+    : products;
+
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-4">
-      {products.map((product) => (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {sortedProducts.map((product) => (
         <div
           key={product.id}
-          className="bg-white rounded-3xl shadow-md hover:shadow-2xl hover:scale-105 transition-transform duration-300 overflow-hidden cursor-pointer"
+          className="bg-white rounded-2xl shadow-lg p-4 flex flex-col items-center transition hover:scale-105 duration-200"
         >
           <img
             src={product.image}
             alt={product.name}
-            className="w-full h-52 object-cover rounded-t-3xl"
+            className="w-full h-48 object-cover rounded-xl mb-4"
           />
-          <div className="p-6">
-            <h3 className="text-lg font-semibold text-[#0A0A23] mb-2 uppercase tracking-widest">
-              {product.name}
-            </h3>
-            <p className="text-[#D4AF37] font-bold text-xl">{product.price}</p>
-          </div>
+          <h3 className="text-lg font-semibold text-[#0A0A23]">{product.name}</h3>
+          <p className="text-[#D4AF37] font-bold text-md mt-2">{product.price.toLocaleString()} DT</p>
         </div>
       ))}
     </div>
