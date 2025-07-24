@@ -1,51 +1,29 @@
 # 🚗 AutoCar'z - Luxury Automotive Website
 
-A sophisticated luxury car dealership website built with Next.js 15, featuring elegant design, modular components, shadcn/ui integration, and comprehensive automotive business functionality with full content pages.
+A sophisticated luxury car dealership website built with Next.js 15, featuring elegant design and modular components for the luxury automotive market.
 
 ## ✨ Features
 
 ### 🎨 **Design & UI**
 
-- **Luxury Brand Identity** with gold (#FFD700) and navy (#- \*\*Complete financing, news, maintenance, and vehicle pages
-- \*\*Added interactive elements including forms, calculators, and booking systems
-- \*\*Implemented customer feedback and article systemsB2A) color scheme
-- **shadcn/ui Integration** with professional component library
+- **Luxury Brand Identity** with gold (#FFD700) and navy (#0D1B2A) color scheme
 - **Responsive Design** optimized for all devices with mobile-first approach
-- **Modular Component Architecture** with reusable UI components
 - **Professional Typography** with optimized font loading
 - **Consistent Layout System** with global Header/Footer
-- **Auto-play Carousel** with Embla integration for hero sections
+- **Auto-play Carousel** with hero sections for vehicle showcases
 
-### 🚙 **Automotive Business Pages**
+### 🚙 **Automotive Business**
 
-- **Vehicle Showcase** with new and used vehicle catalogs
-- **Financing Solutions** with calculator and credit options
-- **Maintenance Services** with appointment booking system
-- **News & Updates** with featured articles and content
+- **Home Page** with interactive vehicle showcase and hero carousel
+- **Legal Pages** with comprehensive terms, privacy, and cookie policies
+- **Content Pages** using simplified "under construction" layouts
 - **Professional Contact** forms and service information
-- **Trade-in Services** with vehicle evaluation tools
 
 ### 🛠️ **Technical Features**
 
-- **Search Functionality** with redirect to boutique page
-- **Performance Optimizations** with image optimization and lazy loading
-- **Windows Development Support** with webpack cache configuration
 - **Modern React Patterns** with TypeScript and App Router
-- **SEO Optimization** with proper metadata and Open Graph tags
-
-### 🔒 **Legal & Compliance**
-
-- **GDPR Compliant** privacy policy
-- **Interactive Cookie Policy** with browser management guides
-- **Comprehensive Terms of Service** with tabbed navigation
-- **Professional Legal Framework** for automotive business
-
-### 🔍 **User Experience**
-
-- **Global Navigation** with Header/Footer on all pages
-- **Smooth Scroll Navigation** between sections
-- **Interactive Components** with clean hover effects
-- **Accessibility Features** with proper semantic markup
+- **Performance Optimizations** with image optimization
+- **SEO Optimization** with proper metadata
 - **French Localization** for target market
 
 ## 🛠️ Tech Stack
@@ -53,11 +31,7 @@ A sophisticated luxury car dealership website built with Next.js 15, featuring e
 - **Framework**: Next.js 15 (App Router) with React 19
 - **Language**: TypeScript with strict type checking
 - **Styling**: Tailwind CSS with custom AutoCar'z design tokens
-- **UI Components**: shadcn/ui component library
-- **Icons**: React Icons (Font Awesome) and Lucide React
-- **Carousel**: Embla Carousel for smooth interactions
-- **Architecture**: Modular generic component system
-- **Development**: Windows-optimized with webpack cache
+- **Architecture**: Modular component system
 - **Deployment**: Vercel Ready with performance optimizations
 
 ## 📁 Project Structure
@@ -65,98 +39,185 @@ A sophisticated luxury car dealership website built with Next.js 15, featuring e
 ```
 autocar-ecommerce/
 ├── app/
-│   ├── components/              # Legacy page-specific components
-│   │   ├── Header.tsx          # Global navigation (in layout)
-│   │   ├── Footer.tsx          # Global footer (in layout)
-│   │   ├── PageLayout.tsx      # Content page wrapper
-│   │   ├── PageHero.tsx        # Hero section component
-│   │   ├── ContactSection.tsx  # Contact information
-│   │   ├── ContentSection.tsx  # Content wrapper
-│   │   └── CardList.tsx        # Card grid component
-│   ├── financing/              # Complete financing solutions
-│   │   └── page.tsx           # Financing options & calculator
-│   ├── news/                   # News and updates
-│   │   └── page.tsx           # Featured articles & newsletter
-│   ├── maintenance/            # Service offerings
-│   │   └── page.tsx           # Service cards & booking
-│   ├── vehicles/               # Vehicle inventory
-│   │   ├── new/page.tsx       # New vehicles showcase
-│   │   └── used/page.tsx      # Certified pre-owned
-│   ├── terms/
-│   │   └── page.tsx           # Terms of service
-│   ├── privacy/
-│   │   └── page.tsx           # Privacy policy
-│   ├── cookies/
-│   │   └── page.tsx           # Cookie policy
-│   ├── layout.tsx             # Root layout with global Header/Footer
-│   ├── page.tsx               # Home page with hero carousel
-│   └── globals.css            # Global styles with shadcn/ui
-├── components/                 # Generic reusable components
-│   ├── StatsGrid.tsx          # Statistics display grid
-│   ├── VehicleCard.tsx        # Vehicle showcase cards
-│   ├── FeatureGrid.tsx        # Feature presentation grid
-│   ├── ServiceCard.tsx        # Service offering cards
-│   ├── NewsCard.tsx           # Article preview cards
-│   ├── CTASection.tsx         # Call-to-action sections
-│   └── FeaturedSection.tsx    # Hero-style featured content
-├── public/                    # Static assets and images
-└── README.md                  # Project documentation
+│   ├── about/page.tsx          # About page (SimplePage)
+│   ├── contact/page.tsx        # Contact page (SimplePage)
+│   ├── financing/page.tsx      # Financing page (SimplePage)
+│   ├── news/page.tsx           # News page (SimplePage)
+│   ├── trade-in/page.tsx       # Trade-in page (SimplePage)
+│   ├── vehicles/page.tsx       # Vehicles page (SimplePage)
+│   ├── terms/page.tsx          # Terms of service (PageLayout)
+│   ├── privacy/page.tsx        # Privacy policy (PageLayout)
+│   ├── cookies/page.tsx        # Cookie policy (PageLayout)
+│   ├── layout.tsx              # Root layout with Header/Footer
+│   ├── page.tsx                # Home page with hero carousel
+│   └── globals.css             # Global styles
+├── components/                 # Reusable components
+│   ├── Header.tsx              # Global navigation
+│   ├── Footer.tsx              # Global footer
+│   ├── HomeCom.tsx             # Home page component
+│   ├── HeroCarousel.tsx        # Hero carousel component
+│   ├── SimplePage.tsx          # Under construction layout
+│   ├── PageLayout.tsx          # Complex page layout
+│   ├── PageHero.tsx            # Hero section component
+│   ├── ContactSection.tsx      # Contact information
+│   ├── ContentSection.tsx      # Content wrapper
+│   ├── CardList.tsx            # Card grid component
+│   ├── Termspage.tsx           # Terms page component
+│   ├── PrivacyPage.tsx         # Privacy page component
+│   └── Cookie.tsx              # Cookie page component
+├── public/                     # Static assets and images
+└── README.md                   # Project documentation
 ```
 
-## 🎯 Architecture Improvements
+## 🎯 Component Architecture
 
-### **Generic Component System**
+### **Core Components**
 
-- **7 Reusable Components** in `/components` directory for maximum modularity
-- **TypeScript Interfaces** for type-safe component props
-- **Consistent Design Patterns** across all components with AutoCar'z branding
-- **shadcn/ui Integration** with customized styling for luxury aesthetic
-
-### **Content-Rich Pages**
-
-- **Professional Content** replacing "under construction" placeholders
-- **Complete Business Functionality** across all automotive service areas
-- **Interactive Elements** with forms, calculators, and booking systems
-- **SEO-Optimized Content** with proper headings and metadata
-
-### **Global Layout System**
-
-- **Header & Footer** included in root layout for consistency
-- **PageLayout** component for standardized content pages
-- **Clean separation** between homepage and content pages
-- **Responsive Navigation** with mobile-optimized menu
-
-### **Component Hierarchy**
-
-```
-Root Layout (layout.tsx)
-├── Header (global navigation)
-├── Page Content:
-│   ├── Homepage (hero carousel + sections)
-│   └── Content Pages (PageLayout wrapper)
-│       ├── Hero Section
-│       ├── Generic Components (imported)
-│       └── Contact Section (optional)
-└── Footer (global links & info)
-```
-
-## 📊 Generic Components Library
+- **SimplePage**: Standardized "under construction" layout for content pages
+- **PageLayout**: Advanced layout with hero sections and contact integration
+- **HomeCom**: Main homepage component with vehicle showcase
+- **HeroCarousel**: Auto-playing carousel for vehicle displays
 
 ### **Layout Components**
 
-- **StatsGrid**: Statistics display with customizable grid layout
-- **FeatureGrid**: Feature presentation (2/3/4 column configurations)
-- **CTASection**: Call-to-action sections with primary/secondary variants
+- **Header**: Global navigation with brand identity
+- **Footer**: Company information and legal links
+- **PageHero**: Hero sections with customizable icons and features
+- **ContactSection**: Contact information display
 
 ### **Content Components**
 
-- **VehicleCard**: Vehicle showcase supporting new/used layouts
-- **ServiceCard**: Service presentation with icons and feature lists
-- **NewsCard**: Article cards with category badges and excerpts
+- **ContentSection**: Flexible content wrapper with icons
+- **CardList**: Grid-based card display system
 
-### **Interactive Components**
+### **Legal Pages**
 
-- **FeaturedSection**: Hero-style featured content with badges
+- **Termspage**: Interactive terms of service with tabbed navigation
+- **PrivacyPage**: GDPR-compliant privacy policy
+- **Cookie**: Cookie policy with browser management guides
+
+## 🚀 Getting Started
+
+### **Installation**
+
+```bash
+# Clone the repository
+git clone [repository-url]
+cd autocar-ecommerce
+
+# Install dependencies
+npm install
+
+# Run development server
+npm run dev
+```
+
+### **Development**
+
+```bash
+# Development server
+npm run dev
+
+# Production build
+npm run build
+
+# Start production server
+npm start
+
+# Type checking
+npm run type-check
+```
+
+## 🔧 Configuration
+
+### **Environment Variables**
+
+Create a `.env.local` file:
+
+```env
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+```
+
+### **Tailwind Configuration**
+
+Custom design tokens are configured in `tailwind.config.ts`:
+
+- **Gold Brand Color**: #FFD700
+- **Navy Blue**: #0D1B2A
+- **Light Background**: #F8F8F5
+
+## 📱 Pages Overview
+
+### **Active Pages**
+
+- **Home** (`/`) - Full-featured luxury car showcase
+- **About** (`/about`) - Company information (SimplePage)
+- **Contact** (`/contact`) - Contact information (SimplePage)
+- **Financing** (`/financing`) - Financial services (SimplePage)
+- **News** (`/news`) - Automotive news (SimplePage)
+- **Trade-in** (`/trade-in`) - Vehicle trade-in services (SimplePage)
+- **Vehicles** (`/vehicles`) - Vehicle inventory (SimplePage)
+
+### **Legal Pages**
+
+- **Terms** (`/terms`) - Interactive terms of service
+- **Privacy** (`/privacy`) - GDPR-compliant privacy policy
+- **Cookies** (`/cookies`) - Cookie management guide
+
+## 🎨 Design System
+
+### **Color Palette**
+
+- **Primary Gold**: `#FFD700` - Brand accent and highlights
+- **Navy Blue**: `#0D1B2A` - Primary text and headers
+- **Light Background**: `#F8F8F5` - Page backgrounds
+- **White**: `#FFFFFF` - Card backgrounds
+- **Gray**: `#71797E` - Secondary text
+
+### **Typography**
+
+- **Headings**: Bold weights with gradient text effects
+- **Body Text**: Readable font sizes with proper line heights
+- **Professional**: Clean, modern typography hierarchy
+
+## 📦 Deployment
+
+### **Vercel (Recommended)**
+
+```bash
+# Install Vercel CLI
+npm i -g vercel
+
+# Deploy
+vercel
+```
+
+### **Manual Deployment**
+
+```bash
+# Build production version
+npm run build
+
+# Export static files (if needed)
+npm run export
+```
+
+## 🔄 Project Status
+
+- ✅ **Core Architecture**: Stable component system
+- ✅ **Home Page**: Full-featured luxury car showcase
+- ✅ **Legal Pages**: Complete terms, privacy, and cookie policies
+- ✅ **Navigation**: Global header and footer system
+- ⏳ **Content Pages**: Currently using SimplePage for development
+- ⏳ **Features**: Ready for content expansion
+
+## 📝 License
+
+This project is proprietary software for AutoCar'z luxury automotive business.
+
+---
+
+**AutoCar'z** - Luxury Automotive Excellence
 
 ## 🚀 Getting Started
 
@@ -286,67 +347,55 @@ Custom configurations in `tailwind.config.ts` for AutoCar'z brand colors and fon
 
 ## 📦 Component Documentation
 
-### **Global Components**
+### **Complete Component Library**
 
-- **Header**: Fixed navigation with logo, search, and responsive menu (in layout.tsx)
-- **Footer**: Company information, quick links, and contact details (in layout.tsx)
+AutoCar'z features a comprehensive, well-documented component library with 7 core generic components plus layout and utility components. Each component includes detailed documentation explaining its purpose, features, and usage.
 
-### **Layout Components**
+**📋 [View Complete Component Documentation](./COMPONENT_DOCUMENTATION.md)**
 
-- **PageLayout**: Wrapper for content pages with hero, main, and contact sections
-- **PageHero**: Standardized hero banners for content pages with customizable content
+### **Component Categories**
 
-### **Generic Components (New)**
+#### **🏗️ Layout Components**
 
-#### **StatsGrid Component**
+- **Header**: Global navigation with search and responsive menu
+- **Footer**: Company information, links, and contact details
+- **SimplePage**: Standardized page layout template
+- **PageLayout**: Advanced layout with configurable hero and contact
 
-- Displays statistics in responsive grid layout
-- Props: `stats` array with value, label, and description
-- Supports 2, 3, or 4 column layouts with automatic responsive behavior
+#### **🎯 Content Components**
 
-#### **VehicleCard Component**
+- **StatsGrid**: Statistical information display with responsive grid
+- **VehicleCard**: Luxury vehicle showcases for new/used inventory
+- **NewsCard**: Article previews with category badges and excerpts
+- **ServiceCard**: Professional service offerings with feature lists
+- **FeatureGrid**: Flexible feature presentation (2/3/4 columns)
 
-- Showcases vehicles with images, details, and pricing
-- Props: `vehicle` object with comprehensive vehicle information
-- Supports both new and used vehicle layouts with different styling
+#### **⚡ Interactive Components**
 
-#### **FeatureGrid Component**
+- **CTASection**: Call-to-action sections with primary/secondary buttons
+- **FeaturedSection**: Hero-style featured content with prominent CTA
 
-- Presents features in flexible grid configuration
-- Props: `features` array and optional `columns` (2, 3, or 4)
-- Responsive design with icon, title, and description support
+### **Component Features**
 
-#### **ServiceCard Component**
+- **📱 Fully Responsive**: Mobile-first design with professional breakpoints
+- **🎨 Brand Consistent**: AutoCar'z gold (#FFD700) and navy (#0D1B2A) theme
+- **⚡ TypeScript**: Comprehensive interfaces for type safety
+- **📝 Well Documented**: Each component includes purpose, features, and usage
+- **🔧 Highly Configurable**: Flexible props for different use cases
+- **♿ Accessible**: Proper semantic markup and ARIA support
 
-- Displays services with icons and feature lists
-- Props: `service` object with title, description, icon, and features
-- Includes hover effects and professional styling
+### **Quick Component Reference**
 
-#### **NewsCard Component**
-
-- Article preview cards with category badges
-- Props: `article` object with title, excerpt, category, date, and image
-- Optimized for news/blog content presentation
-
-#### **CTASection Component**
-
-- Call-to-action sections with primary/secondary button variants
-- Props: `title`, `description`, `primaryButton`, `secondaryButton`
-- Flexible styling with customizable button actions
-
-#### **FeaturedSection Component**
-
-- Hero-style featured content with badges and backgrounds
-- Props: `badge`, `title`, `description`, `image`, `features`
-- Perfect for highlighting key offerings or announcements
-
-### **Content Components (Legacy)**
-
-- **ContentSection**: Wrapper for content blocks with titles and icons
-- **CardList**: Flexible grid layout for card-based information
-- **ContactSection**: Contact information with customizable content
+For detailed component documentation including props, usage examples, and implementation details, see the [Complete Component Documentation](./COMPONENT_DOCUMENTATION.md).
 
 ## 🚀 Recent Improvements
+
+### **Comprehensive Documentation**
+
+- ✅ Added detailed component documentation with purpose and usage guidelines
+- ✅ Created comprehensive component library reference
+- ✅ Documented all interfaces, props, and implementation patterns
+- ✅ Established clear component categorization and relationships
 
 ### **Generic Component Architecture**
 
@@ -380,34 +429,40 @@ Custom configurations in `tailwind.config.ts` for AutoCar'z brand colors and fon
 
 ### **Using Generic Components**
 
-```tsx
+````tsx
 import { StatsGrid } from "@/components/StatsGrid";
-import { VehicleCard } from "@/components/VehicleCard";
-import { CTASection } from "@/components/CTASection";
+### **Documentation Structure**
+
+- **Main README**: Project overview, setup, and architecture
+- **Component Documentation**: Detailed component reference with examples
+- **Code Comments**: Inline documentation explaining component purpose and features
+- **TypeScript Interfaces**: Self-documenting props and data structures
+
+### **Usage Examples**
+
+For complete usage examples with props and implementation details, see the [Component Documentation](./COMPONENT_DOCUMENTATION.md).
+
+**Quick Example**:
+```tsx
+import { StatsGrid, VehicleCard, CTASection } from '@/components'
 
 export default function ExamplePage() {
-  const stats = [
-    { value: "500+", label: "Vehicles Sold", description: "This year" },
-    {
-      value: "15+",
-      label: "Years Experience",
-      description: "In luxury automotive",
-    },
-  ];
-
   return (
-    <PageLayout>
-      <StatsGrid stats={stats} />
-      <VehicleCard vehicle={vehicleData} />
+    <SimplePage title="Example" description="Component showcase">
+      <StatsGrid title="Our Success" stats={statsData} />
+      <VehicleCard vehicle={vehicleData} type="new" />
       <CTASection
-        title="Ready to Find Your Dream Car?"
-        description="Explore our extensive inventory"
-        primaryButton={{ text: "Browse Vehicles", href: "/vehicles" }}
+        title="Get Started Today"
+        description="Discover your perfect vehicle"
+        buttons={[
+          { text: "Browse Inventory", type: "primary" },
+          { text: "Contact Us", type: "secondary" }
+        ]}
       />
-    </PageLayout>
-  );
+    </SimplePage>
+  )
 }
-```
+````
 
 ## 🤝 Contributing
 
@@ -419,4 +474,4 @@ export default function ExamplePage() {
 
 ---
 
-**Built with ❤️ for luxury automotive excellence | Modern Generic Component Architecture | Full Business Functionality**
+**Built with ❤️ for luxury automotive excellence | Comprehensive Component Documentation | Professional Development Standards**
