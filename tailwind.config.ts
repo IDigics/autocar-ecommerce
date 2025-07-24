@@ -1,19 +1,37 @@
-// tailwind.config.ts
-import type { Config } from 'tailwindcss';
+import type { Config } from "tailwindcss";
 
-const config: Config = {
+export default {
+  content: [
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        background: "var(--background)",
+        foreground: "var(--foreground)",
+      },
+      fontFamily: {
+        sans: [
+          "Open Sans",
+          "system-ui",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "Segoe UI",
+          "Roboto",
+          "sans-serif",
+        ],
+        serif: ["Merriweather", "Georgia", "Times New Roman", "serif"],
+      },
+    },
     screens: {
-      sm: '640px',
-      md: '768px',
-      lg: '1024px',
-      desktop: '1000px', // 👈 celui-là
-      xl: '1280px',
+      sm: "640px",
+      md: "768px",
+      lg: "1024px",
+      desktop: "1000px",
+      xl: "1280px",
     },
   },
-  content: ['./app/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   plugins: [],
-};
-
-export default config;
+} satisfies Config;
