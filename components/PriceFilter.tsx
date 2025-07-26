@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import React, { useState, useEffect } from 'react';
 import { Range, getTrackBackground } from 'react-range';
@@ -20,9 +20,13 @@ export default function PriceFilter() {
     setValues([minFromUrl, maxFromUrl]);
   }, [minFromUrl, maxFromUrl]);
 
+  // ✅ Cette fonction ne fait que mettre à jour localement les valeurs
   const onChange = (vals: number[]) => {
     setValues(vals);
+  };
 
+  // ✅ Et ici, on update l'URL uniquement quand l'utilisateur a fini
+  const onFinalChange = (vals: number[]) => {
     const params = new URLSearchParams(searchParams.toString());
     params.set('priceMin', vals[0].toString());
     params.set('priceMax', vals[1].toString());
@@ -38,6 +42,7 @@ export default function PriceFilter() {
         min={MIN}
         max={MAX}
         onChange={onChange}
+        onFinalChange={onFinalChange}
         renderTrack={({ props, children }) => (
           <div
             {...props}
@@ -45,7 +50,7 @@ export default function PriceFilter() {
             style={{
               background: getTrackBackground({
                 values,
-                colors: ["#d4af37", "#f8f8f6", "#d4af37"],
+                colors: ['#d4af37', '#f8f8f6', '#d4af37'],
                 min: MIN,
                 max: MAX,
               }),
@@ -54,20 +59,18 @@ export default function PriceFilter() {
             {children}
           </div>
         )}
-        
- renderThumb={({ props }) => {
-  const { key, ...rest } = props;
-  return (
-    <div
-      key={key}
-      {...rest}
-      className="h-6 w-6 rounded-full bg-[#D4AF37] shadow-lg flex items-center justify-center cursor-pointer"
-    >
-      <div className="h-3 w-1 bg-white rounded-sm" />
-    </div>
-  );
-}}
-
+        renderThumb={({ props }) => {
+          const { key, ...rest } = props;
+          return (
+            <div
+              key={key}
+              {...rest}
+              className="h-6 w-6 rounded-full bg-[#D4AF37] shadow-lg flex items-center justify-center cursor-pointer"
+            >
+              <div className="h-3 w-1 bg-white rounded-sm" />
+            </div>
+          );
+        }}
       />
       <div className="flex justify-between mt-3 text-[#0A0A23] font-light tracking-wide text-sm select-none">
         <span>{values[0].toLocaleString()} DT</span>
