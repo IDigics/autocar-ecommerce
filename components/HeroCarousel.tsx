@@ -27,7 +27,7 @@ export default function HeroCarousel({ images }: HeroCarouselProps) {
   }, [emblaApi]);
 
   return (
-    <div className="relative min-h-screen flex items-center text-white">
+    <div className="relative min-h-[60vh] sm:min-h-[80vh] lg:min-h-screen flex items-center text-white">
       {/* Background Images Carousel */}
       <div className="absolute inset-0 z-0">
         <div className="embla overflow-hidden w-full h-full" ref={emblaRef}>
@@ -43,6 +43,7 @@ export default function HeroCarousel({ images }: HeroCarouselProps) {
                   fill
                   className="object-cover brightness-50"
                   priority={index === 0}
+                  sizes="100vw"
                 />
               </div>
             ))}
@@ -51,9 +52,9 @@ export default function HeroCarousel({ images }: HeroCarouselProps) {
       </div>
 
       {/* Static Content */}
-      <div className="relative z-10 w-full max-w-6xl mx-auto px-4">
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6">
         <div className="w-full lg:w-2/3 text-center lg:text-left lg:ml-20">
-          <h1 className="text-4xl font-bold mb-4 leading-tight text-white font-serif">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold mb-4 leading-tight text-white font-serif">
             Conduisez l'exception,
             <br />
             Ressentez la <span className="text-white">passion...</span>
@@ -61,39 +62,39 @@ export default function HeroCarousel({ images }: HeroCarouselProps) {
             <span className="text-[#FFD700]">Vivez AutoCar'z</span>
           </h1>
 
-          <p className="text-lg mb-6 text-gray-200 max-w-lg mx-auto lg:mx-0">
+          <p className="text-sm sm:text-base lg:text-lg mb-6 text-gray-200 max-w-lg mx-auto lg:mx-0 px-4 sm:px-0">
             Découvrez une sélection exclusive de véhicules luxueux qui marient
             élégance et performance, pour ceux qui exigent l'excellence.
           </p>
 
-          <button className="px-6 py-3 bg-[#FFD700] text-black rounded-lg font-semibold hover:bg-yellow-400 transition-colors">
+          <button className="px-4 sm:px-6 py-2 sm:py-3 bg-[#FFD700] text-black rounded-lg font-semibold hover:bg-yellow-400 transition-colors text-sm sm:text-base">
             Découvrir la boutique →
           </button>
         </div>
       </div>
 
-      {/* Simple Navigation */}
+      {/* Navigation - Hide on very small screens */}
       <button
         onClick={() => emblaApi?.scrollPrev()}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-black/50 hover:bg-black/70 rounded-full text-white text-xl opacity-35"
+        className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-12 sm:h-12 bg-black/50 hover:bg-black/70 rounded-full text-white text-sm sm:text-xl opacity-35 hidden xs:flex items-center justify-center"
       >
         ←
       </button>
 
       <button
         onClick={() => emblaApi?.scrollNext()}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-black/50 hover:bg-black/70 rounded-full text-white text-xl opacity-35"
+        className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-12 sm:h-12 bg-black/50 hover:bg-black/70 rounded-full text-white text-sm sm:text-xl opacity-35 hidden xs:flex items-center justify-center"
       >
         →
       </button>
 
       {/* Dots */}
-      <div className="absolute bottom-24 left-1/2 -translate-x-1/2 z-20 flex space-x-2 opacity-12">
+      <div className="absolute bottom-12 sm:bottom-24 left-1/2 -translate-x-1/2 z-20 flex space-x-2 opacity-12">
         {images.map((_, index) => (
           <button
             key={index}
             onClick={() => emblaApi?.scrollTo(index)}
-            className={`w-3 h-3 rounded-full ${
+            className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full ${
               index === selectedIndex ? "bg-[#FFD700]" : "bg-white/50"
             }`}
           />
@@ -101,11 +102,11 @@ export default function HeroCarousel({ images }: HeroCarouselProps) {
       </div>
 
       {/* Statistics */}
-      <div className="absolute bottom-4 left-0 right-0 z-10">
+      <div className="absolute bottom-2 md:bottom-4 left-0 right-0 z-10">
         <div className="max-w-4xl mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+          <div className="grid grid-cols-3 gap-2 md:gap-4 text-center">
             <div className="flex flex-col items-center">
-              <span className="text-3xl font-bold text-[#FFD700] mb-1">
+              <span className="text-2xl md:text-3xl font-bold text-[#FFD700] mb-1">
                 100+
               </span>
               <span className="text-xs text-gray-400 uppercase">
@@ -113,7 +114,7 @@ export default function HeroCarousel({ images }: HeroCarouselProps) {
               </span>
             </div>
             <div className="flex flex-col items-center">
-              <span className="text-3xl font-bold text-[#FFD700] mb-1">
+              <span className="text-2xl md:text-3xl font-bold text-[#FFD700] mb-1">
                 15+
               </span>
               <span className="text-xs text-gray-400 uppercase">
@@ -121,7 +122,7 @@ export default function HeroCarousel({ images }: HeroCarouselProps) {
               </span>
             </div>
             <div className="flex flex-col items-center">
-              <span className="text-3xl font-bold text-[#FFD700] mb-1">
+              <span className="text-2xl md:text-3xl font-bold text-[#FFD700] mb-1">
                 500+
               </span>
               <span className="text-xs text-gray-400 uppercase">
