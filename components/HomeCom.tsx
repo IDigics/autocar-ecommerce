@@ -37,7 +37,10 @@ export default function Home() {
       2. Feature grid with icons, titles, and descriptions
       3. Each feature card has hover effects for interactivity
       */}
-      <section id="services" className="py-16 bg-[#F8F8F5] scroll-mt-12">
+      <section
+        id="services"
+        className="py-12 md:py-16 bg-[#F8F8F5] scroll-mt-12"
+      >
         <div className="max-w-6xl mx-auto px-4">
           {/* === SECTION HEADER === */}
           {/* 
@@ -47,11 +50,11 @@ export default function Home() {
           - Supporting description with medium gray
           - Max width constraint prevents description from becoming too wide
           */}
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#0D1B2A] mb-3 font-serif">
+          <div className="text-center mb-8 md:mb-12">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#0D1B2A] mb-3 font-serif">
               Excellence Automobile
             </h2>
-            <p className="text-lg text-[#71797E] max-w-2xl mx-auto">
+            <p className="text-base md:text-lg text-[#71797E] max-w-2xl mx-auto">
               Découvrez nos services premium qui font la différence dans votre
               expérience automobile de luxe
             </p>
@@ -64,7 +67,7 @@ export default function Home() {
           - Compact gap spacing between cards
           - Each card is a white container with hover effects
           */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {/* === FEATURE CARD 1: CERTIFIED VEHICLES === */}
             {/* 
             CARD STRUCTURE:
@@ -73,7 +76,7 @@ export default function Home() {
             - Compact gold gradient icon circle with checkmark SVG
             - Center-aligned content layout
             */}
-            <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 text-center">
+            <div className="bg-white p-4 md:p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 text-center">
               {/* ICON CONTAINER
                   Compact gold gradient circle with checkmark icon */}
               <div className="w-12 h-12 bg-gradient-to-r from-[#FFD700] to-[#E6B800] rounded-full flex items-center justify-center mx-auto mb-4">
@@ -233,7 +236,7 @@ export default function Home() {
           </div>
 
           {/* Benefits Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
             {/* For AutoCar'z */}
             <div className="bg-gradient-to-br from-[#F8F8F5] to-[#E8E8E5] p-6 rounded-2xl border-2 border-[#FFD700]/20">
               <div className="text-center mb-6">
