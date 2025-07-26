@@ -21,9 +21,13 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function Header() {
   const router = useRouter();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   /**
    * SMOOTH SCROLLING FUNCTION
@@ -40,6 +44,40 @@ export default function Header() {
         block: "start", // Align to top of viewport
       });
     }
+    setIsMobileMenuOpen(false); // Close mobile menu after navigation
+  };
+
+  /**
+   * TOGGLE MOBILE MENU FUNCTION
+   * Opens/closes the mobile dropdown menu
+   */
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+    setIsMobileSearchOpen(false); // Close search when opening menu
+  };
+
+  /**
+   * TOGGLE MOBILE SEARCH FUNCTION
+   * Opens/closes the mobile search input
+   */
+  const toggleMobileSearch = () => {
+    setIsMobileSearchOpen(!isMobileSearchOpen);
+    setIsMobileMenuOpen(false); // Close menu when opening search
+  };
+
+  /**
+   * HANDLE MOBILE SEARCH SUBMIT
+   * Processes mobile search submission
+   */
+  const handleMobileSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      router.push(`/boutique?search=${encodeURIComponent(searchQuery)}`);
+    } else {
+      router.push("/boutique");
+    }
+    setIsMobileSearchOpen(false);
+    setSearchQuery("");
   };
 
   /**
@@ -58,45 +96,30 @@ export default function Header() {
     // bg-[#0D1B2A] is the custom navy brand color
     // Ultra compact vertical padding for minimal header height
     <header className="fixed top-0 left-0 right-0 z-50 bg-[#0D1B2A] text-white py-2 shadow-lg">
-      {/* MAIN FLEX CONTAINER
-          Full width with minimal horizontal padding
-          items-center vertically centers all content */}
-      <div className="w-full px-4 flex items-center">
+      {/* MAIN FLEX CONTAINER - Responsive padding */}
+      <div className="w-full px-2 sm:px-4 lg:px-6 flex items-center justify-between">
         {/* ===== SECTION 1: BRAND/LOGO (FAR LEFT) ===== */}
-        {/* 
-        BRAND SECTION FEATURES:
-        - Logo image with hover scale animation
-        - Brand name "AutoCar'z" in gold serif font
-        - Tagline "LUXURY VEHICLES" in small caps
-        - Entire section is clickable link to homepage
-        */}
-        <Link href="/" className="flex items-center space-x-3 group">
-          {/* LOGO IMAGE
-              Bigger 28x28px logo for better visibility and design balance
-              group-hover:scale-110 creates subtle zoom on parent hover */}
+        <Link
+          href="/"
+          className="flex items-center space-x-2 sm:space-x-3 group flex-shrink-0"
+        >
+          {/* LOGO IMAGE - Responsive size */}
           <div className="relative">
             <Image
               src="/logo.png"
               alt="Logo AutoCar'z"
-              width={28}
-              height={28}
-              className="object-contain transition-transform duration-300 group-hover:scale-110"
+              width={24}
+              height={24}
+              className="sm:w-7 sm:h-7 object-contain transition-transform duration-300 group-hover:scale-110"
             />
           </div>
 
-          {/* BRAND TEXT STACK */}
-          <div className="flex flex-col">
-            {/* MAIN BRAND NAME
-                Smaller text size for better proportion with larger logo
-                Gold color (#FFD700) with serif font for luxury feel
-                tracking-wide adds letter spacing */}
-            <span className="text-xs font-bold text-[#FFD700] font-serif tracking-wide">
+          {/* BRAND TEXT STACK - More responsive visibility */}
+          <div className="hidden sm:flex flex-col">
+            <span className="text-xs sm:text-sm font-bold text-[#FFD700] font-serif tracking-wide">
               AutoCar'z
             </span>
-            {/* TAGLINE
-                Extra tiny gray text in all caps with wide letter spacing
-                uppercase class transforms text to capitals */}
-            <span className="text-[10px] text-gray-300 font-light tracking-widest uppercase">
+            <span className="text-[9px] sm:text-[10px] text-gray-300 font-light tracking-widest uppercase">
               LUXURY VEHICLES
             </span>
           </div>
@@ -214,16 +237,15 @@ export default function Header() {
         - Hamburger menu for navigation drawer
         - Space between search and menu buttons
         */}
-        <div className="md:hidden flex items-center space-x-4 ml-auto">
+        <div className="md:hidden flex items-center space-x-2 ml-auto">
           {/* MOBILE SEARCH ICON
-              Provides access to search functionality on mobile
-              Same SVG icon as desktop search bar - now clickable to redirect */}
+              Opens mobile search input when tapped */}
           <button
-            onClick={handleSearch}
-            className="p-2 hover:bg-white/10 rounded transition-colors"
+            onClick={toggleMobileSearch}
+            className="p-1.5 hover:bg-white/10 rounded transition-colors"
           >
             <svg
-              className="w-5 h-5 text-white"
+              className="w-4 h-4 text-white"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -239,15 +261,123 @@ export default function Header() {
 
           {/* HAMBURGER MENU BUTTON
               Three horizontal lines indicating mobile menu
-              Standard pattern for mobile navigation
-              Currently static - would need state management for full functionality */}
-          <button className="flex flex-col space-y-1 p-2">
-            <span className="w-6 h-0.5 bg-white"></span>
-            <span className="w-6 h-0.5 bg-white"></span>
-            <span className="w-6 h-0.5 bg-white"></span>
+              Now functional with click handler and animation */}
+          <button
+            onClick={toggleMobileMenu}
+            className="flex flex-col space-y-0.5 p-1.5 relative"
+          >
+            <span
+              className={`w-5 h-0.5 bg-white transition-transform duration-300 ${
+                isMobileMenuOpen ? "rotate-45 translate-y-1" : ""
+              }`}
+            ></span>
+            <span
+              className={`w-5 h-0.5 bg-white transition-opacity duration-300 ${
+                isMobileMenuOpen ? "opacity-0" : ""
+              }`}
+            ></span>
+            <span
+              className={`w-5 h-0.5 bg-white transition-transform duration-300 ${
+                isMobileMenuOpen ? "-rotate-45 -translate-y-1" : ""
+              }`}
+            ></span>
           </button>
         </div>
       </div>
+
+      {/* ===== MOBILE SEARCH BAR ===== */}
+      {/* 
+      MOBILE SEARCH FEATURES:
+      - Only visible when isMobileSearchOpen is true
+      - Slides down with smooth animation
+      - Full-width search input
+      - Submit on Enter or search button
+      */}
+      {isMobileSearchOpen && (
+        <div className="md:hidden bg-[#0D1B2A] border-t border-white/10">
+          <div className="px-4 py-3">
+            <form onSubmit={handleMobileSearch} className="relative">
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Rechercher un véhicule..."
+                className="w-full px-4 py-2 pl-10 pr-12 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#FFD700] focus:border-transparent backdrop-blur-sm"
+                autoFocus
+              />
+              {/* Search Icon Inside Input */}
+              <div className="absolute left-3 top-1/2 transform -translate-y-1/2">
+                <svg
+                  className="w-4 h-4 text-gray-300"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  />
+                </svg>
+              </div>
+              {/* Submit Button */}
+              <button
+                type="submit"
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-[#FFD700] text-black px-3 py-1 rounded text-xs font-semibold hover:bg-[#E6B800] transition-colors"
+              >
+                OK
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* ===== MOBILE DROPDOWN MENU ===== */}
+      {/* 
+      MOBILE DROPDOWN FEATURES:
+      - Only visible when isMobileMenuOpen is true
+      - Slides down with smooth animation
+      - Full-width navigation links
+      - Same styling as desktop but optimized for touch
+      - Includes all navigation options plus boutique link
+      */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden bg-[#0D1B2A] border-t border-white/10">
+          <div className="px-4 py-3 space-y-3">
+            {/* Mobile Navigation Links */}
+            <button
+              onClick={() => scrollToSection("hero")}
+              className="block w-full text-left text-white hover:text-[#FFD700] transition-colors duration-300 py-2 text-sm font-medium"
+            >
+              Accueil
+            </button>
+
+            <button
+              onClick={() => scrollToSection("services")}
+              className="block w-full text-left text-white hover:text-[#FFD700] transition-colors duration-300 py-2 text-sm font-medium"
+            >
+              Services
+            </button>
+
+            <button
+              onClick={() => scrollToSection("advantages")}
+              className="block w-full text-left text-white hover:text-[#FFD700] transition-colors duration-300 py-2 text-sm font-medium"
+            >
+              Avantages
+            </button>
+
+            {/* Mobile Boutique Link */}
+            <Link
+              href="/boutique"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="block w-full bg-[#FFD700] text-black text-center py-2 px-4 rounded text-sm font-semibold hover:bg-[#E6B800] transition-colors duration-300"
+            >
+              Boutique
+            </Link>
+          </div>
+        </div>
+      )}
     </header>
   );
 }
