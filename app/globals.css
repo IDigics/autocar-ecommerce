@@ -21,6 +21,32 @@ body {
   font-feature-settings: "liga" 1, "kern" 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Responsive image container */
+.responsive-container {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 640px) {
+  html {
+    font-size: 14px;
+  }
+
+  /* Ensure text doesn't overflow on small screens */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    word-wrap: break-word;
+    hyphens: auto;
+  }
 }
 
 /* Embla Carousel Styles */
@@ -36,8 +62,3 @@ body {
   flex: 0 0 100%;
   min-width: 0;
 }
-body {
-  padding-left: 8px;  
-  padding-right: 8px;
-}
-
