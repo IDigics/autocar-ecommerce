@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React, { useState, useEffect } from 'react';
 import { Range, getTrackBackground } from 'react-range';
@@ -45,7 +45,7 @@ export default function PriceFilter() {
             style={{
               background: getTrackBackground({
                 values,
-                colors: ['#d4af37', '#f8f8f6', '#d4af37'],
+                colors: ["#d4af37", "#f8f8f6", "#d4af37"],
                 min: MIN,
                 max: MAX,
               }),
@@ -54,7 +54,8 @@ export default function PriceFilter() {
             {children}
           </div>
         )}
-        renderThumb={({ props }) => {
+        
+ renderThumb={({ props }) => {
   const { key, ...rest } = props;
   return (
     <div

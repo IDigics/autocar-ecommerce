@@ -1,0 +1,86 @@
+/**
+ * SimplePage Component
+ *
+ * PURPOSE:
+ * Provides a standardized page layout template for content pages.
+ * Includes hero section with title/description and content area for children components.
+ *
+ * FEATURES:
+ * - Consistent hero section with gradient background
+ * - Optional icon display for visual branding
+ * - Responsive typography and spacing
+ * - Default "under construction" fallback content
+ * - Full-height layout with proper spacing
+ *
+ * USAGE:
+ * - Content pages (about, contact, services)
+ * - Information pages
+ * - Landing pages for specific features
+ * - Any page requiring consistent layout structure
+ *
+ * DESIGN:
+ * - Navy gradient hero section (#0D1B2A to #1a2a3a)
+ * - Light background (#F8F8F5) for content area
+ * - Responsive hero sizing and spacing
+ * - Professional typography hierarchy
+ * - Centered content with maximum width constraints
+ * - Construction fallback with gold dashed border
+ */
+
+import { Metadata } from "next";
+
+interface SimplePageProps {
+  title: string;
+  description: string;
+  icon?: string;
+  children?: React.ReactNode;
+}
+
+export default function SimplePage({
+  title,
+  description,
+  icon,
+  children,
+}: SimplePageProps) {
+  return (
+    <main className="min-h-screen bg-[#F8F8F5]">
+      {/* Hero Section */}
+      <section className="bg-gradient-to-r from-[#0D1B2A] to-[#1a2a3a] text-white pt-20 pb-12 sm:pt-24 sm:pb-16 lg:pt-28 lg:pb-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          {icon && (
+            <div className="text-4xl sm:text-5xl lg:text-6xl mb-4 sm:mb-6">
+              {icon}
+            </div>
+          )}
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold mb-4 sm:mb-6">
+            {title}
+          </h1>
+          <p className="text-sm sm:text-base lg:text-lg text-gray-300 max-w-2xl mx-auto">
+            {description}
+          </p>
+        </div>
+      </section>
+
+      {/* Content Section */}
+      <section className="py-8 sm:py-12 lg:py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {children || (
+            <div className="text-center py-16">
+              <div className="max-w-2xl mx-auto">
+                <div className="bg-white p-6 sm:p-8 rounded-2xl border-2 border-dashed border-[#FFD700] shadow-sm">
+                  <div className="text-4xl sm:text-5xl mb-4">🚧</div>
+                  <h3 className="text-lg sm:text-xl font-semibold text-[#0D1B2A] mb-2">
+                    Page en Construction
+                  </h3>
+                  <p className="text-sm sm:text-base text-[#71797E]">
+                    Cette page sera bientôt disponible avec du contenu détaillé.
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+    </main>
+  );
+}

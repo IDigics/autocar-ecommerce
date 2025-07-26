@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
 import React, { useEffect, useState } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 
 const categories = [
-  { id: 1, name: 'suv' },
-  { id: 2, name: 'convertible' },
-  { id: 3, name: 'sedan' },
-  { id: 4, name: 'pickup' },
-  { id: 5, name: 'coupe' },
+  { id: 1, name: "suv" },
+  { id: 2, name: "convertible" },
+  { id: 3, name: "sedan" },
+  { id: 4, name: "pickup" },
+  { id: 5, name: "coupe" },
 ];
 
 const CategoryFilter = () => {
@@ -60,7 +60,9 @@ const CategoryFilter = () => {
             onChange={() => toggle(item.id)}
             className="accent-[#D4AF37]"
           />
-          <span className="font-light uppercase tracking-widest">{item.name}</span>
+          <span className="font-light uppercase tracking-widest">
+            {item.name}
+          </span>
         </label>
       ))}
     </div>
