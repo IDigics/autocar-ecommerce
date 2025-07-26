@@ -9,7 +9,7 @@ import CategoryFilter from '../components/CategoryFilter';
 import PriceFilter from '../components/PriceFilter';
 import ProductGrid from '../components/ProductGrid';
 
-// SortDropdown comme avant, inchangé
+
 const SortDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedLabel, setSelectedLabel] = useState('Trier par 🔽');
@@ -95,8 +95,6 @@ const BoutiqueLayout = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const searchParams = useSearchParams();
   const sortOption = searchParams.get('sort') || '';
-  const priceMin = Number(searchParams.get('priceMin')) || 20000;
-  const priceMax = Number(searchParams.get('priceMax')) || 80000;
 
   return (
     <div className="bg-[#f8f8f6] min-h-screen p-4 md:p-8">
@@ -147,7 +145,7 @@ const BoutiqueLayout = () => {
 
         <main className="w-full lg:w-3/4">
           <SortDropdown />
-          <ProductGrid sortOption={sortOption} priceMin={priceMin} priceMax={priceMax} />
+          <ProductGrid sortOption={sortOption} />
         </main>
       </div>
 
