@@ -1,7 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 const brands = [
   { name: 'Audi', logo: '/brands/audi.png' },
@@ -17,16 +18,32 @@ const brands = [
 ];
 
 const BrandFilter = () => {
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const router = useRouter();
+
   const [selectedBrand, setSelectedBrand] = useState<string | null>(null);
 
+  useEffect(() => {
+    const current = searchParams.get('brand');
+    setSelectedBrand(current);
+  }, [searchParams]);
+
   const handleBrandClick = (brand: string) => {
-    setSelectedBrand(brand === selectedBrand ? null : brand);
+    const newParams = new URLSearchParams(searchParams.toString());
+    if (brand === selectedBrand) {
+      newParams.delete('brand');
+      setSelectedBrand(null);
+    } else {
+      newParams.set('brand', brand);
+      setSelectedBrand(brand);
+    }
+    newParams.set('page', '1'); // Reset page to 1 when filter changes
+    router.push(`${pathname}?${newParams.toString()}`);
   };
 
   return (
     <div className="text-center">
-
-
       <div className="grid grid-cols-5 gap-6">
         {brands.map((brand) => (
           <button

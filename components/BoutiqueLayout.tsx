@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
+import { useSearchParams, useRouter } from 'next/navigation';
 import BrandFilter from './BrandFilter';
 import SubcategoryFilter from '../components/SubcategoryFilter';
 import FuelTypeFilter from '../components/FuelTypeFilter';
@@ -8,11 +9,13 @@ import CategoryFilter from '../components/CategoryFilter';
 import PriceFilter from '../components/PriceFilter';
 import ProductGrid from '../components/ProductGrid';
 
-// SortDropdown avec option "Aucun"
-const SortDropdown = ({ onChange }: { onChange: (value: string) => void }) => {
+// SortDropdown comme avant, inchangé
+const SortDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedLabel, setSelectedLabel] = useState('Trier par 🔽');
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
   const options = [
     { label: '-- Aucun --', value: '' },
@@ -26,16 +29,28 @@ const SortDropdown = ({ onChange }: { onChange: (value: string) => void }) => {
   const toggleDropdown = () => setIsOpen(!isOpen);
 
   const handleSelect = (value: string, label: string) => {
+    const params = new URLSearchParams(searchParams.toString());
     if (value === '') {
+      params.delete('sort');
       setSelectedLabel('Trier par 🔽');
     } else {
+      params.set('sort', value);
       setSelectedLabel(label + ' ⚡');
     }
+    router.push(`?${params.toString()}`);
     setIsOpen(false);
-    onChange(value);
   };
 
-  // Fermer dropdown si clic hors du menu
+  useEffect(() => {
+    const current = searchParams.get('sort');
+    const match = options.find((opt) => opt.value === current);
+    if (match) {
+      setSelectedLabel(match.label + ' ⚡');
+    } else {
+      setSelectedLabel('Trier par 🔽');
+    }
+  }, [searchParams]);
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -78,16 +93,17 @@ const SortDropdown = ({ onChange }: { onChange: (value: string) => void }) => {
 
 const BoutiqueLayout = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [sortOption, setSortOption] = useState('');
+  const searchParams = useSearchParams();
+  const sortOption = searchParams.get('sort') || '';
+  const priceMin = Number(searchParams.get('priceMin')) || 20000;
+  const priceMax = Number(searchParams.get('priceMax')) || 80000;
 
   return (
     <div className="bg-[#f8f8f6] min-h-screen p-4 md:p-8">
-      {/* Filtre par marque toujours en haut */}
       <div className="mb-6">
         <BrandFilter />
       </div>
 
-      {/* Bouton filtre visible uniquement en mobile/tablette (<1024px) */}
       <div className="lg:hidden flex justify-end mb-6">
         <button
           onClick={() => setIsFilterOpen(true)}
@@ -98,7 +114,6 @@ const BoutiqueLayout = () => {
       </div>
 
       <div className="flex flex-col lg:flex-row gap-8">
-        {/* Partie filtres pour desktop (≥1024px) */}
         <aside
           className="hidden lg:block w-full lg:w-1/4 space-y-8 rounded-3xl p-6 relative text-[#0A0A23] font-light tracking-widest uppercase"
           style={{
@@ -109,50 +124,33 @@ const BoutiqueLayout = () => {
         >
           <div className="relative z-10 p-4 space-y-6 rounded-lg h-full flex flex-col">
             <div>
-              <h3 className="text-lg font-semibold mb-3 tracking-widest text-[#D4AF37]">
-                Sous-catégories
-              </h3>
+              <h3 className="text-lg font-semibold mb-3 tracking-widest text-[#D4AF37]">Sous-catégories</h3>
               <SubcategoryFilter />
             </div>
             <div>
-              <h3 className="text-lg font-semibold mb-3 tracking-widest text-[#D4AF37]">
-                Type de carburant
-              </h3>
+              <h3 className="text-lg font-semibold mb-3 tracking-widest text-[#D4AF37]">Type de carburant</h3>
               <FuelTypeFilter />
             </div>
             <div>
-              <h3 className="text-lg font-semibold mb-3 tracking-widest text-[#D4AF37]">
-                Catégories
-              </h3>
+              <h3 className="text-lg font-semibold mb-3 tracking-widest text-[#D4AF37]">Catégories</h3>
               <CategoryFilter />
             </div>
             <div>
-              <h3 className="text-lg font-semibold mb-3 tracking-widest text-[#D4AF37]">
-                Prix
-              </h3>
+              <h3 className="text-lg font-semibold mb-3 tracking-widest text-[#D4AF37]">Prix</h3>
               <PriceFilter />
             </div>
-
-            <button
-              type="button"
-              className="w-full bg-[#D4AF37] hover:bg-yellow-400 transition rounded-full py-3 mt-auto font-semibold tracking-widest text-[#0A0A23] shadow-lg"
-            >
-              Rechercher
-            </button>
+            {/* Bouton Rechercher supprimé */}
           </div>
         </aside>
 
-        {/* Ligne de séparation */}
         <div className="hidden lg:block w-[1px] bg-gray-300" />
 
-        {/* Partie produits */}
         <main className="w-full lg:w-3/4">
-          <SortDropdown onChange={setSortOption} />
-          <ProductGrid sortOption={sortOption} />
+          <SortDropdown />
+          <ProductGrid sortOption={sortOption} priceMin={priceMin} priceMax={priceMax} />
         </main>
       </div>
 
-      {/* Modal filtres pour mobile et tablette */}
       {isFilterOpen && (
         <div className="lg:hidden fixed inset-0 z-50 bg-black bg-opacity-50 flex justify-center items-center">
           <div className="bg-white rounded-3xl p-6 w-11/12 max-h-[90vh] overflow-y-auto relative">

@@ -11,6 +11,8 @@ type Product = {
 
 type ProductGridProps = {
   sortOption: string;
+  priceMin: number;
+  priceMax: number;
 };
 
 const products: Product[] = [
@@ -53,10 +55,13 @@ const products: Product[] = [
   // ajoute autant de produits que tu veux
 ];
 
-const ProductGrid: React.FC<ProductGridProps> = ({ sortOption }) => {
-  // Si aucun tri sélectionné (sortOption = ''), on garde l’ordre original
+const ProductGrid: React.FC<ProductGridProps> = ({ sortOption, priceMin, priceMax }) => {
+  const filtered = products.filter(
+    (product) => product.price >= priceMin && product.price <= priceMax
+  );
+
   const sortedProducts = sortOption
-    ? [...products].sort((a, b) => {
+    ? [...filtered].sort((a, b) => {
         switch (sortOption) {
           case 'price-asc':
             return a.price - b.price;
@@ -67,13 +72,12 @@ const ProductGrid: React.FC<ProductGridProps> = ({ sortOption }) => {
           case 'name-desc':
             return b.name.localeCompare(a.name);
           case 'newest':
-            // Si tu as une date, tu pourrais trier ici, sinon on laisse l’ordre par id décroissant (exemple)
             return b.id - a.id;
           default:
             return 0;
         }
       })
-    : products;
+    : filtered;
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
