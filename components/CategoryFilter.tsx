@@ -1,23 +1,51 @@
-"use client";
+'use client';
 
-import { useState } from "react";
+import React, { useEffect, useState } from 'react';
+import { useSearchParams, useRouter } from 'next/navigation';
 
 const categories = [
-  { id: 1, name: "suv" },
-  { id: 2, name: "convertible" },
-  { id: 3, name: "sedan" },
-  { id: 4, name: "pickup" },
-  { id: 5, name: "coupe" },
+  { id: 1, name: 'suv' },
+  { id: 2, name: 'convertible' },
+  { id: 3, name: 'sedan' },
+  { id: 4, name: 'pickup' },
+  { id: 5, name: 'coupe' },
 ];
 
 const CategoryFilter = () => {
-  const [selected, setSelected] = useState<number[]>([]);
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
+  const initialSelected = searchParams.get('category')?.split(',').map(Number) || [];
+  const [selected, setSelected] = useState<number[]>(initialSelected);
+
+  // Met à jour l'URL dès qu'on sélectionne/désélectionne une catégorie
+  const updateURL = (newSelected: number[]) => {
+    const params = new URLSearchParams(searchParams.toString());
+
+    if (newSelected.length > 0) {
+      params.set('category', newSelected.join(','));
+    } else {
+      params.delete('category');
+    }
+
+    params.set('page', '1'); // reset page à 1 si filtre change
+    router.push(`?${params.toString()}`);
+  };
 
   const toggle = (id: number) => {
-    setSelected((prev) =>
-      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
-    );
+    const newSelected = selected.includes(id)
+      ? selected.filter((item) => item !== id)
+      : [...selected, id];
+
+    setSelected(newSelected);
+    updateURL(newSelected);
   };
+
+  // Sync si l'URL change manuellement
+  useEffect(() => {
+    const urlSelected = searchParams.get('category')?.split(',').map(Number) || [];
+    setSelected(urlSelected);
+  }, [searchParams]);
 
   return (
     <div className="flex flex-col gap-3">
@@ -32,9 +60,7 @@ const CategoryFilter = () => {
             onChange={() => toggle(item.id)}
             className="accent-[#D4AF37]"
           />
-          <span className="font-light uppercase tracking-widest">
-            {item.name}
-          </span>
+          <span className="font-light uppercase tracking-widest">{item.name}</span>
         </label>
       ))}
     </div>

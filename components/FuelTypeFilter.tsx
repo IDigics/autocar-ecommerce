@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 const fuelTypes = [
   { id: 1, name: 'hybrid' },
@@ -10,12 +11,27 @@ const fuelTypes = [
 ];
 
 const FuelTypeFilter = () => {
-  const [selected, setSelected] = useState<number[]>([]);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const currentFuels = searchParams.get('fuel')?.split(',').map(Number) || [];
 
   const toggle = (id: number) => {
-    setSelected((prev) =>
-      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
-    );
+    const params = new URLSearchParams(searchParams.toString());
+    let updated = [...currentFuels];
+
+    if (updated.includes(id)) {
+      updated = updated.filter((item) => item !== id);
+    } else {
+      updated.push(id);
+    }
+
+    if (updated.length > 0) {
+      params.set('fuel', updated.join(','));
+    } else {
+      params.delete('fuel');
+    }
+
+    router.push(`?${params.toString()}`);
   };
 
   return (
@@ -27,7 +43,7 @@ const FuelTypeFilter = () => {
         >
           <input
             type="checkbox"
-            checked={selected.includes(item.id)}
+            checked={currentFuels.includes(item.id)}
             onChange={() => toggle(item.id)}
             className="accent-[#D4AF37]"
           />
