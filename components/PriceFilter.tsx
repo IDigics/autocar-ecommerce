@@ -11,8 +11,8 @@ export default function PriceFilter() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  const minFromUrl = Number(searchParams.get('priceMin')) || 20000;
-  const maxFromUrl = Number(searchParams.get('priceMax')) || 80000;
+  const minFromUrl = Number(searchParams.get('minPrice')) || 20000;
+  const maxFromUrl = Number(searchParams.get('maxPrice')) || 80000;
 
   const [values, setValues] = useState([minFromUrl, maxFromUrl]);
 
@@ -28,8 +28,8 @@ export default function PriceFilter() {
   // ✅ Et ici, on update l'URL uniquement quand l'utilisateur a fini
   const onFinalChange = (vals: number[]) => {
     const params = new URLSearchParams(searchParams.toString());
-    params.set('priceMin', vals[0].toString());
-    params.set('priceMax', vals[1].toString());
+    params.set('minPrice', vals[0].toString());
+    params.set('maxPrice', vals[1].toString());
 
     router.push(`?${params.toString()}`);
   };

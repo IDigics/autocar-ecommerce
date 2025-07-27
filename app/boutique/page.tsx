@@ -10,10 +10,13 @@ function BoutiqueContent() {
   const searchParams = useSearchParams();
 
   // Extract parameters from URL
-  const brandSlugs = searchParams.get('brand')?.split(',') || [];
-  const categoriesSlugs = searchParams.get('category')?.split(',') || [];
+  const brand = searchParams.get('brand')?.split(',') || [];
+  const category = searchParams.get('category')?.split(',') || [];
+  const subCategory = searchParams.get('subCategory')?.split(',') || [];
+  const minPrice = searchParams.get('minPrice') ? Number(searchParams.get('minPrice')) : undefined;
+  const maxPrice = searchParams.get('maxPrice') ? Number(searchParams.get('maxPrice')) : undefined;
   const search = searchParams.get('search') || '';
-  const criteria = (searchParams.get('sortBy') as CriteriaType) || undefined;
+  const sort = (searchParams.get('sort') as CriteriaType) || undefined;
 
   // Use the custom hook
   const {
@@ -23,13 +26,17 @@ function BoutiqueContent() {
     page,
     pagesNumber,
   } = useProducts({
-    limit: 12,
-    criteria,
-    categoriesSlugs,
-    brandSlugs,
+    pageSize: 12,
+    sort,
+    category,
+    subCategory,
+    brand,
+    minPrice,
+    maxPrice,
     search,
-    queryKeys: [brandSlugs.join(','), categoriesSlugs.join(',')],
+    queryKeys: [brand.join(','), category.join(','), subCategory.join(',')],
   });
+
 
   return (
     <BoutiqueLayout

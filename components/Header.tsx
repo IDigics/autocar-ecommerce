@@ -48,7 +48,13 @@ export default function Header() {
    */
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    router.push("/boutique");
+    const formData = new FormData(e.target as HTMLFormElement);
+    const searchTerm = formData.get('search') as string;
+    if (searchTerm?.trim()) {
+      router.push(`/boutique?search=${encodeURIComponent(searchTerm.trim())}`);
+    } else {
+      router.push("/boutique");
+    }
   };
 
   return (
@@ -121,6 +127,7 @@ export default function Header() {
                 backdrop-blur-sm creates the glass effect */}
             <input
               type="text"
+              name="search"
               placeholder="Rechercher un véhicule..."
               className="w-full px-3 py-1 pl-8 pr-3 bg-white/10 border border-white/20 rounded-md text-sm text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#FFD700] focus:border-transparent backdrop-blur-sm"
             />
@@ -219,7 +226,7 @@ export default function Header() {
               Provides access to search functionality on mobile
               Same SVG icon as desktop search bar - now clickable to redirect */}
           <button
-            onClick={handleSearch}
+            onClick={() => router.push("/boutique")}
             className="p-2 hover:bg-white/10 rounded transition-colors"
           >
             <svg

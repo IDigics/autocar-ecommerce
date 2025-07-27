@@ -6,50 +6,62 @@ import { CriteriaType } from "../../types";
 
 export interface FilterParams {
   page: number;
-  limit: number;
-  brandSlugs?: string[];
-  categoriesSlugs?: string[];
-  priceRange?: number[];
+  pageSize: number;
+  brand?: string[];
+  category?: string[];
+  subCategory?: string[];
+  minPrice?: number;
+  maxPrice?: number;
   currency?: string;
   availability?: boolean;
-  criteria?: CriteriaType;
+  sort?: CriteriaType;
   search?: string;
 }
 
 export async function retrieveProductsFromServerSide({
   page,
-  limit,
-  brandSlugs,
-  categoriesSlugs,
-  priceRange,
+  pageSize,
+  brand,
+  category,
+  subCategory,
+  minPrice,
+  maxPrice,
   currency,
   availability = true,
-  criteria,
+  sort,
   search,
 }: FilterParams) {
   const params = [];
   // Conditionally add the query parameters to the params array
-  if (brandSlugs && brandSlugs.length > 0) {
-    params.push(`brandSlugs=${brandSlugs}`);
+  if (brand && brand.length > 0) {
+    params.push(`brand=${brand.join(',')}`);
   }
 
-  if (categoriesSlugs && categoriesSlugs.length > 0) {
-    params.push(`categorySlugs=${categoriesSlugs}`);
+  if (category && category.length > 0) {
+    params.push(`category=${category.join(',')}`);
   }
-  if (priceRange && priceRange.length > 0) {
-    params.push(`minPrice=${priceRange[0]}&maxPrice=${priceRange[1]}`);
+
+  if (subCategory && subCategory.length > 0) {
+    params.push(`subCategory=${subCategory.join(',')}`);
+  }
+
+  if (minPrice !== undefined) {
+    params.push(`minPrice=${minPrice}`);
+  }
+  if (maxPrice !== undefined) {
+    params.push(`maxPrice=${maxPrice}`);
   }
   if (currency) {
     params.push(`currency=${currency}`);
   }
   params.push(`isStock=${availability}`);
-  if (criteria) {
-    params.push(`sortBy=${criteria}`);
+  if (sort) {
+    params.push(`sort=${sort}`);
   }
   if (search) {
     params.push(`search=${search}`);
   }
-  const filterEndPoint = `/products?page=${page}&limit=${limit}&${params.join(
+  const filterEndPoint = `/cars?page=${page}&pageSize=${pageSize}&${params.join(
     "&"
   )}`;
 
@@ -58,12 +70,11 @@ export async function retrieveProductsFromServerSide({
 
     return {
       pagination: res.data.pagination as PaginationType,
-      products: (res.data.data as ProductInResponseType[]).map(
+      products: (res.data.cars as ProductInResponseType[]).map(
         (productInResponse) => castToProductType(productInResponse)
       ),
     };
   } catch (error) {
-    // Mock data for testing when backend is not available
     const mockProducts: ProductInResponseType[] = [
       {
         id: 1,
@@ -111,7 +122,7 @@ export async function retrieveProductsFromServerSide({
         currentPage: page,
         totalPages: 1,
         totalItems: mockProducts.length,
-        itemsPerPage: limit,
+        itemsPerPage: pageSize,
         hasNextPage: false,
         hasPreviousPage: false,
       } as PaginationType,

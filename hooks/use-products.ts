@@ -7,21 +7,27 @@ import { CriteriaType } from "../types";
 import { retrieveProductsFromServerSide } from "../services/products/products-extraction";
 
 interface Params {
-  limit: number;
-  criteria?: CriteriaType;
+  pageSize: number;
+  sort?: CriteriaType;
   similarProductSlug?: string;
-  categoriesSlugs?: string[];
-  brandSlugs?: string[];
+  category?: string[];
+  subCategory?: string[];
+  brand?: string[];
+  minPrice?: number;
+  maxPrice?: number;
   queryKeys?: (string | number)[];
   search?: string;
 }
 
 export default function useProducts({
-  limit,
-  criteria,
+  pageSize,
+  sort,
   similarProductSlug,
-  categoriesSlugs,
-  brandSlugs,
+  category,
+  subCategory,
+  brand,
+  minPrice,
+  maxPrice,
   search,
   queryKeys = [],
 }: Params) {
@@ -35,24 +41,31 @@ export default function useProducts({
     queryKey: [
       "products",
       page,
-      criteria,
+      sort,
       similarProductSlug,
-      categoriesSlugs,
-      brandSlugs,
+      category,
+      subCategory,
+      brand,
+      minPrice,
+      maxPrice,
       search,
       ...queryKeys,
     ],
     queryFn: () =>
       retrieveProductsFromServerSide({
         page,
-        limit,
-        categoriesSlugs,
-        brandSlugs,
-        criteria,
+        pageSize,
+        category,
+        subCategory,
+        brand,
+        minPrice,
+        maxPrice,
+        sort,
         search,
       }),
     placeholderData: keepPreviousData,
   });
+
 
   useEffect(() => {
     setPagesNumber(

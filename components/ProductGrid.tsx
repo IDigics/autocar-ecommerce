@@ -13,12 +13,8 @@ type ProductGridProps = {
 };
 
 const ProductGrid: React.FC<ProductGridProps> = ({
-  sortOption,
   products = [],
   productsAreLoading = false,
-  setPage,
-  page,
-  pagesNumber,
 }) => {
   if (productsAreLoading) {
     return (
@@ -31,8 +27,6 @@ const ProductGrid: React.FC<ProductGridProps> = ({
     );
   }
 
-  // Récupérer les filtres depuis l’URL
-  
 
   return (
     <div >
@@ -54,7 +48,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
               />
               <h3 className="text-lg font-semibold text-[#0A0A23]">{product.name}</h3>
               <p className="text-[#D4AF37] font-bold text-md mt-2">
-                {product.price.toLocaleString()} {product.currency || 'DT'}
+               {} {product.price.toLocaleString()} {product.currency || 'DT'}
               </p>
               {product.brand && (
                 <p className="text-sm text-gray-600 mt-1">{product.brand}</p>
