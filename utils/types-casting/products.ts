@@ -6,7 +6,9 @@ export function castToProductType(productInResponse: ProductInResponseType): Pro
     name: productInResponse.name,
     slug: productInResponse.slug,
     price: productInResponse.price,
-    image: productInResponse.image,
+    image: productInResponse.image
+            ? `http://localhost:3000/uploads/${productInResponse.image}`
+            : undefined,
     brand: productInResponse.brand,
     category: productInResponse.category,
     subCategory: productInResponse.subCategory,

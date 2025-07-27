@@ -20,11 +20,13 @@ const SortDropdown = () => {
 
   const options = [
     { label: '-- Aucun --', value: '' },
-    { label: 'Prix croissant', value: 'price-asc' },
-    { label: 'Prix décroissant', value: 'price-desc' },
-    { label: 'Nom A-Z', value: 'name-asc' },
-    { label: 'Nom Z-A', value: 'name-desc' },
-    { label: 'Nouveautés', value: 'newest' },
+    { label: 'ID croissant', value: 'id_asc' },
+    { label: 'Prix croissant', value: 'price_asc' },
+    { label: 'Prix décroissant', value: 'price_desc' },
+    { label: 'Année croissante', value: 'year_asc' },
+    { label: 'Année décroissante', value: 'year_desc' },
+    { label: 'Avis croissant', value: 'review_asc' },
+    { label: 'Avis décroissant', value: 'review_desc' },
   ];
 
   const toggleDropdown = () => setIsOpen(!isOpen);

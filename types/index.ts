@@ -7,10 +7,11 @@ export interface PaginationType {
   hasPreviousPage: boolean;
 }
 
-export type CriteriaType = 
-  | "price_asc" 
-  | "price_desc" 
-  | "name_asc" 
-  | "name_desc" 
-  | "date_asc" 
-  | "date_desc";
+export type CriteriaType =
+  | "id_asc"
+  | "price_asc"
+  | "price_desc"
+  | "year_asc"
+  | "year_desc"
+  | "review_asc"
+  | "review_desc";
