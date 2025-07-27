@@ -7,7 +7,8 @@ import SubcategoryFilter from '../components/SubcategoryFilter';
 import FuelTypeFilter from '../components/FuelTypeFilter';
 import CategoryFilter from '../components/CategoryFilter';
 import PriceFilter from '../components/PriceFilter';
-import ProductGrid from '../components/ProductGrid';
+import ProductGrid from './ProductGrid';
+import { ProductType } from '../types/products';
 
 
 const SortDropdown = () => {
@@ -91,7 +92,21 @@ const SortDropdown = () => {
   );
 };
 
-const BoutiqueLayout = () => {
+interface BoutiqueLayoutProps {
+  products?: ProductType[];
+  productsAreLoading?: boolean;
+  setPage?: (page: number) => void;
+  page?: number;
+  pagesNumber?: number;
+}
+
+const BoutiqueLayout = ({
+  products,
+  productsAreLoading,
+  setPage,
+  page,
+  pagesNumber,
+}: BoutiqueLayoutProps) => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const searchParams = useSearchParams();
   const sortOption = searchParams.get('sort') || '';
@@ -145,7 +160,14 @@ const BoutiqueLayout = () => {
 
         <main className="w-full lg:w-3/4">
           <SortDropdown />
-          <ProductGrid sortOption={sortOption} />
+          <ProductGrid
+            sortOption={sortOption}
+            products={products}
+            productsAreLoading={productsAreLoading}
+            setPage={setPage}
+            page={page}
+            pagesNumber={pagesNumber}
+          />
         </main>
       </div>
 
