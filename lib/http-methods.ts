@@ -1,7 +1,7 @@
 import axios, { RawAxiosRequestHeaders } from "axios";
 
 const apiClient = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_BACKEND_ADDRESS,
+  baseURL: 'http://localhost:3000',
   timeout: 10000, //10 seconds
 });
 
