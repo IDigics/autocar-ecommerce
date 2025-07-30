@@ -248,36 +248,3 @@ export async function retrieveProductByIdFromServerSide(id: string | number) {
     throw new Error("Failed to fetch product details");
   }
 }
-
-// ===== FUTURE ENHANCEMENTS =====
-/**
- * Additional functions that could be added to this service:
- *
- * 1. RELATED PRODUCTS:
- * ```typescript
- * export async function getRelatedProducts(productId: number, limit = 4) {
- *   // Fetch products similar to the given product
- * }
- * ```
- *
- * 2. PRODUCT RECOMMENDATIONS:
- * ```typescript
- * export async function getRecommendedProducts(userId: string) {
- *   // Fetch personalized product recommendations
- * }
- * ```
- *
- * 3. PRODUCT COMPARISON:
- * ```typescript
- * export async function compareProducts(productIds: number[]) {
- *   // Fetch multiple products for comparison
- * }
- * ```
- *
- * 4. PRICE HISTORY:
- * ```typescript
- * export async function getProductPriceHistory(productId: number) {
- *   // Fetch historical pricing data
- * }
- * ```
- */
