@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 interface HeroCarouselProps {
   images: string[];
@@ -9,6 +10,7 @@ interface HeroCarouselProps {
 export default function HeroCarousel({ images }: HeroCarouselProps) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const router = useRouter();
 
   useEffect(() => {
     if (!emblaApi) return;
@@ -67,7 +69,10 @@ export default function HeroCarousel({ images }: HeroCarouselProps) {
             élégance et performance, pour ceux qui exigent l'excellence.
           </p>
 
-          <button className="px-4 sm:px-6 py-2 sm:py-3 bg-[#FFD700] text-black rounded-lg font-semibold hover:bg-yellow-400 transition-colors text-sm sm:text-base">
+          <button 
+            onClick={() => router.push('/boutique')}
+            className="px-4 sm:px-6 py-2 sm:py-3 bg-[#FFD700] text-black rounded-lg font-semibold hover:bg-yellow-400 transition-colors text-sm sm:text-base"
+          >
             Découvrir la boutique →
           </button>
         </div>

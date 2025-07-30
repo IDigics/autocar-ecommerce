@@ -1,7 +1,7 @@
 "use client";
 import HeroCarousel from "./HeroCarousel";
 
-export default function Home() {
+export default function HomeCom() {
   const heroImages = [
     "/Case_Solita_and_Fintraffic_Road_overview_hero.jpg",
     "/StockCake-Mountain Road Adventure_1753210374.jpg", // You can add more different images here

@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSearchParams, useRouter } from 'next/navigation';
 
 const subcategories = [
   { id: 1, name: 'luxary' },
@@ -11,7 +12,30 @@ const subcategories = [
 ];
 
 const SubcategoryFilter = () => {
-  const [selected, setSelected] = useState<number[]>([]);
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
+  // Récupérer les subCategories sélectionnées depuis l'URL, ou tableau vide
+  const initialSelected = searchParams
+    .get('subCategory')
+    ?.split(',')
+    .map((id) => parseInt(id))
+    .filter((id) => !isNaN(id)) || [];
+
+  const [selected, setSelected] = useState<number[]>(initialSelected);
+
+  // Met à jour URL quand selected change
+  useEffect(() => {
+    const params = new URLSearchParams(searchParams.toString());
+
+    if (selected.length > 0) {
+      params.set('subCategory', selected.join(','));
+    } else {
+      params.delete('subCategory');
+    }
+
+    router.push(`?${params.toString()}`);
+  }, [selected, router, searchParams]);
 
   const toggle = (id: number) => {
     setSelected((prev) =>

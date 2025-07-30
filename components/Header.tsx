@@ -20,14 +20,49 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useRouter, usePathname } from "next/navigation";
+import { useState, useEffect } from "react";
 
 export default function Header() {
   const router = useRouter();
+  const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+
+  /**
+   * HANDLE HASH NAVIGATION ON PAGE LOAD
+   * When the page loads with a hash (e.g., /#services), scroll to that section
+   */
+  useEffect(() => {
+    // Check if there's a hash in the URL when component mounts
+    if (typeof window !== "undefined" && window.location.hash) {
+      const hash = window.location.hash.slice(1); // Remove the '#'
+      // Small delay to ensure the page has loaded
+      setTimeout(() => {
+        scrollToSection(hash);
+      }, 100);
+    }
+  }, [pathname]); // Re-run when pathname changes
+
+  /**
+   * SMART NAVIGATION FUNCTION
+   * Handles navigation to specific sections intelligently:
+   * - If on home page (/): scroll to the section directly
+   * - If on other pages: navigate to home page first, then scroll to section
+   *
+   * @param sectionId - The ID of the HTML element to scroll to
+   */
+  const navigateToSection = (sectionId: string) => {
+    // If we're already on the home page, just scroll to the section
+    if (pathname === "/") {
+      scrollToSection(sectionId);
+    } else {
+      // Navigate to home page with hash, which will trigger scroll after navigation
+      router.push(`/#${sectionId}`);
+    }
+    setIsMobileMenuOpen(false); // Close mobile menu after navigation
+  };
 
   /**
    * SMOOTH SCROLLING FUNCTION
@@ -144,6 +179,7 @@ export default function Header() {
                 backdrop-blur-sm creates the glass effect */}
             <input
               type="text"
+              name="search"
               placeholder="Rechercher un véhicule..."
               className="w-full px-3 py-1 pl-8 pr-3 bg-white/10 border border-white/20 rounded-md text-sm text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#FFD700] focus:border-transparent backdrop-blur-sm"
             />
@@ -187,7 +223,7 @@ export default function Header() {
           {/* HOME/ACCUEIL BUTTON
               Scrolls to "hero" section on the page */}
           <button
-            onClick={() => scrollToSection("hero")}
+            onClick={() => navigateToSection("hero")}
             className="text-gray-300 hover:text-white transition-colors duration-300 text-xs font-medium"
           >
             Accueil
@@ -196,7 +232,7 @@ export default function Header() {
           {/* SERVICES BUTTON
               Scrolls to "services" section on the page */}
           <button
-            onClick={() => scrollToSection("services")}
+            onClick={() => navigateToSection("services")}
             className="text-gray-300 hover:text-white transition-colors duration-300 text-xs font-medium"
           >
             Services
@@ -205,7 +241,7 @@ export default function Header() {
           {/* ADVANTAGES BUTTON
               Scrolls to "advantages" section on the page */}
           <button
-            onClick={() => scrollToSection("advantages")}
+            onClick={() => navigateToSection("advantages")}
             className="text-gray-300 hover:text-white transition-colors duration-300 text-xs font-medium"
           >
             Avantages
@@ -347,21 +383,21 @@ export default function Header() {
           <div className="px-4 py-3 space-y-3">
             {/* Mobile Navigation Links */}
             <button
-              onClick={() => scrollToSection("hero")}
+              onClick={() => navigateToSection("hero")}
               className="block w-full text-left text-white hover:text-[#FFD700] transition-colors duration-300 py-2 text-sm font-medium"
             >
               Accueil
             </button>
 
             <button
-              onClick={() => scrollToSection("services")}
+              onClick={() => navigateToSection("services")}
               className="block w-full text-left text-white hover:text-[#FFD700] transition-colors duration-300 py-2 text-sm font-medium"
             >
               Services
             </button>
 
             <button
-              onClick={() => scrollToSection("advantages")}
+              onClick={() => navigateToSection("advantages")}
               className="block w-full text-left text-white hover:text-[#FFD700] transition-colors duration-300 py-2 text-sm font-medium"
             >
               Avantages
