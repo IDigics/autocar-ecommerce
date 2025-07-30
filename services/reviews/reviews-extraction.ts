@@ -17,8 +17,8 @@
  * - Automatic data transformation
  *
  * API INTEGRATION:
- * - GET /cars/{id}/reviews?limit={limit} - Fetch car reviews
- * - POST /cars/{id}/reviews - Create new review
+ * - GET /cars/reviews/{id}?limit={limit} - Fetch car reviews
+ * - POST /cars/reviews/{id} - Create new review
  *
  * MODIFICATION GUIDELINES:
  * - Add review filtering options (by rating, date, etc.)
@@ -34,29 +34,33 @@ import { ReviewType, CreateReviewType, ReviewsResponse } from "@/types";
 /**
  * getCarReviews - Fetch reviews for a specific vehicle
  *
- * Retrieves paginated reviews for a given car ID with optional limit control.
- * Returns reviews sorted by creation date (newest first by default).
+ * Retrieves all reviews for a given car ID. By default fetches all reviews,
+ * but can be limited if needed. Returns reviews sorted by creation date.
  *
  * @param carId - The ID of the car to fetch reviews for
- * @param limit - Maximum number of reviews to fetch (default: 10)
+ * @param limit - Maximum number of reviews to fetch (default: 1000 for all)
  * @returns Promise with reviews data and metadata
  *
  * USAGE EXAMPLE:
  * ```typescript
- * const reviews = await getCarReviews(123, 10);
- * console.log(`Found ${reviews.total} reviews, avg rating: ${reviews.averageRating}`);
+ * // Fetch all reviews for a car
+ * const allReviews = await getCarReviews(123);
+ *
+ * // Fetch limited number of reviews
+ * const limitedReviews = await getCarReviews(123, 10);
+ * console.log(`Found ${allReviews.total} reviews, avg rating: ${allReviews.averageRating}`);
  * ```
  */
 export async function getCarReviews(
   carId: string | number,
-  limit: number = 10
+  limit: number = 1000
 ): Promise<ReviewsResponse> {
   try {
     console.log(`📝 Fetching reviews for car ID: ${carId}, limit: ${limit}`);
 
     // ===== API REQUEST =====
     // Construct endpoint with query parameters
-    const endpoint = `/cars/${carId}/reviews?limit=${limit}`;
+    const endpoint = `/cars/reviews/${carId}?limit=${limit}`;
     const response = await GET(endpoint, {});
 
     console.log("✅ Reviews fetch successful:", response.data);
@@ -65,11 +69,26 @@ export async function getCarReviews(
     // Transform API response to match our interface
     const reviewsData = response.data;
 
-    return {
-      reviews: reviewsData.reviews || [],
-      total: reviewsData.total || 0,
-      averageRating: reviewsData.averageRating || 0,
-    } as ReviewsResponse;
+    // Check if the response is an array (direct reviews) or an object with metadata
+    if (Array.isArray(reviewsData)) {
+      // Direct array response - calculate metadata
+      return {
+        reviews: reviewsData,
+        total: reviewsData.length,
+        averageRating:
+          reviewsData.length > 0
+            ? reviewsData.reduce((sum, review) => sum + review.score, 0) /
+              reviewsData.length
+            : 0,
+      } as ReviewsResponse;
+    } else {
+      // Object response with metadata
+      return {
+        reviews: reviewsData.reviews || [],
+        total: reviewsData.total || 0,
+        averageRating: reviewsData.averageRating || 0,
+      } as ReviewsResponse;
+    }
   } catch (error) {
     console.error("❌ Error fetching reviews:", error);
     console.error("📍 Failed for car ID:", carId);
@@ -94,13 +113,26 @@ export async function getCarReviews(
  * @param reviewData - The review information to submit
  * @returns Promise with the created review data
  *
+ * @throws {Error} When email validation fails
+ * @throws {Error} When user has already reviewed this car
+ * @throws {Error} When score is not between 1-5
+ * @throws {Error} When comment is empty
+ * @throws {Error} When API request fails
+ *
  * USAGE EXAMPLE:
  * ```typescript
- * const newReview = await createCarReview(123, {
- *   authorName: "Marie Dubois",
- *   rating: 5,
- *   comment: "Excellente voiture, très satisfaite de mon achat!"
- * });
+ * try {
+ *   const newReview = await createCarReview(123, {
+ *     email: "marie.dubois@email.com",
+ *     score: 5,
+ *     comment: "Excellente voiture, très satisfaite de mon achat!"
+ *   });
+ *   console.log("Review created:", newReview);
+ * } catch (error) {
+ *   if (error.message.includes("déjà donné votre avis")) {
+ *     console.log("User already reviewed this car");
+ *   }
+ * }
  * ```
  */
 export async function createCarReview(
@@ -112,11 +144,17 @@ export async function createCarReview(
 
     // ===== INPUT VALIDATION =====
     // Basic client-side validation before API call
-    if (!reviewData.authorName.trim()) {
-      throw new Error("Le nom de l'auteur est requis");
+    if (!reviewData.email.trim()) {
+      throw new Error("L'email est requis");
     }
 
-    if (reviewData.rating < 1 || reviewData.rating > 5) {
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(reviewData.email)) {
+      throw new Error("Veuillez saisir un email valide");
+    }
+
+    if (reviewData.score < 1 || reviewData.score > 5) {
       throw new Error("La note doit être entre 1 et 5 étoiles");
     }
 
@@ -126,17 +164,33 @@ export async function createCarReview(
 
     // ===== API REQUEST =====
     // Submit review to API endpoint
-    const endpoint = `/cars/${carId}/reviews`;
+    const endpoint = `/cars/reviews/${carId}`;
     const response = await POST(endpoint, {}, reviewData);
 
     console.log("✅ Review creation successful:", response.data);
 
     // ===== RETURN CREATED REVIEW =====
     return response.data as ReviewType;
-  } catch (error) {
+  } catch (error: any) {
     console.error("❌ Error creating review:", error);
     console.error("📍 Failed for car ID:", carId);
     console.error("📝 Review data:", reviewData);
+
+    // ===== HANDLE SPECIFIC API ERRORS =====
+    // Check if user has already reviewed this car
+    if (
+      error?.response?.status === 400 &&
+      error?.response?.data?.message === "You have already reviewed this car."
+    ) {
+      throw new Error(
+        "Vous avez déjà donné votre avis sur ce véhicule. Un seul avis par email est autorisé."
+      );
+    }
+
+    // Handle other API errors with specific messages
+    if (error?.response?.data?.message) {
+      throw new Error(error.response.data.message);
+    }
 
     // Re-throw error to be handled by calling component
     if (error instanceof Error) {
@@ -146,60 +200,3 @@ export async function createCarReview(
     throw new Error("Échec de la création de l'avis");
   }
 }
-
-// ===== FUTURE ENHANCEMENTS =====
-/**
- * Additional review-related functions that could be implemented:
- *
- * 1. UPDATE REVIEW:
- * ```typescript
- * export async function updateReview(
- *   reviewId: number,
- *   updates: Partial<CreateReviewType>
- * ): Promise<ReviewType> {
- *   // Implementation for editing existing reviews
- * }
- * ```
- *
- * 2. DELETE REVIEW:
- * ```typescript
- * export async function deleteReview(reviewId: number): Promise<void> {
- *   // Implementation for removing reviews
- * }
- * ```
- *
- * 3. HELPFUL VOTING:
- * ```typescript
- * export async function voteReviewHelpful(
- *   reviewId: number,
- *   isHelpful: boolean
- * ): Promise<void> {
- *   // Implementation for voting on review helpfulness
- * }
- * ```
- *
- * 4. REVIEW FILTERING:
- * ```typescript
- * export async function getFilteredReviews(
- *   carId: number,
- *   filters: {
- *     rating?: number;
- *     sortBy?: 'date' | 'rating' | 'helpful';
- *     order?: 'asc' | 'desc';
- *   }
- * ): Promise<ReviewsResponse> {
- *   // Implementation for advanced review filtering
- * }
- * ```
- *
- * 5. REVIEW STATISTICS:
- * ```typescript
- * export async function getReviewStatistics(carId: number): Promise<{
- *   totalReviews: number;
- *   averageRating: number;
- *   ratingDistribution: { [rating: number]: number };
- * }> {
- *   // Implementation for detailed review analytics
- * }
- * ```
- */
