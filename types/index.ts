@@ -94,27 +94,33 @@ export type CriteriaType =
  * ReviewType - Interface for car review data
  *
  * Represents a customer review for a specific vehicle with rating and comment.
- * Used for displaying existing reviews and creating new reviews.
+ * Used for displaying existing reviews retrieved from the backend.
+ *
+ * BACKEND RESPONSE EXAMPLE:
+ * ```json
+ * {
+ *   "id": 8,
+ *   "email": "user@idigics.com",
+ *   "score": 3,
+ *   "comment": "noice"
+ * }
+ * ```
  *
  * USAGE EXAMPLE:
  * ```typescript
  * const review: ReviewType = {
- *   id: 1,
- *   carId: 123,
- *   authorName: "Jean Dupont",
- *   rating: 5,
- *   comment: "Excellent véhicule, très satisfait de mon achat!",
- *   createdAt: "2025-01-15T10:30:00Z"
+ *   id: 8,
+ *   email: "user@idigics.com",
+ *   score: 3,
+ *   comment: "noice"
  * };
  * ```
  */
 export interface ReviewType {
   id: number; // Unique review identifier
-  carId: number; // ID of the reviewed car
-  authorName: string; // Name of the person who wrote the review
-  rating: number; // Rating from 1 to 5 stars
+  email: string; // Email of the person who wrote the review
+  score: number; // Rating from 1 to 5 stars
   comment: string; // Written review content
-  createdAt: string; // ISO date string when review was created
 }
 
 /**
@@ -126,15 +132,15 @@ export interface ReviewType {
  * USAGE EXAMPLE:
  * ```typescript
  * const newReview: CreateReviewType = {
- *   authorName: "Marie Martin",
- *   rating: 4,
+ *   email: "marie.martin@example.com",
+ *   score: 4,
  *   comment: "Très bonne voiture, livraison rapide"
  * };
  * ```
  */
 export interface CreateReviewType {
-  authorName: string; // Name of the reviewer
-  rating: number; // Rating from 1 to 5 stars
+  email: string; // Email of the reviewer
+  score: number; // Rating from 1 to 5 stars
   comment: string; // Review comment
 }
 
