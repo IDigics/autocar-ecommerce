@@ -1,43 +1,224 @@
+/**
+ * GLOBAL STYLES FOR AUTOCARZ
+ * ===========================
+ * 
+ * This file contains global CSS styles, custom properties, and base configurations
+ * for the AutoCar'z luxury automotive application.
+ * 
+ * STRUCTURE:
+ * 1. Tailwind CSS imports and configuration
+ * 2. Google Fonts imports for typography
+ * 3. CSS custom properties (CSS variables)
+ * 4. Dark mode support
+ * 5. Base body styles and typography
+ * 6. Responsive utilities and mobile optimizations
+ * 7. Third-party component styles (Embla Carousel)
+ * 
+ * DESIGN SYSTEM:
+ * - Primary colors: Light cream (#f8f8f6) background, dark (#171717) text
+ * - Typography: Open Sans (body), Merriweather (headings)
+ * - Font rendering optimizations for crisp text
+ * - Mobile-first responsive approach
+ * 
+ * MODIFICATION GUIDELINES:
+ * - Add new CSS custom properties to :root for brand colors
+ * - Update font imports when adding new typography
+ * - Add utility classes for commonly used patterns
+ * - Keep global styles minimal, prefer Tailwind utilities
+ */
+
+/* ===== TAILWIND CSS IMPORT ===== */
+/*
+ * Imports all Tailwind CSS utilities, components, and base styles.
+ * This must be first to establish the utility-first foundation.
+ * Tailwind will process this import and generate the final CSS.
+ */
 @import "tailwindcss";
+
+/* ===== GOOGLE FONTS IMPORT ===== */
+/*
+ * Typography System Setup
+ * 
+ * Open Sans: Modern, clean sans-serif for body text and UI elements
+ * - Weights: 300 (light), 400 (regular), 500 (medium), 600 (semi-bold), 700 (bold), 800 (extra-bold)
+ * - Use: Body text, navigation, buttons, form elements
+ * 
+ * Merriweather: Elegant serif for headings and luxury content
+ * - Weights: 400 (regular), 500 (medium), 600 (semi-bold), 700 (bold)
+ * - Use: Page titles, section headings, premium content emphasis
+ * 
+ * display=swap: Improves loading performance by showing fallback fonts first
+ */
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&family=Merriweather:wght@400;500;600;700&display=swap");
 
+/* ===== CSS CUSTOM PROPERTIES (CSS VARIABLES) ===== */
+/*
+ * Theme Color System
+ * 
+ * These CSS custom properties can be accessed throughout the application
+ * using var(--property-name) and are used by Tailwind's background/foreground colors.
+ */
 :root {
-  --background: #f8f8f6;
-  --foreground: #171717;
+  --background: #f8f8f6; /* Light cream background - luxury, warm feeling */
+  --foreground: #171717; /* Dark gray text - high contrast, readability */
+
+  /* ===== ADDITIONAL BRAND COLORS CAN BE ADDED HERE ===== */
+  /* 
+  --primary: #0D1B2A;       Dark navy - authority, trust
+  --accent: #FFD700;        Gold - luxury, premium
+  --muted: #71797E;         Medium gray - secondary text
+  --success: #22C55E;       Green - positive actions
+  --warning: #F59E0B;       Orange - attention, caution
+  --error: #EF4444;         Red - errors, destructive actions
+  */
 }
 
+/* ===== DARK MODE SUPPORT ===== */
+/*
+ * Automatic Dark Mode Detection
+ * 
+ * Respects user's system preference for dark mode.
+ * Automatically switches color scheme based on OS/browser settings.
+ * 
+ * Note: Currently basic implementation. Can be extended with
+ * more comprehensive dark mode styling throughout the application.
+ */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0a0a0a; /* Nearly black background for dark mode */
+    --foreground: #ededed; /* Light text for dark mode contrast */
   }
 }
 
+/* ===== BASE BODY STYLES ===== */
+/*
+ * Foundation Styling for the Entire Application
+ * 
+ * Sets up typography, color scheme, and essential layout properties
+ * that apply to all pages and components.
+ */
 body {
-  background: var(--background);
-  color: var(--foreground);
+  /* ===== COLOR SCHEME ===== */
+  background: var(--background); /* Uses CSS custom property */
+  color: var(--foreground); /* Dynamic based on theme */
+
+  /* ===== TYPOGRAPHY STACK ===== */
+  /*
+   * Font hierarchy (fallback order):
+   * 1. Open Sans - Primary web font from Google Fonts
+   * 2. -apple-system - macOS system font
+   * 3. BlinkMacSystemFont - Older macOS versions
+   * 4. Segoe UI - Windows system font
+   * 5. Roboto - Android system font
+   * 6. Oxygen, Ubuntu, Cantarell - Linux system fonts
+   * 7. sans-serif - Generic fallback
+   */
   font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-  font-feature-settings: "liga" 1, "kern" 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
+  /* ===== FONT RENDERING OPTIMIZATIONS ===== */
+  font-feature-settings: "liga" 1, "kern" 1; /* Enable ligatures and kerning */
+  -webkit-font-smoothing: antialiased; /* Smooth font rendering on macOS */
+  -moz-osx-font-smoothing: grayscale; /* Smooth font rendering on Firefox */
+
+  /* ===== LAYOUT OPTIMIZATIONS ===== */
+  overflow-x: hidden; /* Prevent horizontal scrolling issues on mobile */
 }
 
-/* Embla Carousel Styles */
+/* ===== RESPONSIVE UTILITIES ===== */
+/*
+ * Reusable responsive container class for images and media.
+ * Prevents content from breaking out of containers on mobile devices.
+ */
+.responsive-container {
+  width: 100%; /* Full width of parent */
+  max-width: 100%; /* Never exceed parent width */
+  overflow: hidden; /* Hide content that would overflow */
+}
+
+/* ===== MOBILE-SPECIFIC OPTIMIZATIONS ===== */
+/*
+ * Mobile-First Responsive Adjustments
+ * 
+ * Optimizes typography and layout for small screens.
+ * Improves readability and user experience on mobile devices.
+ */
+@media (max-width: 640px) {
+  /* ===== MOBILE TYPOGRAPHY ===== */
+  /*
+   * Reduce base font size on mobile for better content density.
+   * This affects all rem-based sizes throughout the application.
+   */
+  html {
+    font-size: 14px; /* Smaller base font size (default is 16px) */
+  }
+
+  /* ===== MOBILE TEXT OVERFLOW PREVENTION ===== */
+  /*
+   * Ensure long text content doesn't break layout on small screens.
+   * Applies to all heading elements for consistent behavior.
+   */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    word-wrap: break-word; /* Break long words if necessary */
+    hyphens: auto; /* Add hyphens for better line breaks */
+  }
+}
+
+/* ===== THIRD-PARTY COMPONENT STYLES ===== */
+
+/* ===== EMBLA CAROUSEL STYLES ===== */
+/*
+ * Styles for Embla Carousel component used in hero sections.
+ * 
+ * Embla is a lightweight carousel library that requires specific
+ * CSS classes for proper functionality and responsive behavior.
+ */
+
+/* Main carousel container */
 .embla {
-  overflow: hidden;
+  overflow: hidden; /* Hide slides outside viewport */
 }
 
+/* Container that holds all slides */
 .embla__container {
-  display: flex;
+  display: flex; /* Horizontal layout for slides */
 }
 
+/* Individual slide styling */
 .embla__slide {
-  flex: 0 0 100%;
-  min-width: 0;
-}
-body {
-  padding-left: 8px;  
-  padding-right: 8px;
+  flex: 0 0 100%; /* Each slide takes full width, no grow/shrink */
+  min-width: 0; /* Prevent flex item width issues */
 }
 
+/* ===== ADDITIONAL GLOBAL UTILITIES ===== */
+/*
+ * Add more global utility classes here as needed:
+ * 
+ * .visually-hidden {
+ *   position: absolute;
+ *   width: 1px;
+ *   height: 1px;
+ *   padding: 0;
+ *   margin: -1px;
+ *   overflow: hidden;
+ *   clip: rect(0, 0, 0, 0);
+ *   white-space: nowrap;
+ *   border: 0;
+ * }
+ * 
+ * .focus-visible {
+ *   outline: 2px solid var(--accent);
+ *   outline-offset: 2px;
+ * }
+ * 
+ * .glass-morphism {
+ *   backdrop-filter: blur(10px);
+ *   background: rgba(255, 255, 255, 0.1);
+ *   border: 1px solid rgba(255, 255, 255, 0.2);
+ * }
+ */
