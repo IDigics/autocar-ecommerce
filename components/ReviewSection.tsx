@@ -3,10 +3,10 @@
  * ========================
  *
  * A comprehensive review system component for vehicle detail pages.
- * Displays existing reviews and provides a form for submitting new reviews.
+ * Displays all existing reviews for a car and provides a form for submitting new reviews.
  *
  * FEATURES:
- * - Display list of existing reviews with ratings and comments
+ * - Display all reviews for a specific car with ratings and comments
  * - Star rating display system
  * - Review submission form with validation
  * - Loading states for fetching and submitting
@@ -22,7 +22,11 @@
  *
  * USAGE:
  * ```tsx
+ * // Show all reviews for a car
  * <ReviewSection carId={carId} />
+ *
+ * // Limit number of reviews displayed
+ * <ReviewSection carId={carId} limit={5} />
  * ```
  *
  * STYLING:
@@ -41,7 +45,7 @@ import { CreateReviewType } from "@/types";
 // ===== COMPONENT PROPS INTERFACE =====
 interface ReviewSectionProps {
   carId: string | number; // ID of the car to display reviews for
-  limit?: number; // Optional limit for number of reviews to display
+  limit?: number; // Optional limit for number of reviews to display (default: all)
 }
 
 // ===== STAR RATING COMPONENT =====
@@ -115,7 +119,7 @@ const InteractiveStarRating: React.FC<{
 };
 
 // ===== MAIN REVIEW SECTION COMPONENT =====
-const ReviewSection: React.FC<ReviewSectionProps> = ({ carId, limit = 10 }) => {
+const ReviewSection: React.FC<ReviewSectionProps> = ({ carId, limit }) => {
   // ===== HOOKS AND STATE =====
   const {
     reviews,
@@ -131,8 +135,8 @@ const ReviewSection: React.FC<ReviewSectionProps> = ({ carId, limit = 10 }) => {
 
   // ===== FORM STATE =====
   const [formData, setFormData] = useState<CreateReviewType>({
-    authorName: "",
-    rating: 0,
+    email: "",
+    score: 0,
     comment: "",
   });
   const [showForm, setShowForm] = useState(false);
@@ -142,12 +146,18 @@ const ReviewSection: React.FC<ReviewSectionProps> = ({ carId, limit = 10 }) => {
   const validateForm = (): boolean => {
     const errors: { [key: string]: string } = {};
 
-    if (!formData.authorName.trim()) {
-      errors.authorName = "Le nom est requis";
+    if (!formData.email.trim()) {
+      errors.email = "L'email est requis";
+    } else {
+      // Basic email validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(formData.email)) {
+        errors.email = "Veuillez saisir un email valide";
+      }
     }
 
-    if (formData.rating === 0) {
-      errors.rating = "Veuillez sélectionner une note";
+    if (formData.score === 0) {
+      errors.score = "Veuillez sélectionner une note";
     }
 
     if (!formData.comment.trim()) {
@@ -173,8 +183,8 @@ const ReviewSection: React.FC<ReviewSectionProps> = ({ carId, limit = 10 }) => {
 
       // Reset form on success
       setFormData({
-        authorName: "",
-        rating: 0,
+        email: "",
+        score: 0,
         comment: "",
       });
       setFormErrors({});
@@ -187,23 +197,13 @@ const ReviewSection: React.FC<ReviewSectionProps> = ({ carId, limit = 10 }) => {
   // ===== RESET FORM HANDLER =====
   const handleCancelForm = () => {
     setFormData({
-      authorName: "",
-      rating: 0,
+      email: "",
+      score: 0,
       comment: "",
     });
     setFormErrors({});
     setShowForm(false);
     resetSubmitState();
-  };
-
-  // ===== FORMAT DATE HELPER =====
-  const formatDate = (dateString: string): string => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString("fr-FR", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
   };
 
   // ===== COMPONENT RENDER =====
@@ -247,26 +247,24 @@ const ReviewSection: React.FC<ReviewSectionProps> = ({ carId, limit = 10 }) => {
           </h3>
 
           <form onSubmit={handleSubmit} className="space-y-4">
-            {/* NAME INPUT */}
+            {/* EMAIL INPUT */}
             <div>
               <label className="block text-sm font-medium text-[#0D1B2A] mb-2">
-                Nom *
+                Email *
               </label>
               <input
-                type="text"
-                value={formData.authorName}
+                type="email"
+                value={formData.email}
                 onChange={(e) =>
-                  setFormData({ ...formData, authorName: e.target.value })
+                  setFormData({ ...formData, email: e.target.value })
                 }
-                className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FFD700] ${
-                  formErrors.authorName ? "border-red-500" : "border-gray-300"
+                className={`w-full px-3 py-2 border rounded-lg text-black focus:outline-none focus:ring-2 focus:ring-[#FFD700] ${
+                  formErrors.email ? "border-red-500" : "border-gray-300"
                 }`}
-                placeholder="Votre nom"
+                placeholder="votre.email@exemple.com"
               />
-              {formErrors.authorName && (
-                <p className="text-red-500 text-sm mt-1">
-                  {formErrors.authorName}
-                </p>
+              {formErrors.email && (
+                <p className="text-red-500 text-sm mt-1">{formErrors.email}</p>
               )}
             </div>
 
@@ -276,19 +274,17 @@ const ReviewSection: React.FC<ReviewSectionProps> = ({ carId, limit = 10 }) => {
                 Note *
               </label>
               <InteractiveStarRating
-                rating={formData.rating}
-                onRatingChange={(rating) =>
-                  setFormData({ ...formData, rating })
-                }
+                rating={formData.score}
+                onRatingChange={(score) => setFormData({ ...formData, score })}
               />
-              {formErrors.rating && (
-                <p className="text-red-500 text-sm mt-1">{formErrors.rating}</p>
+              {formErrors.score && (
+                <p className="text-red-500 text-sm mt-1">{formErrors.score}</p>
               )}
             </div>
 
             {/* COMMENT INPUT */}
             <div>
-              <label className="block text-sm font-medium text-[#0D1B2A] mb-2">
+              <label className="block text-sm font-medium text-black mb-2">
                 Commentaire *
               </label>
               <textarea
@@ -297,7 +293,7 @@ const ReviewSection: React.FC<ReviewSectionProps> = ({ carId, limit = 10 }) => {
                   setFormData({ ...formData, comment: e.target.value })
                 }
                 rows={4}
-                className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FFD700] ${
+                className={`w-full px-3 py-2 border rounded-lg text-black focus:outline-none focus:ring-2 focus:ring-[#FFD700] ${
                   formErrors.comment ? "border-red-500" : "border-gray-300"
                 }`}
                 placeholder="Partagez votre expérience avec ce véhicule..."
@@ -310,6 +306,7 @@ const ReviewSection: React.FC<ReviewSectionProps> = ({ carId, limit = 10 }) => {
             </div>
 
             {/* SUBMIT ERROR */}
+            {/* Displays API errors including "already reviewed" message */}
             {submitError && (
               <div className="p-3 bg-red-100 border border-red-400 text-red-700 rounded">
                 {submitError.message ||
@@ -362,17 +359,14 @@ const ReviewSection: React.FC<ReviewSectionProps> = ({ carId, limit = 10 }) => {
               className="p-4 border border-[#E5E5E5] rounded-lg hover:shadow-md transition-shadow"
             >
               <div className="flex items-center justify-between mb-3">
-                <div>
+                <div className="flex-1">
                   <h4 className="font-semibold text-[#0D1B2A]">
-                    {review.authorName}
+                    {review.email}
                   </h4>
-                  <StarRating rating={review.rating} size="w-4 h-4" />
+                  <StarRating rating={review.score} size="w-4 h-4" />
                 </div>
-                <span className="text-sm text-[#71797E]">
-                  {formatDate(review.createdAt)}
-                </span>
               </div>
-              <p className="text-[#71797E] leading-relaxed">{review.comment}</p>
+              <p className="text-black leading-relaxed">{review.comment}</p>
             </div>
           ))}
         </div>
