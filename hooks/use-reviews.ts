@@ -48,7 +48,7 @@ import { CreateReviewType, ReviewsResponse } from "@/types";
  */
 interface UseReviewsParams {
   carId: string | number; // ID of the car to manage reviews for
-  limit?: number; // Maximum number of reviews to fetch (default: 10)
+  limit?: number; // Maximum number of reviews to fetch (default: 1000 for all)
 }
 
 // ===== MAIN HOOK FUNCTION =====
@@ -57,11 +57,12 @@ interface UseReviewsParams {
  *
  * This hook provides a complete interface for fetching, displaying, and
  * creating vehicle reviews with automatic cache management and loading states.
+ * By default, fetches all reviews for the specified car.
  *
  * @param params - Configuration object with car ID and optional limit
  * @returns Object with review data, loading states, and mutation functions
  */
-export default function useReviews({ carId, limit = 10 }: UseReviewsParams) {
+export default function useReviews({ carId, limit = 1000 }: UseReviewsParams) {
   // ===== QUERY CLIENT FOR CACHE MANAGEMENT =====
   const queryClient = useQueryClient();
 
@@ -126,7 +127,7 @@ export default function useReviews({ carId, limit = 10 }: UseReviewsParams) {
             averageRating: calculateNewAverage(
               oldData.averageRating,
               oldData.total,
-              newReview.rating
+              newReview.score
             ),
           };
         }
