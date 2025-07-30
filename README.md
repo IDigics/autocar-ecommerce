@@ -1,3 +1,75 @@
+
+
+
+#### 1. Build the Image
+```bash
+docker build -t nextjs-app .
+```
+- `-t nextjs-app` names your image
+- `.` looks for Dockerfile in current directory
+
+#### 2. Run the Container
+```bash
+docker run -d -p 3000:3000 --name my-next-app nextjs-app
+```
+- `-d` runs in background (detached)
+- `-p 4000:3000` maps host port 4000 → container port 3000 (change first number)
+- `--name` gives your container a name
+
+#### 3. Check Running Containers
+```bash
+docker ps
+```
+
+#### 4. Stop Container
+```bash
+docker stop my-next-app
+```
+
+#### 5. Restart Container
+```bash
+docker start my-next-app
+```
+
+#### 6. View Logs
+```bash
+docker logs -f my-next-app
+```
+- `-f` streams live logs
+
+---
+
+### Cleanup Commands
+
+#### Remove Container
+```bash
+docker rm my-next-app
+```
+
+#### Remove Image
+```bash
+docker rmi nextjs-app
+```
+
+#### Full Cleanup (Stopped Containers + Dangling Images)
+```bash
+docker system prune
+```
+Add `-f` to skip confirmation
+
+---
+
+### Port Customization Examples
+| Command | Host Port | Container Port |
+|---------|-----------|----------------|
+| `-p 3000:3000` | 3000 | 3000 |
+| `-p 4000:3000` | 4000 | 3000 |
+| `-p 8080:3000` | 8080 | 3000 |
+
+---
+
+
+
 # 🚗 AutoCar'z - Luxury Automotive Website
 
 A sophisticated luxury car dealership website built with Next.js 15, featuring elegant design and modular components for the luxury automotive market.
