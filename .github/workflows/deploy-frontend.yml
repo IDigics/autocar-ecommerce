@@ -1,0 +1,20 @@
+name: Deploy Frontend
+
+on:
+  push:
+    branches: [ preprod ]  # Will only trigger on pushes to preprod branch
+
+jobs:
+  build-and-deploy:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build and Push Docker Image
+        run: |
+          docker build -t 192.168.10.20:5000/nextjs-app:$GITHUB_SHA .
+          docker push 192.168.10.20:5000/nextjs-app:$GITHUB_SHA
+      - name: Trigger Ansible
+        run: |
+          cd ~/ansible
+          ansible-playbook playbook-frontend.yml -i inventory.ini \
+            --extra-vars "target_host=192.168.10.10 image_tag=$GITHUB_SHA" --ask-become-pass 
