@@ -107,7 +107,7 @@ export default function CarDetailsPage() {
                 <Image
                   src={
                     product.mainImage
-                      ? `http://localhost:3000/image/${product.mainImage.url}`
+                      ? `http://192.168.10.30:3000/image/${product.mainImage.url}`
                       : "/products/car.jpeg"
                   }
                   alt={`${product.brand.name} ${product.model}`}

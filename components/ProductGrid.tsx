@@ -62,11 +62,11 @@ const ProductGrid: React.FC<ProductGridProps> = ({
                   <Image
                     src={
                       product.mainImage?.url
-                        ? `http://localhost:3000/image/${product.mainImage.url}`
+                        ? `http://192.168.10.30:3000/image/${product.mainImage.url}`
                         : product.image
                         ? product.image.startsWith("http")
                           ? product.image
-                          : `http://localhost:3000/image/${product.image}`
+                          : `http://192.168.10.30:3000/image/${product.image}`
                         : "/products/car.jpeg"
                     }
                     alt={`${product.brand || ""} ${

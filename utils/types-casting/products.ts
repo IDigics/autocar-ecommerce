@@ -13,7 +13,7 @@ export function castToProductType(
 
   // Debug: log image URL
   const imageUrl = productInResponse.mainImage?.url
-    ? `http://localhost:3000/image/${productInResponse.mainImage.url}`
+    ? `http://192.168.10.30:3000/image/${productInResponse.mainImage.url}`
     : "/products/car.jpeg";
   console.log("Image URL:", imageUrl);
 
@@ -65,7 +65,7 @@ export function castToProductTypeFromList(
 ): ProductType {
   // Debug: log image URL
   const imageUrl = productInResponse.image
-    ? `http://localhost:3000/image/${productInResponse.image}`
+    ? `http://192.168.10.30:3000/image/${productInResponse.image}`
     : "/products/car.jpeg";
   console.log("List Image URL:", imageUrl);
 
