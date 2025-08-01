@@ -47,7 +47,9 @@ import axios, { RawAxiosRequestHeaders } from "axios";
  * baseURL: process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000"
  */
 const apiClient = axios.create({
-  baseURL: "http://localhost:3000", // Local development server
+  baseURL: "http://192.168.10.30:3000", // Local development server
+  //baseURL: "http://localhost:3000", // Local development server
+
   timeout: 10000, // 10 seconds timeout
 
   // ADDITIONAL CONFIGURATION OPTIONS:

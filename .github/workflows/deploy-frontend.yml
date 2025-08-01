@@ -1,0 +1,24 @@
+name: Deploy Frontend
+
+on:
+  push:
+    branches: [ preprod ]  # Will only trigger on pushes to preprod branch
+
+jobs:
+  build-and-deploy:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build and Push Docker Image
+        run: |
+          TIMESTAMP=$(date +%Y%m%d%H%M%S)
+
+          docker build -t 192.168.10.20:5000/nextjs-app:$TIMESTAMP .
+          docker push 192.168.10.20:5000/nextjs-app:$TIMESTAMP
+
+          echo "IMAGE_TAG=$TIMESTAMP" >> $GITHUB_ENV
+          
+      - name: Trigger Ansible
+        run: |
+          ansible-playbook ~/ansible/playbook-frontend.yml -i ~/ansible/inventory.ini \
+            --extra-vars "image_tag=$IMAGE_TAG" --ask-become-pass 
