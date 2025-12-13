@@ -13,7 +13,7 @@ export function castToProductType(
 
   // Debug: log image URL
   const imageUrl = productInResponse.mainImage?.url
-    ? `http://192.168.10.30:3000/image/${productInResponse.mainImage.url}`
+    ? `http://172.168.9.113:3000/image/${productInResponse.mainImage.url}`
     : "/products/car.jpeg";
   console.log("Image URL:", imageUrl);
 
@@ -32,13 +32,11 @@ export function castToProductType(
     category: productInResponse.category?.id,
     subCategory: productInResponse.subCategory?.id,
     fuelType: productInResponse.fuelType?.id,
-    description: `${brandName} ${modelName} de ${
-      productInResponse.year || "N/A"
-    }, ${productInResponse.fuelType?.type || "N/A"}, ${
-      productInResponse.gear || "N/A"
-    }, ${productInResponse.horsePower || 0} CV, ${(
-      productInResponse.mileage || 0
-    ).toLocaleString()} km.`,
+    description: `${brandName} ${modelName} de ${productInResponse.year || "N/A"
+      }, ${productInResponse.fuelType?.type || "N/A"}, ${productInResponse.gear || "N/A"
+      }, ${productInResponse.horsePower || 0} CV, ${(
+        productInResponse.mileage || 0
+      ).toLocaleString()} km.`,
     availability: true, // Assuming available if returned by API
     currency: "DT", // Default currency
     // Additional fields
@@ -65,7 +63,7 @@ export function castToProductTypeFromList(
 ): ProductType {
   // Debug: log image URL
   const imageUrl = productInResponse.image
-    ? `http://192.168.10.30:3000/image/${productInResponse.image}`
+    ? `http://172.168.9.113:3000/image/${productInResponse.image}`
     : "/products/car.jpeg";
   console.log("List Image URL:", imageUrl);
 
@@ -91,10 +89,10 @@ export function castToProductTypeFromList(
     // Create a mainImage object from the simple image string
     mainImage: productInResponse.image
       ? {
-          id: 0,
-          url: productInResponse.image,
-          type: "main",
-        }
+        id: 0,
+        url: productInResponse.image,
+        type: "main",
+      }
       : undefined,
   };
 }

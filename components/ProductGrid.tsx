@@ -42,15 +42,27 @@ const ProductGrid: React.FC<ProductGridProps> = ({
           </p>
         ) : (
           products.map((product) => {
-            // Debug: Log image data for each product
-            console.log(`🖼️ Product ${product.id}:`, {
-              id: product.id,
-              name: product.name,
-              mainImage: product.mainImage,
-              image: product.image,
-              brand: product.brand,
-              model: product.model,
-            });
+            
+            const getImageUrl = (product: ProductType) => {
+              const imagePath = product.mainImage?.url || product.image;
+              
+              if (!imagePath) return "/products/car.jpeg";
+              
+              // Handle external URLs
+              if (imagePath.startsWith("http")) return imagePath;
+
+              // Handle local products folder (fixes the 404 on products/car.jpeg)
+              if (imagePath.startsWith("products/") || imagePath.startsWith("/products/")) {
+                return imagePath.startsWith("/") ? imagePath : `/${imagePath}`;
+              }
+
+              // Handle backend images
+              // Remove leading slash to avoid double slashes
+              const cleanPath = imagePath.startsWith("/") ? imagePath.slice(1) : imagePath;
+              const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://192.168.0.113:3000";
+              
+              return `${apiUrl}/image/${cleanPath}`;
+            };
 
             return (
               <div
@@ -60,15 +72,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
               >
                 <div className="relative w-full h-48 mb-4">
                   <Image
-                    src={
-                      product.mainImage?.url
-                        ? `http://192.168.10.30:3000/image/${product.mainImage.url}`
-                        : product.image
-                        ? product.image.startsWith("http")
-                          ? product.image
-                          : `http://192.168.10.30:3000/image/${product.image}`
-                        : "/products/car.jpeg"
-                    }
+                    src={getImageUrl(product)}
                     alt={`${product.brand || ""} ${
                       product.model || product.name || "Car"
                     }`}

@@ -25,7 +25,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "http", // Allow HTTP protocol (development only)
-        hostname: "192.168.10.30", // Allow localhost images
+        hostname: "192.168.0.113", // Allow localhost images
         port: "3000", // Specific port for local development
         pathname: "/image/**", // Only allow images from /image/ path
       },
